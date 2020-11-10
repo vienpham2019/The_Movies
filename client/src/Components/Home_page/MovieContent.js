@@ -2,6 +2,9 @@ function MovieContent(props) {
   let { title, year, genre, img } = props.movie;
   return (
     <div className="movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-drama movie_tag-4k-ultra movie_tag-brother movie_tag-premieres movie_tag-viking">
+      <span class="movie__badge">
+        <span class="movie__badge--featured">Featured</span>
+      </span>
       <div className="movie__poster">
         <a
           href="_"
