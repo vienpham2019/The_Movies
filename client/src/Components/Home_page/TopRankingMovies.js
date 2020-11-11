@@ -7,7 +7,7 @@ function TopRankingMovies() {
 
   const getMovies = () => {
     let movies = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       let img =
         i % 2 === 0
           ? "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/33-a-woman-under-the-influence-300x450.jpg"
@@ -22,11 +22,11 @@ function TopRankingMovies() {
     <div className="container">
       <div className="home-section__inner">
         <header className="home-section__flex-header">
-          <h2 className="section-title">To Ranking Movies</h2>
+          <h2 className="section-title">Top Ranking Movies</h2>
           <ul className="nav">
             {genres.map((genre) => (
               <li className="nav-item mx-3">
-                <a className="text-info left" href="-">
+                <a className="text-info left-underline" href="-">
                   {genre}
                 </a>
               </li>
@@ -36,15 +36,22 @@ function TopRankingMovies() {
         <div className="section-movies-carousel__carousel">
           <div className="movies-carousel__inner">
             <div className="masvideos masvideos-movies">
-              <div className="movies col-20 text-center">
+              <div className="movies colums-7">
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
                     <div className="slick-track">
                       {getMovies().map((value) => (
-                        <div className="slick-slide" style={{ width: "265px" }}>
+                        <div
+                          className="slick-slide hvr-shrink"
+                          style={{ width: "265px" }}
+                          role="button"
+                        >
                           <div
                             className="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action"
-                            style={{ width: "100%", display: "inline-block" }}
+                            style={{
+                              width: "100%",
+                              display: "inline-block",
+                            }}
                           >
                             <div className="movie__poster">
                               <a
@@ -73,24 +80,17 @@ function TopRankingMovies() {
                                   </h3>
                                 </div>
                               </div>
-
                               {/*  */}
                             </div>
                           </div>
                         </div>
                       ))}
-                      <hr />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="home-section__footer-action">
-          <a href="-" className="home-section__footer-action--link">
-            View all
-          </a>
         </div>
       </div>
     </div>
