@@ -20,11 +20,11 @@ function PopularMovies() {
   return (
     <div>
       <div className="container">
-        <div class="home-movie-section-aside-header__inner">
+        <div className="home-movie-section-aside-header__inner">
           <div className="masvideos masvideos-movies">
             <div className="movies columns-7">
               <div className="movies__inner">
-                <header className="home-section__header">
+                <header className="home-section_header">
                   <h2 className="home-section__title">
                     Popular Movies <br />
                     to Watch Now
@@ -53,7 +53,7 @@ function PopularMovies() {
 
       <div className="home-section__footer-view-more-action ">
         <span className="home-section__footer-view-more-action__inner">
-          <a href="_" className="home-section__footer-view-more-action--link">
+          <a href="-" class="home-section__footer-view-more-action--link">
             + View more
           </a>
         </span>

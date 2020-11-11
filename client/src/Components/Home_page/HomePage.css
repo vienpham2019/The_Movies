@@ -1,48 +1,21 @@
-.home-section__header {
+.home-section_header {
   position: relative;
   width: 100%;
   padding: 10px 0 20px 12.5px;
 }
 
-.home-section__footer-view-more-action--link {
-  background-color: black;
-}
-
-.slick-arrow {
-  position: static;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #807f7f;
-  border-radius: 50%;
-  margin-right: 13px;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  top: auto;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
 @media (min-width: 1200px) {
-  .home-section__header {
+  .home-section_header {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 28.5714285714%;
     flex: 0 0 28.5714285714%;
     max-width: 28.5714285714%;
     padding-right: 67.5px;
   }
-
-  .section-movies-carousel-aside-header__header
-    + .section-movies-carousel__carousel {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 75.2777777778%;
-    flex: 0 0 75.2777777778%;
-    max-width: 75.2777777778%;
-  }
 }
 
 @media (min-width: 992px) {
-  .home-section__header {
+  .home-section_header {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 40%;
     flex: 0 0 40%;
@@ -51,12 +24,40 @@
     align-self: center;
     margin-bottom: 0;
   }
+}
+.section-title {
+  font-size: 2em;
+}
+.section-title::after {
+  background-color: black;
+}
 
-  .section-movies-carousel-aside-header__header
-    + .section-movies-carousel__carousel {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 66.6666666667%;
-    flex: 0 0 66.6666666667%;
-    max-width: 66.6666666667%;
+.home-section {
+  width: 100vw;
+  position: relative;
+  margin-left: calc(-50vw + 50% - 8px);
+}
+
+.section-featured-post {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  min-height: 300px;
+  background-position: center;
+  background-size: cover;
+}
+
+@media (min-width: 992px) {
+  .section-featured-post {
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-featured-post {
+    min-height: 500px;
   }
 }
