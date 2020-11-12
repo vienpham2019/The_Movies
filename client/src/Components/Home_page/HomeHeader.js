@@ -94,6 +94,7 @@ function HomeHeader(props) {
         href="#carouselExampleControls"
         data-slide="prev"
       ></div>
+      <div class="decorative-word">Movies</div>
     </div>
   );
 }

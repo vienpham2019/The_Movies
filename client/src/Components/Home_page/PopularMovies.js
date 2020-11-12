@@ -2,11 +2,11 @@ import MovieContent from "./MovieContent";
 
 function PopularMovies() {
   const movie = {
-    title: "Bpm",
+    title: "Oh Lucy",
     year: "2018",
     genre: "Action , Drama",
     img:
-      "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/46-she-is-funny-that-way-300x450.jpg",
+      "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/3-300x450.jpg",
   };
 
   const getMovies = () => {
@@ -19,18 +19,19 @@ function PopularMovies() {
 
   return (
     <div>
-      <div className="container">
+      <div className="mx-auto" style={{ width: "85%" }}>
         <div className="home-movie-section-aside-header__inner">
           <div className="masvideos masvideos-movies">
             <div className="movies columns-7">
               <div className="movies__inner">
                 <header className="home-section_header">
-                  <h2 className="home-section__title">
+                  <h1 className="home-section__title">
                     Popular Movies <br />
                     to Watch Now
-                  </h2>
+                  </h1>
                   <p className="home-section__subtitle">
                     Most watched movies by days
+                    <hr />
                   </p>
                   <div className="home-section__action">
                     <a href="_" className="home-section__action-link">
