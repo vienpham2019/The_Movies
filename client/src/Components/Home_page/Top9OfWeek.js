@@ -68,8 +68,6 @@ function Top9OfWeek(props) {
                           class="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
                         >
                           <img
-                            width="300"
-                            height="450"
                             src={newest_movie_info.img}
                             class="movie__poster--image"
                           />
@@ -91,12 +89,9 @@ function Top9OfWeek(props) {
                                 {newest_movie_info.title}
                               </h3>
                             </a>
-                            <div className="text-info mb-3">
-                              <small class="mr-2">
-                                {newest_movie_info.duration}
-                              </small>
-                              |
-                              <small class="ml-2">
+                            <div className="text-info mt-2 mb-3">
+                              <small>
+                                {newest_movie_info.duration} |{" "}
                                 {newest_movie_info.genre}
                               </small>
                             </div>

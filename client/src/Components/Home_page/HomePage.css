@@ -1,3 +1,66 @@
+/* Home Header */
+
+@media (min-width: 1350px) {
+  .swiper--pagination {
+    display: none;
+  }
+}
+
+@media (max-width: 1350px) {
+  .swiper--button {
+    display: none;
+  }
+}
+
+.swiper--button {
+  color: #707070;
+  font-size: 30px;
+  line-height: 64px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(116.12deg, #caf0ef 0.88%, #f0eae5 97.53%);
+  transition: 0.33s all linear;
+  font-family: "Material Design Icons";
+}
+
+.swiper--button-next {
+  box-shadow: -5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.swiper--button-prev {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.swiper--button-prev:hover,
+.swiper--button-next:hover {
+  box-shadow: none;
+}
+
+.swiper--button-next::before {
+  content: "\227B";
+}
+
+.swiper--button-prev::before {
+  content: "\227A";
+}
+
+.button-custom {
+  font-weight: 700;
+}
+
+.button-custom i {
+  color: #ffe142;
+}
+
+.button-custom:hover i {
+  color: black;
+}
+
+.block--8 {
+  font-weight: 700;
+}
+
 .home-section_header {
   position: relative;
   width: 100%;
@@ -31,33 +94,3 @@
 .section-title::after {
   background-color: black;
 }
-
-/* .home-section {
-  width: 100vw;
-  position: relative;
-  margin-left: calc(-50vw + 50% - 8px);
-} */
-
-/* .section-featured-post {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: end;
-  -webkit-align-items: flex-end;
-  align-items: flex-end;
-  min-height: 300px;
-  background-position: center;
-  background-size: cover;
-} */
-
-/* @media (min-width: 992px) {
-  .section-featured-post {
-    min-height: 600px;
-  }
-}
-
-@media (min-width: 768px) {
-  .section-featured-post {
-    min-height: 500px;
-  }
-} */
