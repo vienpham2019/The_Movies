@@ -50,7 +50,7 @@ function MidSection(props) {
                     </div>
                     <div className="movie__actions">
                       <a href="-" className="movie-actions--link_watch">
-                        Watch Now
+                        More Info
                       </a>
                       <div className="movie-actions--link_add-to-playlist dropdown">
                         <a

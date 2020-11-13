@@ -1,15 +1,13 @@
-import React, { useState } from "react";
 function TopRankingMovies() {
-  const [movies, getM] = useState([]);
   const movie = {
     title: "Bpm",
     genre: "Action , Drama",
   };
   let genres = ["Action", "Biology", "Sci-Fi", "Crime", "Drama", "Kids"];
 
-  const getMovies = (index) => {
+  const getMovies = () => {
     let movies = [];
-    for (let i = 0; i < index; i++) {
+    for (let i = 0; i < 10; i++) {
       let img =
         i % 2 === 0
           ? "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/33-a-woman-under-the-influence-300x450.jpg"
@@ -17,12 +15,11 @@ function TopRankingMovies() {
       let year = "201" + i;
       movies.push({ ...movie, img, year });
     }
-    getM(movies);
-    return;
+    return movies;
   };
 
   return (
-    <div className="container">
+    <div className="mx-auto" style={{ width: "80%" }}>
       <div className="home-section__inner">
         <header className="home-section__flex-header">
           <h2 className="section-title">Top Ranking Movies</h2>
@@ -48,10 +45,10 @@ function TopRankingMovies() {
               <div className="movies colums-7">
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
-                    <div className="slick-track">
-                      {movies.map((value) => (
+                    <div className="slick-track d-flex justify-content-center flex-wrap">
+                      {getMovies().map((value) => (
                         <div
-                          className="slick-slide hvr-shrink animate__animated animate__zoomIn"
+                          className="slick-slide hvr-shrink animate__animated animate__zoomIn p-2 bd-highlight"
                           style={{ width: "265px" }}
                           role="button"
                         >
@@ -101,6 +98,11 @@ function TopRankingMovies() {
             </div>
           </div>
         </div>
+      </div>
+      <div class="d-flex flex-row-reverse bd-highlight border-top">
+        <p class="home-section__action-link p-2 bd-highlight" role="button">
+          View All
+        </p>
       </div>
     </div>
   );

@@ -38,21 +38,15 @@ function Top9OfWeek(props) {
         <div class="featured-with-list-view-movies-list">
           <header class="featured-with-list-view-movies-list__header">
             <h2 class="section-movies-list__title">Newest Movies</h2>
-            <ul class="nav nav-tabs">
-              <li className="nav-item mx-3">
-                <a className="text-info left" href="-">
-                  Today
-                </a>
+            <ul class="nav nav-tabs border-0 text-info">
+              <li className="nav-item mx-3" role="button">
+                Today
               </li>
-              <li className="nav-item mx-3">
-                <a className="text-info left" href="-">
-                  This Week
-                </a>
+              <li className="nav-item mx-3" role="button">
+                This Week
               </li>
-              <li className="nav-item mx-3">
-                <a className="text-info left" href="-">
-                  Last 30 days
-                </a>
+              <li className="nav-item mx-3" role="button">
+                Last 30 days
               </li>
             </ul>
           </header>
