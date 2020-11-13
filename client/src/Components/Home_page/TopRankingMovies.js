@@ -1,13 +1,15 @@
+import React, { useState } from "react";
 function TopRankingMovies() {
+  const [movies, getM] = useState([]);
   const movie = {
     title: "Bpm",
     genre: "Action , Drama",
   };
   let genres = ["Action", "Biology", "Sci-Fi", "Crime", "Drama", "Kids"];
 
-  const getMovies = () => {
+  const getMovies = (index) => {
     let movies = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < index; i++) {
       let img =
         i % 2 === 0
           ? "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/33-a-woman-under-the-influence-300x450.jpg"
@@ -15,7 +17,8 @@ function TopRankingMovies() {
       let year = "201" + i;
       movies.push({ ...movie, img, year });
     }
-    return movies;
+    getM(movies);
+    return;
   };
 
   return (
@@ -24,11 +27,17 @@ function TopRankingMovies() {
         <header className="home-section__flex-header">
           <h2 className="section-title">Top Ranking Movies</h2>
           <ul className="nav">
-            {genres.map((genre) => (
+            {genres.map((genre, index) => (
               <li className="nav-item mx-3">
-                <a className="text-info left-underline" href="-">
+                <span
+                  className="text-info left-underline"
+                  onClick={() => {
+                    getMovies(index + 5);
+                  }}
+                  role="button"
+                >
                   {genre}
-                </a>
+                </span>
               </li>
             ))}
           </ul>
@@ -40,9 +49,9 @@ function TopRankingMovies() {
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
                     <div className="slick-track">
-                      {getMovies().map((value) => (
+                      {movies.map((value) => (
                         <div
-                          className="slick-slide hvr-shrink"
+                          className="slick-slide hvr-shrink animate__animated animate__zoomIn"
                           style={{ width: "265px" }}
                           role="button"
                         >
