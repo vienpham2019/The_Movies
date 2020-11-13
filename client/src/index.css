@@ -140,3 +140,14 @@ li {
 }
 
 /* end Login Modal */
+
+.text__ {
+  max-height: 3.6em; /* exactly 2 lines */
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: normal;
+  font-size: small;
+  color: rgb(192, 190, 190);
+}
