@@ -1,6 +1,9 @@
 import { useState } from "react";
 import DisplayMovies from "./DisplayMovies";
 import MoviesFilter from "./MoviesFilter";
+import TopMovies from "./TopMovies";
+import "./Movies.css";
+
 function MoviesPage() {
   const [vodi_value, setVodiValue] = useState("grid");
   let vodi = [
@@ -116,35 +119,13 @@ function MoviesPage() {
     >
       <div class="mx-auto" style={{ width: "80%" }}>
         <div class="section-movies-list__inner">
-          <div class="top-movies-list" style={{ maxWidth: "350px" }}>
-            <header class="top-movies-list__header">
-              <h2 class="section-movies-list__title">Top 5 List</h2>
-            </header>
-            <div class="top-movies-list__info">
-              <div class="masvideos masvideos-movies">
-                <div class="movies columns-1">
-                  <div class="movies__inner">
-                    {top_9_of_week.map((value) => (
-                      <div
-                        class="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action hvr-shrink"
-                        role="button"
-                      >
-                        <div class="movie-list">
-                          <div class="movie-list__body">
-                            <span class="movie-list__year">{value.year}</span>
-                            <h3 class="movie-list__name">{value.title}</h3>
-                            <span class="movie-list__genre">{value.genre}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/*  */}
+          <div>
+            <MoviesFilter />
+            <TopMovies movies={top_9_of_week} />
           </div>
 
-          <div class="featured-with-list-view-movies-list">
+          <div class="featured-with-list-view-movies-list pl-4">
             <header class="featured-with-list-view-movies-list__header">
               <h2 class="section-movies-list__title">Movies</h2>
             </header>
