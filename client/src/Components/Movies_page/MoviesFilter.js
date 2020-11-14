@@ -30,6 +30,8 @@ function MoviesFilter(props) {
     "2014",
     "2013",
   ];
+
+  const ratings = [10, 9, 8, 7, 6, 5];
   return (
     <div class="top-movies-list mb-4" style={{ maxWidth: "350px" }}>
       <div class="px-3 pb-2">
@@ -64,6 +66,30 @@ function MoviesFilter(props) {
               style={{ borderRadius: "0" }}
             >
               {year}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="px-3 pb-2">
+        <header class="top-movies-list__header m-0">
+          <h2 class="section-movies-list__title">Filter by Rating</h2>
+        </header>
+
+        <div class="mt-2 d-flex flex-wrap">
+          {ratings.map((rating) => (
+            <div
+              class="text-info w-100 row m-0 justify-content-between left-underline border-white"
+              role="button"
+            >
+              <div>
+                {Array.from(Array(10), (_, i) => {
+                  return (
+                    <i class={`${i < rating ? "fas" : "far"} fa-star`}></i>
+                  );
+                })}
+              </div>
+              <p class="text-white text-right">( {rating} )</p>
             </div>
           ))}
         </div>
