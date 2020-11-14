@@ -2,7 +2,11 @@ function NavBar(props) {
   return (
     <nav
       class="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom"
-      style={{ top: "0px", backgroundColor: "rgba(0 , 0 , 0 , 0.6)" }}
+      style={{
+        top: "0px",
+        backgroundColor: "rgba(0 , 0 , 0 , 0.6)",
+        zIndex: "1",
+      }}
     >
       <div class="container">
         <span class="navbar-brand py-0">

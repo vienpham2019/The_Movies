@@ -6,6 +6,7 @@ import "./Movies.css";
 
 function MoviesPage() {
   const [vodi_value, setVodiValue] = useState("grid");
+  const [displaySideBar, setSideBar] = useState(false);
   let vodi = [
     { type: "grid", value: "fas fa-th" },
     { type: "grid-extended", value: "fas fa-th-large" },
@@ -110,6 +111,16 @@ function MoviesPage() {
       description:
         "Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures. ... The film serves as a conclusion to the story of the MCU up to that point, ending the story arcs for several main characters.",
     },
+    {
+      title: "Avengers: Endgame",
+      img:
+        "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg",
+      genre: "Action, Adventure, Science fiction",
+      duration: "3h 2m",
+      year: "2018",
+      description:
+        "Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures. ... The film serves as a conclusion to the story of the MCU up to that point, ending the story arcs for several main characters.",
+    },
   ];
 
   return (
@@ -117,10 +128,17 @@ function MoviesPage() {
       class="home-section section-movies-list"
       style={{ paddingTop: "90px" }}
     >
-      <div class="mx-auto" style={{ width: "80%" }}>
+      <div class="mx-auto widget-area" style={{ width: "90%" }}>
         <div class="section-movies-list__inner">
           {/*  */}
-          <div>
+          <div class={`sidebar ${displaySideBar ? "active" : ""}`}>
+            <div
+              class="dismiss"
+              role="button"
+              onClick={() => setSideBar(!displaySideBar)}
+            >
+              <i class="fas fa-times"></i>
+            </div>
             <MoviesFilter />
             <TopMovies movies={top_9_of_week} />
           </div>
@@ -130,39 +148,34 @@ function MoviesPage() {
               <h2 class="section-movies-list__title">Movies</h2>
             </header>
             {/*  */}
-            <div class="vodi-control-bar d-flex flex-row-reverse bd-highlight">
-              <ul class="archive-view-switcher p-2 bd-highlight">
-                {vodi.map((value) => (
-                  <li
-                    class={
-                      vodi_value === value.type
-                        ? "nav-item bg-info"
-                        : "nav-item"
-                    }
-                    role="button"
-                    onClick={() => setVodiValue(value.type)}
-                  >
-                    <span class="mx-2">
-                      <i class={value.value + " text-white"}></i>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div class="movies-ordering">
-                <div class="handheld-sidebar-toggle">
-                  <button class="btn sidebar-toggler" type="button">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>Filters</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            {/*  */}
-            <div class="featured-with-list-view-movies-list__info">
-              <div class="list-view-movies-list">
-                <DisplayMovies movies={movies} vodi_value={vodi_value} />
-                {/*  */}
-              </div>
+            <ul class="d-flex justify-content-end">
+              {vodi.map((value) => (
+                <li
+                  class={`mx-1 vodi-button ${
+                    vodi_value === value.type ? "nav-item bg-info" : "nav-item"
+                  }`}
+                  role="button"
+                  onClick={() => setVodiValue(value.type)}
+                >
+                  <span class="mx-2">
+                    <i class={value.value + " text-white"}></i>
+                  </span>
+                </li>
+              ))}
+              <li
+                class="ml-4 px-3 sidebar--toggler border text-center"
+                role="button"
+                onClick={() => setSideBar(!displaySideBar)}
+              >
+                <span class="text-white">
+                  <i class="fas fa-sliders-h mr-1"></i>
+                  <span>Filters</span>
+                </span>
+              </li>
+            </ul>
+
+            <div>
+              <DisplayMovies movies={movies} vodi_value={vodi_value} />
             </div>
           </div>
         </div>
@@ -171,33 +184,3 @@ function MoviesPage() {
   );
 }
 export default MoviesPage;
-
-{
-  /* <div class="vodi-control-bar d-flex flex-row-reverse bd-highlight">
-              <ul class="archive-view-switcher p-2 bd-highlight">
-                {vodi.map((value) => (
-                  <li
-                    class={
-                      vodi_value === value.type
-                        ? "nav-item bg-info"
-                        : "nav-item"
-                    }
-                    role="button"
-                    onClick={() => setVodiValue(value.type)}
-                  >
-                    <span class="mx-2">
-                      <i class={value.value + " text-white"}></i>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div class="movies-ordering">
-                <div class="handheld-sidebar-toggle">
-                  <button class="btn sidebar-toggler" type="button">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>Filters</span>
-                  </button>
-                </div>
-              </div>
-            </div> */
-}

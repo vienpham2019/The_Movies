@@ -3,11 +3,13 @@ function DisplayMovies(props) {
   return (
     <div class="vodi-archive-wrapper" data-view={vodi_value}>
       <div
-        class={`movies ${vodi_value === "grid" ? "columns-6" : "columns-5"}`}
+        class={`movies ${
+          vodi_value === "grid-extended" ? "columns-4" : "columns-5"
+        }`}
       >
         <div class="movies__inner">
           {movies.map((movie) => (
-            <div class={`movie ${vodi_value === "list" ? "py-2" : "m-3"}`}>
+            <div class="movie p-2" role="button">
               <div class="movie__poster">
                 <img
                   src={movie.img}
@@ -15,7 +17,7 @@ function DisplayMovies(props) {
                   style={{ width: "300px" }}
                 />
               </div>
-              <div class="movie__body px-2">
+              <div class="movie__body px-2 ">
                 <div class="movie__info">
                   <div class="movie__info--head">
                     <div class="movie__meta">
@@ -29,7 +31,7 @@ function DisplayMovies(props) {
                     <span class="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
                       <div class="row">
                         <div class="col-12 text-truncate text-white">
-                          <strong style={{ fontSize: "1.2em" }}>
+                          <strong style={{ fontSize: "1em" }}>
                             {movie.title}
                           </strong>
                         </div>
@@ -51,14 +53,15 @@ function DisplayMovies(props) {
                   </div>
                   <div class="movie__actions mt-5">
                     <span
-                      class="btn_ btn-block_ btn-outline-dark_ border w-25 text-white mx-2"
+                      class="btn_ btn-block_ btn-outline-dark_ text-white mx-2 border"
                       role="button"
+                      style={{ width: "200px" }}
                     >
                       Watch Now
                     </span>
-                    <div class="movie-actions--link_add-to-playlist dropdown">
+                    <div class="movie-actions--link_add-to-playlist dropdown border">
                       <span
-                        class="btn_ btn-block_ btn-outline-dark_ border w-55 text-white mx-2"
+                        class="btn_ btn-block_ btn-outline-dark_ w-55 text-white mx-2"
                         role="button"
                       >
                         + Playlist

@@ -1,3 +1,4 @@
+/* Filter checkbox */
 .checkbox-wrapper {
   position: relative;
 }
@@ -63,3 +64,82 @@ input[type="checkbox"] {
   opacity: 1;
   transform: rotate(-45deg) scale(0.8);
 }
+
+/* end filter checkbox */
+
+@media (max-width: 767px) {
+  .vodi-button {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.sidebar.active {
+  left: 0;
+}
+
+.dismiss {
+  display: none;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: #000;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.sidebar--toggler {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgb(4, 12, 34);
+    color: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  }
+  .dismiss {
+    display: block;
+  }
+
+  .sidebar--toggler {
+    display: block;
+  }
+}
+
+.dismiss:hover {
+  background: #fff;
+  color: #000000;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* end Side bar */
