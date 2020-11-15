@@ -73,6 +73,10 @@ input[type="checkbox"] {
   }
 }
 
+.movies-search::placeholder {
+  color: white;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */

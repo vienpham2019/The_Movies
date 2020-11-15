@@ -145,7 +145,15 @@ function MoviesPage() {
 
           <div class="featured-with-list-view-movies-list pl-4">
             <header class="featured-with-list-view-movies-list__header">
-              <h2 class="section-movies-list__title">Movies</h2>
+              <div className="row w-100 m-0">
+                <h2 class="section-movies-list__title">Movies</h2>
+                <input
+                  type="text"
+                  class="mx-auto w-50 text-white rounded-pill border-white movies-search"
+                  style={{ maxHeight: "30px" }}
+                  placeholder="Search..."
+                />
+              </div>
             </header>
             {/*  */}
             <ul class="d-flex justify-content-end">
