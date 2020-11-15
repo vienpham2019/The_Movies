@@ -5,7 +5,7 @@ function NavBar(props) {
       style={{
         top: "0px",
         backgroundColor: "rgba(0 , 0 , 0 , 0.6)",
-        zIndex: "1",
+        zIndex: "2",
       }}
     >
       <div class="container">
