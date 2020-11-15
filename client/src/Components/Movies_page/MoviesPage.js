@@ -2,6 +2,7 @@ import { useState } from "react";
 import DisplayMovies from "./DisplayMovies";
 import MoviesFilter from "./MoviesFilter";
 import TopMovies from "./TopMovies";
+import Pagination from "./Pagination";
 import "./Movies.css";
 
 function MoviesPage() {
@@ -184,6 +185,9 @@ function MoviesPage() {
 
             <div>
               <DisplayMovies movies={movies} vodi_value={vodi_value} />
+              <hr />
+              <Pagination />
+              {/*  */}
             </div>
           </div>
         </div>
