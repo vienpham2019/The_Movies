@@ -4,7 +4,7 @@ function Top9OfWeek(props) {
   let [newest_movie_info, setNewestMovieInfo] = useState(newest_movies[0]);
 
   return (
-    <div class="mx-auto" style={{ width: "70%" }}>
+    <div class="mx-auto" style={{ width: "80%" }}>
       <div class="section-movies-list__inner">
         <div class="top-movies-list">
           <header class="top-movies-list__header">
@@ -55,19 +55,14 @@ function Top9OfWeek(props) {
               <div class="masvideos masvideos-movies">
                 <div class="movies columns-1">
                   <div class="movies__inner">
-                    <div class="post-312 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-thriller movie_tag-4k-ultra movie_tag-brother movie_tag-premieres movie_tag-viking">
-                      <div class="movie__poster">
-                        <a
-                          href="-"
-                          class="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
-                        >
-                          <img
-                            src={newest_movie_info.img}
-                            class="movie__poster--image"
-                          />
-                        </a>
+                    <div class="movie">
+                      <div class="movie__poster" style={{ minWidth: "190px" }}>
+                        <img
+                          src={newest_movie_info.img}
+                          class="movie__poster--image"
+                        />
                       </div>
-                      <div class="movie__body">
+                      <div class="movie__body pl-3">
                         <div class="movie__info">
                           <div class="movie__info--head">
                             <div class="movie__meta">
@@ -75,14 +70,10 @@ function Top9OfWeek(props) {
                                 {newest_movie_info.year}
                               </span>
                             </div>
-                            <a
-                              href="-"
-                              class="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
-                            >
-                              <h3 class="masvideos-loop-movie__title movie__title mb-0">
-                                {newest_movie_info.title}
-                              </h3>
-                            </a>
+
+                            <h3 class="masvideos-loop-movie__title movie__title mb-0">
+                              {newest_movie_info.title}
+                            </h3>
                             <div className="text-info mt-2 mb-3">
                               <small>
                                 {newest_movie_info.duration} |{" "}
@@ -125,11 +116,14 @@ function Top9OfWeek(props) {
                   <div class="movies__inner">
                     {newest_movies.map((movie) => (
                       <div
-                        class="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action left"
+                        class="movie"
                         onClick={() => setNewestMovieInfo(movie)}
                       >
                         <div class="movie-list hvr-shrink">
-                          <div class="movie-list__poster">
+                          <div
+                            class="movie-list__poster"
+                            style={{ minWidth: "90px" }}
+                          >
                             <img src={movie.img} class="movie__poster--image" />
                           </div>
                           <div class="movie-list__body">
