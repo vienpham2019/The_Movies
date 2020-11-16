@@ -1,10 +1,16 @@
 import { useState } from "react";
 function Pagination(props) {
-  const pages = 7;
+  const pages = 16;
   const [currentPage, setCurrentPage] = useState(1);
+  const [beforeCurrent, setBeforeCurrent] = useState(1);
+  const [afterCurrent, setAfterCurrent] = useState(4);
 
   const handelCurrentPage = (page) => {
     setCurrentPage(page);
+    let b_c = page - 1 > 0 && page <= pages - 2 ? page - 1 : pages - 3;
+    setBeforeCurrent(b_c);
+    let a_c = page + 1 < pages && page >= 3 ? page + 1 : 4;
+    setAfterCurrent(a_c);
   };
 
   return (
@@ -48,7 +54,7 @@ function Pagination(props) {
             overflowX: "hidden",
           }}
         >
-          {Array.from(Array(Math.abs(currentPage - 3)), (_, i) => i + 2).map(
+          {Array.from(Array(Math.abs(beforeCurrent - 2)), (_, i) => i + 2).map(
             (page) => (
               <p
                 className="m-0 border-bottom dropdown--item pl-3"
@@ -109,8 +115,8 @@ function Pagination(props) {
           }}
         >
           {Array.from(
-            Array(Math.abs(pages - currentPage - 2)),
-            (_, i) => currentPage + 2 + i
+            Array(Math.abs(pages - afterCurrent - 1)),
+            (_, i) => afterCurrent + i + 1
           ).map((page) => (
             <p
               className="m-0 border-bottom dropdown--item pl-3"
