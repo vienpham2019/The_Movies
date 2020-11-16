@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import HomePage from "./Components/Home_page/HomePage";
 import MoviesPage from "./Components/Movies_page/MoviesPage";
-import MovieDetailPage from "./Components/MovieDetail_page/MovieDetailPage";
+import MovieInfoPage from "./Components/MovieDetail_page/MovieInfoPage";
 import Footer from "./Components/Footer";
 import NavBar from "./Components/NavBar";
 import LoginModal from "./Components/LoginModal";
@@ -22,8 +22,8 @@ function App() {
           />
           <Route
             exact
-            path="/movie_detail"
-            render={(routerProps) => <MovieDetailPage {...routerProps} />}
+            path="/movie_info"
+            render={(routerProps) => <MovieInfoPage {...routerProps} />}
           />
           <Route
             exact

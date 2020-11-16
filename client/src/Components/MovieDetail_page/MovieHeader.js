@@ -1,23 +1,51 @@
+import { createUseStyles } from "react-jss";
+const styles = createUseStyles({
+  backgroundImage: (props) => ({
+    "&::after": {
+      content: `""`,
+      backgroundImage: `url(${props.img})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      opacity: "0.3",
+      filter: "blur(40px)",
+      top: "0",
+      left: "0",
+      bottom: "0",
+      right: "0",
+      zIndex: "-1",
+      position: "absolute",
+    },
+  }),
+});
 function MovieHeader(props) {
   const { movie } = props;
+
+  const rate = 7.9;
   return (
-    <div class="gt-title-overview gt-style-1">
-      <div class="gt-cover">
-        <div class="gt-flex-container">
-          <div class="gt-poster">
+    <div className="gt-title-overview gt-style-1">
+      <div className={`gt-cover ${styles(movie).backgroundImage}`}>
+        <div className="gt-flex-container">
+          <div className="gt-poster">
             <img src={movie.img} />
           </div>
-          <div class="gt-details gt-part-1">
+          <div className="gt-details gt-part-1">
             <h6>{movie.year}</h6>
             <h1>{movie.title}</h1>
-            <div class="gt-mini-summary">
+            <div className="gt-mini-summary">
               <p>{movie.description}</p>
             </div>
             <div class="gt-items">
-              <div class="gt-dotted-items" role="button">
-                <div class="border p-3 text-center">
-                  <span class="mr-2">Watch the Trailer</span>
-                  <i class="fas fa-play fa-1x"></i>
+              <div class="gt-circular-items">
+                <div class="gt-item gt-watch-trailer">
+                  <div class="gt-button gt-style-3 gt-dark">
+                    <div role="button" class="d-flex align-items-center">
+                      <div class="gt-icon">
+                        <i class="fas fa-play"></i>
+                      </div>
+                      <span>Watch the Trailer</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="gt-dotted-items">
@@ -27,54 +55,63 @@ function MovieHeader(props) {
                     <li>{movie.genre}</li>
                   </ul>
                 </div>
-                <div class="gt-item gt-release-date">March 29, 2019</div>
+                <div class="gt-item gt-release-date">December 9, 2022</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="gt-flex-container">
-        <div class="gt-details gt-part-2">
-          <div class="gt-inner-wrapper">
-            <div class="gt-inner-items">
-              <div class="gt-user-ratings gt-style-1">
-                <div class="gt-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
+      <div className="gt-flex-container text-dark">
+        <div className="gt-details gt-part-2">
+          <div className="gt-inner-wrapper">
+            <div className="gt-inner-items">
+              <div className="gt-user-ratings gt-style-1 pl-4 p-0 pr-3">
+                <div className="gt-results">
+                  <strong>5.8 / 4</strong>
                 </div>
-                <div class="gt-results">
-                  <h6 class="text-dark">5.8 / 4</h6>
+                <div className="gt-stars">
+                  {Array.from(Array(10)).map((_, i) => (
+                    <i
+                      className={`${i + 1 <= rate ? "fas" : "far"} fa-star`}
+                    ></i>
+                  ))}
                 </div>
               </div>
-              <div class="gt-imdb-rating gt-style-1">
-                <div class="gt-point">
-                  <div class="gt-point">7.9</div>
+              <div className="gt-imdb-rating gt-style-1">
+                <div className="gt-point">
+                  <div className="gt-point">7.9</div>
                 </div>
                 <span>IMDb</span>
               </div>
-              <div class="gt-network gt-style-1">
-                <div class="gt-item-title">Network</div>
-                <div class="gt-item-content">
+              <div className="gt-network gt-style-1">
+                <div className="gt-item-title">Network</div>
+                <div className="gt-item-content">
                   <strong>A&amp;E</strong>
                 </div>
               </div>
-              <div class="gt-status gt-style-1">
-                <div class="gt-item-title">Status</div>
-                <div class="gt-item-content">
+              <div className="gt-status gt-style-1">
+                <div className="gt-item-title">Status</div>
+                <div className="gt-item-content">
                   <strong>Post Production</strong>
                 </div>
               </div>
             </div>
-            <div class="gt-buttons">
-              <div class="gt-button gt-style-2 border mx-2 text-center">
-                <button class="btn">
-                  <i class="fas fa-plus"></i>
-                </button>
+            <div className="gt-buttons">
+              <div
+                className="gt-button gt-style-2 rounded-0 mx-2 btn btn-dark"
+                role="button"
+              >
+                <span className="btn">
+                  <i className="fas fa-plus text-white"></i>
+                </span>
               </div>
-              <div class="gt-button gt-style-2 border mx-2 text-center">
-                <button class="btn">
-                  <i class="fas fa-heart"></i>
-                </button>
+              <div
+                className="gt-button gt-style-2 border mx-2 btn rounded-0"
+                role="button"
+              >
+                <div className="btn">
+                  <i className="far fa-heart"></i>
+                </div>
               </div>
             </div>
           </div>

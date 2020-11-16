@@ -1,9 +1,10 @@
 import MovieHeader from "./MovieHeader";
-function MovieDetailPage(props) {
+import "./MovieInfoPage.css";
+function MovieInfoPage(props) {
   const movie = {
     title: "Over the Moon",
     img:
-      "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQGkUUnXvilYpVTzT20DTPFyJGV1iujXqBaj4CxDAu5lDanmPgO",
+      "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Venom_%282018_film_poster%29.png/220px-Venom_%282018_film_poster%29.png",
     genre: "Animation, Comedy, Adventure",
     duration: "1h 40m",
     year: "2019",
@@ -17,4 +18,4 @@ function MovieDetailPage(props) {
   );
 }
 
-export default MovieDetailPage;
+export default MovieInfoPage;
