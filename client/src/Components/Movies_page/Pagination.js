@@ -1,6 +1,6 @@
 import { useState } from "react";
 function Pagination(props) {
-  const pages = 16;
+  const pages = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [beforeCurrent, setBeforeCurrent] = useState(1);
   const [afterCurrent, setAfterCurrent] = useState(4);
@@ -14,28 +14,30 @@ function Pagination(props) {
   };
 
   return (
-    <div class="d-flex justify-content-end text-white">
+    <div className="d-flex justify-content-end text-white">
       <div
-        class={`pagination-item ${currentPage === 1 ? "d-none" : ""}`}
+        className={`pagination-item ${currentPage === 1 ? "d-none" : ""}`}
         role="button"
         onClick={() => handelCurrentPage(currentPage - 1)}
       >
-        <span class="mx-auto">&laquo;</span>
+        <span className="mx-auto">&laquo;</span>
       </div>
       <div
-        class={`pagination-item ${
+        className={`pagination-item ${
           currentPage === 1 ? "pagination-active" : ""
         }`}
         role="button"
         onClick={() => handelCurrentPage(1)}
       >
-        <span class="mx-auto">1</span>
+        <span className="mx-auto">1</span>
       </div>
       <div
-        class={`pagination-item dropdown ${currentPage < 4 ? "d-none" : ""}`}
+        className={`pagination-item dropdown ${
+          currentPage < 4 || pages < 4 ? "d-none" : ""
+        }`}
       >
         <span
-          class="mx-auto dropdown-toggle"
+          className="mx-auto dropdown-toggle"
           role="button"
           data-toggle="dropdown"
           id="dropdownMenuButton1"
@@ -45,7 +47,7 @@ function Pagination(props) {
           ...
         </span>
         <div
-          class={`dropdown-menu p-0 ${currentPage < 4 ? "d-none" : ""}`}
+          className={`dropdown-menu p-0 ${currentPage < 4 ? "d-none" : ""}`}
           aria-labelledby="dropdownMenuButton1"
           style={{
             maxWidth: "40px",
@@ -78,22 +80,22 @@ function Pagination(props) {
             : i + currentPage - 1
       ).map((page) => (
         <div
-          class={`pagination-item active ${
+          className={`pagination-item active ${
             currentPage === page ? "pagination-active" : ""
           }`}
           role="button"
           onClick={() => handelCurrentPage(page)}
         >
-          <span class="mx-auto">{page}</span>
+          <span className="mx-auto">{page}</span>
         </div>
       ))}
       <div
-        class={`pagination-item dropdown ${
+        className={`pagination-item dropdown ${
           currentPage <= pages - 3 && pages > 5 ? "" : "d-none"
         }`}
       >
         <span
-          class="mx-auto dropdown-toggle"
+          className="mx-auto dropdown-toggle"
           role="button"
           data-toggle="dropdown"
           id="dropdownMenuButton2"
@@ -103,7 +105,7 @@ function Pagination(props) {
           ...
         </span>
         <div
-          class={`dropdown-menu p-0 ${
+          className={`dropdown-menu p-0 ${
             currentPage <= pages - 3 ? "" : "d-none"
           }`}
           aria-labelledby="dropdownMenuButton2"
@@ -129,7 +131,7 @@ function Pagination(props) {
         </div>
       </div>
       <div
-        class={`pagination-item ${
+        className={`pagination-item ${
           pages === 1
             ? "d-none"
             : currentPage === pages
@@ -139,14 +141,14 @@ function Pagination(props) {
         role="button"
         onClick={() => handelCurrentPage(pages)}
       >
-        <span class="mx-auto">{pages}</span>
+        <span className="mx-auto">{pages}</span>
       </div>
       <div
-        class={`pagination-item ${currentPage >= pages ? "d-none" : ""}`}
+        className={`pagination-item ${currentPage >= pages ? "d-none" : ""}`}
         role="button"
         onClick={() => handelCurrentPage(currentPage + 1)}
       >
-        <span class="mx-auto">&raquo;</span>
+        <span className="mx-auto">&raquo;</span>
       </div>
     </div>
   );

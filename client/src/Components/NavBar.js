@@ -1,19 +1,19 @@
 function NavBar(props) {
   return (
     <nav
-      class="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom"
+      className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom"
       style={{
         top: "0px",
         backgroundColor: "rgba(0 , 0 , 0 , 0.6)",
         zIndex: "2",
       }}
     >
-      <div class="container">
-        <span class="navbar-brand py-0">
+      <div className="container">
+        <span className="navbar-brand py-0">
           <span></span>
         </span>
         <button
-          class="navbar-toggler border bg-white"
+          className="navbar-toggler border bg-white"
           type="button"
           data-toggle="collapse"
           data-target="#navbar-content"
@@ -21,14 +21,14 @@ function NavBar(props) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbar-content">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-2">
+        <div className="collapse navbar-collapse" id="navbar-content">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item mx-2">
               <span
                 role="button"
-                class="btn btn-link"
+                className="btn btn-link"
                 onClick={() => {
                   window.scrollTo(0, 0);
                   props.history.push("/");
@@ -37,10 +37,10 @@ function NavBar(props) {
                 Home
               </span>
             </li>
-            <li class="nav-item mx-2">
+            <li className="nav-item mx-2">
               <span
                 role="button"
-                class="btn btn-link"
+                className="btn btn-link"
                 onClick={() => {
                   window.scrollTo(0, 0);
                   props.history.push("/movies");
@@ -49,10 +49,10 @@ function NavBar(props) {
                 Movies
               </span>
             </li>
-            <li class="nav-item mx-2">
+            <li className="nav-item mx-2">
               <span
                 role="button"
-                class="btn btn-link"
+                className="btn btn-link"
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
@@ -61,9 +61,9 @@ function NavBar(props) {
               </span>
             </li>
 
-            <li class="nav-item mx-2">
+            <li className="nav-item mx-2">
               <span
-                class="btn btn-link"
+                className="btn btn-link"
                 type="button"
                 role="button"
                 data-toggle="modal"
@@ -72,7 +72,7 @@ function NavBar(props) {
                   window.scrollTo(0, 0);
                 }}
               >
-                <i class="far fa-user mr-2"></i>
+                <i className="far fa-user mr-2"></i>
               </span>
             </li>
           </ul>

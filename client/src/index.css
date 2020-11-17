@@ -151,3 +151,20 @@ li {
   font-size: small;
   color: rgb(192, 190, 190);
 }
+
+/* Custom Scroll bar  */
+
+/* /* To style the document scrollbar, remove `.custom-scrollbar` */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #dbdbdb;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 56, 56, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(124, 124, 124, 0.5);
+}
+/* end Custom Scroll bar */

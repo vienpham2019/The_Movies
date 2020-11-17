@@ -1,14 +1,14 @@
 import { createUseStyles } from "react-jss";
+import { getDate, getFirstNGenre } from "../../helper_method";
 const styles = createUseStyles({
   backgroundImage: (props) => ({
     "&::after": {
       content: `""`,
-      backgroundImage: `url(${props.img})`,
+      backgroundImage: `url(${props})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      backgroundPosition: "center",
       opacity: "0.3",
-      filter: "blur(40px)",
+      filter: "blur(20px)",
       top: "0",
       left: "0",
       bottom: "0",
@@ -20,42 +20,46 @@ const styles = createUseStyles({
 });
 function MovieHeader(props) {
   const { movie } = props;
+  const [month, day, year] = getDate(movie.release_date);
 
-  const rate = 7.9;
   return (
     <div className="gt-title-overview gt-style-1">
-      <div className={`gt-cover ${styles(movie).backgroundImage}`}>
+      <div
+        className={`gt-cover ${styles(movie.backdrop_path).backgroundImage}`}
+      >
         <div className="gt-flex-container">
           <div className="gt-poster">
-            <img src={movie.img} />
+            <img src={movie.poster_path} />
           </div>
           <div className="gt-details gt-part-1">
-            <h6>{movie.year}</h6>
-            <h1>{movie.title}</h1>
+            <h6>{year}</h6>
+            <span style={{ fontSize: "3em", lineHeight: "normal" }}>
+              <strong>{movie.title}</strong>
+            </span>
             <div className="gt-mini-summary">
-              <p>{movie.description}</p>
+              <p>{movie.Plot}</p>
             </div>
-            <div class="gt-items">
-              <div class="gt-circular-items">
-                <div class="gt-item gt-watch-trailer">
-                  <div class="gt-button gt-style-3 gt-dark">
-                    <div role="button" class="d-flex align-items-center">
-                      <div class="gt-icon">
-                        <i class="fas fa-play"></i>
+            <div className="gt-items">
+              <div className="gt-circular-items">
+                <div className="gt-item gt-watch-trailer">
+                  <div className="gt-button gt-style-3 gt-dark">
+                    <div role="button" className="d-flex align-items-center">
+                      <div className="gt-icon">
+                        <i className="fas fa-play"></i>
                       </div>
                       <span>Watch the Trailer</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="gt-dotted-items">
-                <div class="gt-item gt-time">{movie.duration}</div>
-                <div class="gt-item gt-genres">
+              <div className="gt-dotted-items">
+                <div className="gt-item gt-time">{movie.Runtime}</div>
+                <div className="gt-item gt-genres">
                   <ul>
-                    <li>{movie.genre}</li>
+                    <li>{getFirstNGenre(movie.Genre, 3)}</li>
                   </ul>
                 </div>
-                <div class="gt-item gt-release-date">December 9, 2022</div>
+                <div className="gt-item gt-release-date">{`${month} ${day}, ${year}`}</div>
               </div>
             </div>
           </div>
@@ -64,22 +68,31 @@ function MovieHeader(props) {
       <div className="gt-flex-container text-dark">
         <div className="gt-details gt-part-2">
           <div className="gt-inner-wrapper">
-            <div className="gt-inner-items">
-              <div className="gt-user-ratings gt-style-1 pl-4 p-0 pr-3">
+            <div className="gt-inner-items mx-auto">
+              <div className="gt-user-ratings gt-style-1  p-0 pr-3">
                 <div className="gt-results">
-                  <strong>5.8 / 4</strong>
+                  <span style={{ fontSize: "1.2em" }}>
+                    <strong className="mr-2">
+                      Reviews({movie.movieReviews.length})
+                    </strong>
+                    {movie.reivewScore}/10
+                  </span>
                 </div>
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
-                      className={`${i + 1 <= rate ? "fas" : "far"} fa-star`}
+                      className={`${
+                        i + 1 <= movie.vote_average ? "fas" : "far"
+                      } fa-star`}
                     ></i>
                   ))}
                 </div>
               </div>
               <div className="gt-imdb-rating gt-style-1">
                 <div className="gt-point">
-                  <div className="gt-point">7.9</div>
+                  <div className="gt-point">
+                    {movie.vote_average.toFixed(1)}
+                  </div>
                 </div>
                 <span>IMDb</span>
               </div>

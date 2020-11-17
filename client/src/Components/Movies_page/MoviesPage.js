@@ -126,58 +126,58 @@ function MoviesPage() {
 
   return (
     <div
-      class="home-section section-movies-list"
+      className="home-section section-movies-list"
       style={{ paddingTop: "90px" }}
     >
-      <div class="mx-auto widget-area" style={{ width: "90%" }}>
-        <div class="section-movies-list__inner">
+      <div className="mx-auto widget-area" style={{ width: "90%" }}>
+        <div className="section-movies-list__inner">
           {/*  */}
-          <div class={`sidebar ${displaySideBar ? "active" : ""}`}>
+          <div className={`sidebar ${displaySideBar ? "active" : ""}`}>
             <div
-              class="dismiss"
+              className="dismiss"
               role="button"
               onClick={() => setSideBar(!displaySideBar)}
             >
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             </div>
             <MoviesFilter />
             <TopMovies movies={top_9_of_week} />
           </div>
 
-          <div class="featured-with-list-view-movies-list pl-4">
-            <header class="featured-with-list-view-movies-list__header">
+          <div className="featured-with-list-view-movies-list pl-4">
+            <header className="featured-with-list-view-movies-list__header">
               <div className="row w-100 m-0">
-                <h2 class="section-movies-list__title">Movies</h2>
+                <h2 className="section-movies-list__title">Movies</h2>
                 <input
                   type="text"
-                  class="mx-auto w-50 text-white rounded-pill border-white movies-search"
+                  className="mx-auto w-50 text-white rounded-pill border-white movies-search"
                   style={{ maxHeight: "30px" }}
                   placeholder="Search..."
                 />
               </div>
             </header>
             {/*  */}
-            <ul class="d-flex justify-content-end">
+            <ul className="d-flex justify-content-end">
               {vodi.map((value) => (
                 <li
-                  class={`mx-1 vodi-button ${
+                  className={`mx-1 vodi-button ${
                     vodi_value === value.type ? "nav-item bg-info" : "nav-item"
                   }`}
                   role="button"
                   onClick={() => setVodiValue(value.type)}
                 >
-                  <span class="mx-2">
-                    <i class={value.value + " text-white"}></i>
+                  <span className="mx-2">
+                    <i className={value.value + " text-white"}></i>
                   </span>
                 </li>
               ))}
               <li
-                class="ml-4 px-3 sidebar--toggler border text-center"
+                className="ml-4 px-3 sidebar--toggler border text-center"
                 role="button"
                 onClick={() => setSideBar(!displaySideBar)}
               >
-                <span class="text-white">
-                  <i class="fas fa-sliders-h mr-1"></i>
+                <span className="text-white">
+                  <i className="fas fa-sliders-h mr-1"></i>
                   <span>Filters</span>
                 </span>
               </li>
