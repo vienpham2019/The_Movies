@@ -30,6 +30,7 @@ function MovieDescription(props) {
     Awards,
     Writer,
   };
+
   return (
     <div className="container">
       <ul className="flex-column flex-sm-row nav nav--row">
@@ -75,9 +76,30 @@ function MovieDescription(props) {
             activeDescription === "ADDITIONAL INFOMATION" ? "active" : ""
           }`}
         >
-          <div class="card-columns" style={{ columnCount: 2 }}>
+          <div class="d-flex flex-wrap">
+            <div className="card mx-2 p-3 rounded-0 shadow">
+              <h5 className="card-title border-bottom ">
+                Production Companies
+              </h5>
+              <div
+                className="custom-scrollbar d-flex flex-wrap justify-content-center"
+                style={{
+                  maxHeight: "100px",
+                  overflowY: "auto",
+                }}
+              >
+                {production_companies.map((company) => (
+                  <img
+                    className="p-3 border m-2 bd-highlight"
+                    src={company.logo_path}
+                    alt={company.name}
+                    style={{ maxWidth: "9rem" }}
+                  />
+                ))}
+              </div>
+            </div>
             {Object.entries(addition_infomation).map(([key, value]) => (
-              <div className="card p-3 rounded-0 shadow">
+              <div className="card p-3 mx-2 rounded-0 shadow">
                 <h5 className="card-title border-bottom">{key}</h5>
                 {key === "Awards" ? (
                   <span className="card-text ml-2 text-secondary">{value}</span>
@@ -85,7 +107,7 @@ function MovieDescription(props) {
                   <ul
                     className="card-text ml-2 text-secondary custom-scrollbar"
                     style={{
-                      maxHeight: "180px",
+                      maxHeight: "100px",
                       overflowY: "auto",
                     }}
                   >
@@ -97,9 +119,8 @@ function MovieDescription(props) {
               </div>
             ))}
           </div>
-
-          {/*  */}
         </div>
+        {/* end  */}
       </div>
     </div>
   );

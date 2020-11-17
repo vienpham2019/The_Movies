@@ -61,6 +61,11 @@ function MovieInfoPage(props) {
         logo_path:
           "https://image.tmdb.org/t/p/w500/wdrCwmRnLFJhEoH8GSfymY85KHT.png",
       },
+      {
+        name: "Pixar",
+        logo_path:
+          "https://image.tmdb.org/t/p/w500/1TjvGVDMYsj6JBxOAkUHpPEwLf7.png",
+      },
     ],
   };
   return (
