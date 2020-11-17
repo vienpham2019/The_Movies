@@ -1,6 +1,6 @@
 import { useState } from "react";
 function Pagination(props) {
-  const pages = 10;
+  const pages = 90;
   const [currentPage, setCurrentPage] = useState(1);
   const [beforeCurrent, setBeforeCurrent] = useState(1);
   const [afterCurrent, setAfterCurrent] = useState(4);
@@ -47,7 +47,9 @@ function Pagination(props) {
           ...
         </span>
         <div
-          className={`dropdown-menu p-0 ${currentPage < 4 ? "d-none" : ""}`}
+          className={`dropdown-menu p-0 rounded-0 ${
+            currentPage < 4 ? "d-none" : ""
+          }`}
           aria-labelledby="dropdownMenuButton1"
           style={{
             maxWidth: "40px",
@@ -105,7 +107,7 @@ function Pagination(props) {
           ...
         </span>
         <div
-          className={`dropdown-menu p-0 ${
+          className={`dropdown-menu p-0 rounded-0${
             currentPage <= pages - 3 ? "" : "d-none"
           }`}
           aria-labelledby="dropdownMenuButton2"
