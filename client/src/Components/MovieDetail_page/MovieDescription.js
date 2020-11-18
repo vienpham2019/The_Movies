@@ -112,7 +112,7 @@ function MovieDescription(props) {
                     }}
                   >
                     {value.split(", ").map((val) => (
-                      <li>{val}</li>
+                      <li> &#10731; {val}</li>
                     ))}
                   </ul>
                 )}

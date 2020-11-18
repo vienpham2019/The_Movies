@@ -1,7 +1,7 @@
 function NavBar(props) {
   return (
     <nav
-      className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom"
+      className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom w-100 overflow-hidden"
       style={{
         top: "0px",
         backgroundColor: "rgba(0 , 0 , 0 , 0.6)",

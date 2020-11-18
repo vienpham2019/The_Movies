@@ -138,7 +138,7 @@ function HomePage() {
     },
   ];
   return (
-    <div className="page__content">
+    <div className="page__content w-100 m-0 overflow-hidden">
       <section class="section bg-custom-1 position-relative">
         <HomeHeader movies={top_3} />
       </section>

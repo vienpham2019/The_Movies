@@ -1,5 +1,6 @@
 import MovieHeader from "./MovieHeader";
 import MovieDescription from "./MovieDescription";
+import MovieReviews from "./MovieReviews";
 import "./MovieInfoPage.css";
 function MovieInfoPage(props) {
   const movie = {
@@ -72,6 +73,7 @@ function MovieInfoPage(props) {
     <div style={{ zIndex: "2" }}>
       <MovieHeader movie={movie} />
       <MovieDescription movie={movie} />
+      <MovieReviews movie={movie} />
     </div>
   );
 }

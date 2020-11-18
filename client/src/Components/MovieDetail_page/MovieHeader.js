@@ -82,7 +82,7 @@ function MovieHeader(props) {
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.vote_average ? "fas" : "far"
+                        i + 1 <= movie.reivewScore ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}

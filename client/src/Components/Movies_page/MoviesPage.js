@@ -126,7 +126,7 @@ function MoviesPage() {
 
   return (
     <div
-      className="home-section section-movies-list"
+      className="home-section section-movies-list w-100 m-0"
       style={{ paddingTop: "90px" }}
     >
       <div className="mx-auto widget-area" style={{ width: "90%" }}>
