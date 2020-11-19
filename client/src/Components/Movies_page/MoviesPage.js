@@ -2,10 +2,11 @@ import { useState } from "react";
 import DisplayMovies from "./DisplayMovies";
 import MoviesFilter from "./MoviesFilter";
 import TopMovies from "./TopMovies";
-import Pagination from "./Pagination";
+import Pagination from ".././Pagination";
 import "./Movies.css";
 
 function MoviesPage() {
+  const displayMoviesAmount = 20;
   const [vodi_value, setVodiValue] = useState("grid");
   const [displaySideBar, setSideBar] = useState(false);
   let vodi = [
@@ -124,6 +125,8 @@ function MoviesPage() {
     },
   ];
 
+  const pages = Math.ceil(movies.length / displayMoviesAmount);
+
   return (
     <div
       className="home-section section-movies-list w-100 m-0"
@@ -183,10 +186,17 @@ function MoviesPage() {
               </li>
             </ul>
 
-            <div>
+            <div
+              className="custom-scrollbar w-100"
+              style={{
+                maxHeight: "120em",
+                overflowY: "auto",
+                overflowX: "hidden",
+              }}
+            >
               <DisplayMovies movies={movies} vodi_value={vodi_value} />
               <hr />
-              <Pagination />
+              {pages > 1 && <Pagination pages={pages} />}
               {/*  */}
             </div>
           </div>

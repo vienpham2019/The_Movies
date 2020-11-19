@@ -1,6 +1,7 @@
 import MovieHeader from "./MovieHeader";
 import MovieDescription from "./MovieDescription";
 import MovieReviews from "./MovieReviews";
+import RecommendMovies from "./RecommendMovies";
 import "./MovieInfoPage.css";
 function MovieInfoPage(props) {
   const movie = {
@@ -47,11 +48,54 @@ function MovieInfoPage(props) {
       },
     ],
     reivewScore: 6,
+    reviewsAvgScore: 5,
     movieReviews: [
       {
         author: "narrator56",
         date: "FEBRUARY 3, 2020",
         score: 6,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 6,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 7,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 6,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 10,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 1,
+        content:
+          "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
+      },
+      {
+        author: "narrator56",
+        date: "FEBRUARY 3, 2020",
+        score: 3,
         content:
           "I think this is one of the best animated feature films I have ever seen, perhaps even the best one. It is very imaginative, for a start, colorful in ways that capture the eye, and its message is as deep as you want it to be.\r\n\r\nBy that I mean it would be productive and fun to watch this with children of all ages. The older or more mature the child is, the deeper you can delve into the issues of what to do about feelings of anger, sadness, and so on. With young children, you could even watch it first time through as it is, and save comments or life lessons for additional viewings. There is plenty of action and humor to be found here to entertain hem on that level.\r\n\r\nAnd as a side note, we have no small children to watch this with, but it is also a good movie for adults to settle into, especially during times of stress or worry. We read a recommendation for it during the COVID19 crisis.",
       },
@@ -73,6 +117,7 @@ function MovieInfoPage(props) {
     <div style={{ zIndex: "2" }}>
       <MovieHeader movie={movie} />
       <MovieDescription movie={movie} />
+      <RecommendMovies movie={movie} />
       <MovieReviews movie={movie} />
     </div>
   );

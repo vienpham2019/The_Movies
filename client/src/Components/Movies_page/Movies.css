@@ -156,6 +156,7 @@ input[type="checkbox"] {
   width: 50px;
   height: 50px;
   text-align: center;
+  background-color: rgb(110, 110, 110);
   margin: 0 4px 0 4px;
   border: 1px solid white;
   align-items: center;
@@ -166,12 +167,12 @@ input[type="checkbox"] {
 }
 
 .pagination-item:hover {
-  background-color: rgb(46, 46, 46);
+  background-color: rgb(41, 41, 41);
   border-radius: 10px;
 }
 
 .pagination-active {
-  background-color: rgb(4, 85, 129);
+  background-color: rgb(2, 60, 88);
   border-radius: 10px;
 }
 

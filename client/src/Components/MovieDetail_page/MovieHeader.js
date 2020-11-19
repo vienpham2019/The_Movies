@@ -21,7 +21,6 @@ const styles = createUseStyles({
 function MovieHeader(props) {
   const { movie } = props;
   const [month, day, year] = getDate(movie.release_date);
-
   return (
     <div className="gt-title-overview gt-style-1">
       <div
@@ -75,14 +74,14 @@ function MovieHeader(props) {
                     <strong className="mr-2">
                       Reviews({movie.movieReviews.length})
                     </strong>
-                    {movie.reivewScore}/10
+                    {movie.reviewsAvgScore}/10
                   </span>
                 </div>
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reivewScore ? "fas" : "far"
+                        i + 1 <= movie.reviewsAvgScore ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}

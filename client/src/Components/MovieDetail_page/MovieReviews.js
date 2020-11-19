@@ -1,14 +1,31 @@
 import React from "react";
 import { useState } from "react";
+import ReviewDetail from "./ReviewDetail";
+import Pagination from ".././Pagination";
 
 export default function MovieReviews(props) {
-  const [reivewScore, setReviewScore] = useState(10);
-
   let { movie } = props;
+  const displayReviewAmount = 5;
+
+  const [reivewScore, setReviewScore] = useState(10);
+  const [displayReviews, setDisplayReview] = useState(
+    movie.movieReviews.slice(0, displayReviewAmount)
+  );
+  const pages = Math.ceil(movie.movieReviews.length / displayReviewAmount);
+
+  const handelDisplayReviews = (current_page) => {
+    setDisplayReview(
+      movie.movieReviews.slice(
+        (current_page - 1) * displayReviewAmount,
+        current_page * displayReviewAmount * 2
+      )
+    );
+  };
+
   const handleSubmit = (e) => console.log(e.value);
   return (
-    <section class="py-5 mt-5 mb-5 bg--light--gray text-dark">
-      <div class="container">
+    <section class="py-5 mb-5 text-dark">
+      <div class="container w-70">
         <div class="row">
           <div class="col-12">
             <div class="row align-items-center justify-content-center">
@@ -18,7 +35,7 @@ export default function MovieReviews(props) {
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reivewScore ? "fas" : "far"
+                        i + 1 <= movie.reviewsAvgScore ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}
@@ -41,7 +58,7 @@ export default function MovieReviews(props) {
             </div>
 
             {/* new revew */}
-            <div class="collapse show" id="reviewForm">
+            <div class="collapse" id="reviewForm">
               <hr class="my-8" />
 
               {/* new review form */}
@@ -126,9 +143,21 @@ export default function MovieReviews(props) {
             </div>
 
             {/* review */}
-            <div class="mt-8"></div>
+            <div class="mt-5">
+              {displayReviews.map((review) => (
+                <ReviewDetail review={review} />
+              ))}
+            </div>
 
             {/* pagination */}
+            {pages > 1 && (
+              <div class="mt-5 border-top pt-2">
+                <Pagination
+                  pages={pages}
+                  handleDisplay={handelDisplayReviews}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 function Pagination(props) {
-  const pages = 90;
+  const { pages, handleDisplay } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const [beforeCurrent, setBeforeCurrent] = useState(1);
   const [afterCurrent, setAfterCurrent] = useState(4);
@@ -11,6 +11,7 @@ function Pagination(props) {
     setBeforeCurrent(b_c);
     let a_c = page + 1 < pages && page >= 3 ? page + 1 : 4;
     setAfterCurrent(a_c);
+    handleDisplay(page);
   };
 
   return (
