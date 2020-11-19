@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { validateLength, validateEmail } from "../../validation";
 import ReviewDetail from "./ReviewDetail";
 import Pagination from ".././Pagination";
 
@@ -8,6 +9,7 @@ export default function MovieReviews(props) {
   const displayReviewAmount = 5;
 
   const [reivewScore, setReviewScore] = useState(10);
+  const [movieNewReviewErrors, setMovieNewReviewErrors] = useState({});
   const [displayReviews, setDisplayReview] = useState(
     movie.movieReviews.slice(0, displayReviewAmount)
   );
@@ -22,7 +24,24 @@ export default function MovieReviews(props) {
     );
   };
 
-  const handleSubmit = (e) => console.log(e.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let [name, email, title, content] = e.target;
+    let name_error = validateLength(name.value, "Name", 3);
+    let email_error = validateEmail(email.value);
+    let title_error = validateLength(title.value, "Title", 3);
+    let content_error = validateLength(content.value, "Content", 20);
+    if (name_error || email_error || title_error || content_error) {
+      setMovieNewReviewErrors({
+        name_error,
+        email_error,
+        title_error,
+        content_error,
+      });
+    } else {
+      console.log("no error");
+    }
+  };
   return (
     <section class="py-5 mb-5 text-dark">
       <div class="container w-70">
@@ -62,7 +81,7 @@ export default function MovieReviews(props) {
               <hr class="my-8" />
 
               {/* new review form */}
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} class="px-2">
                 <div class="row justify-content-between">
                   <div class="col-12 mb-6 text-center">
                     <p class="m-0 font-size-xs">Score:</p>
@@ -85,52 +104,68 @@ export default function MovieReviews(props) {
                   <div class="col-12 col-md-5 p-0 mb-3">
                     <div class="new-review-effect">
                       <input
-                        class="form-control form-control-sm rounded-0 new-review-input is-invalid"
+                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                          movieNewReviewErrors.name_error && "is-invalid"
+                        }`}
                         placeholder="Your Name *"
                       />
-                      <div class="valid-feedback">Looks good!</div>
-                      <span class="gt-focus-border" color-data="black">
-                        {" "}
-                        <i></i>{" "}
-                      </span>
+                      <span class="gt-focus-border"> </span>
                     </div>
+                    {movieNewReviewErrors.name_error && (
+                      <small class="error_message">
+                        {movieNewReviewErrors.name_error}
+                      </small>
+                    )}
                   </div>
+
                   <div class="col-12 col-md-6 p-0 mb-3">
                     <div class="new-review-effect">
                       <input
-                        class="form-control form-control-sm rounded-0 new-review-input"
+                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                          movieNewReviewErrors.email_error && "is-invalid"
+                        }`}
                         placeholder="Your Email *"
                       />
-                      <span class="gt-focus-border">
-                        {" "}
-                        <i></i>{" "}
-                      </span>
+                      <span class="gt-focus-border"> </span>
+                      {movieNewReviewErrors.email_error && (
+                        <small class="error_message">
+                          {movieNewReviewErrors.email_error}
+                        </small>
+                      )}
                     </div>
                   </div>
 
                   <div class="col-12 p-0 mb-3">
                     <div class="new-review-effect">
                       <input
-                        class="form-control form-control-sm rounded-0 new-review-input"
+                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                          movieNewReviewErrors.title_error && "is-invalid"
+                        }`}
                         placeholder="Review Title *"
                       />
-                      <span class="gt-focus-border">
-                        {" "}
-                        <i></i>{" "}
-                      </span>
+                      <span class="gt-focus-border"> </span>
+                      {movieNewReviewErrors.title_error && (
+                        <small class="error_message">
+                          {movieNewReviewErrors.title_error}
+                        </small>
+                      )}
                     </div>
                   </div>
                   <div class="col-12 p-0 mb-3">
                     <div class="new-review-effect">
                       <textarea
-                        class="form-control form-control-sm rounded-0 new-review-input"
+                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                          movieNewReviewErrors.content_error && "is-invalid"
+                        }`}
                         rows="5"
-                        placeholder="Review *"
+                        placeholder="Review Content *"
                       ></textarea>
-                      <span class="gt-focus-border">
-                        {" "}
-                        <i></i>{" "}
-                      </span>
+                      <span class="gt-focus-border"> </span>
+                      {movieNewReviewErrors.content_error && (
+                        <small class="error_message">
+                          {movieNewReviewErrors.content_error}
+                        </small>
+                      )}
                     </div>
                   </div>
                   <div class="col-12 text-center p-0">

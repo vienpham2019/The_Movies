@@ -104,6 +104,17 @@
   transition: ease-in-out 0.3s;
 }
 
+/* ---------- error message -------------- */
+
+.error_message {
+  position: absolute;
+  width: auto;
+  bottom: -8px;
+  background-color: white;
+  margin-left: 10px;
+  color: red;
+}
+
 /* ---------- over flow text ------------- */
 .over-flow-text {
   overflow: hidden;
