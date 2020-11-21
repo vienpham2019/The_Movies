@@ -86,7 +86,6 @@ function TopRankingMovies() {
                                   </h3>
                                 </div>
                               </div>
-                              {/*  */}
                             </div>
                           </div>
                         </div>
@@ -98,6 +97,7 @@ function TopRankingMovies() {
             </div>
           </div>
         </div>
+        {/*  */}
       </div>
       <div class="d-flex flex-row-reverse bd-highlight border-top">
         <p class="home-section__action-link p-2 bd-highlight" role="button">

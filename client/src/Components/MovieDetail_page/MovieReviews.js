@@ -24,6 +24,11 @@ export default function MovieReviews(props) {
     );
   };
 
+  const resetReviewForm = () => {
+    document.getElementById("new-review-form").reset();
+    setMovieNewReviewErrors({});
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let [name, email, title, content] = e.target;
@@ -70,6 +75,7 @@ export default function MovieReviews(props) {
                   href="#reviewForm"
                   aria-expanded="true"
                   role="buttom"
+                  onClick={() => resetReviewForm()}
                 >
                   Write Review
                 </div>
@@ -81,7 +87,7 @@ export default function MovieReviews(props) {
               <hr class="my-8" />
 
               {/* new review form */}
-              <form onSubmit={handleSubmit} class="px-2">
+              <form onSubmit={handleSubmit} class="px-2" id="new-review-form">
                 <div class="row justify-content-between">
                   <div class="col-12 mb-6 text-center">
                     <p class="m-0 font-size-xs">Score:</p>

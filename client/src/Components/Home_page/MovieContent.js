@@ -1,7 +1,7 @@
 function MovieContent(props) {
   let { title, year, genre, img } = props.movie;
   return (
-    <div class="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action">
+    <div class="movie">
       <div class="movie__poster">
         <a
           href="-"

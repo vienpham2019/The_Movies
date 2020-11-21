@@ -15,7 +15,12 @@ function MidSection(props) {
                 >
                   <div className="slider-movie__hover">
                     <div className="slider-movie__hover_watch-now">
-                      <a className="watch-now-btn" href="-">
+                      <span
+                        className="watch-now-btn"
+                        role="button"
+                        data-toggle="modal"
+                        data-target="#movieTrailerModal"
+                      >
                         <div className="watch-now-btn-bg">
                           <svg width="49px" height="54px">
                             <path
@@ -25,7 +30,7 @@ function MidSection(props) {
                           </svg>
                         </div>
                         <div className="watch-now-txt">Watch Now</div>
-                      </a>
+                      </span>
                     </div>
                     <a
                       href="-"

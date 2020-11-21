@@ -7,6 +7,8 @@ import MovieInfoPage from "./Components/MovieDetail_page/MovieInfoPage";
 import Footer from "./Components/Footer";
 import NavBar from "./Components/NavBar";
 import LoginModal from "./Components/LoginModal";
+import MovieTrailerModal from "./Components/MovieTrailerModal";
+import UserProfile from "./Components/User_profile/UserProfile";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -30,8 +32,14 @@ function App() {
             path="/movies"
             render={(routerProps) => <MoviesPage {...routerProps} />}
           />
+          <Route
+            exact
+            path="/user_profile"
+            render={(routerProps) => <UserProfile {...routerProps} />}
+          />
         </Router>
       </div>
+      <MovieTrailerModal />
       <Footer />
       <LoginModal />
     </div>
