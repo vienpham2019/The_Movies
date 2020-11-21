@@ -53,8 +53,10 @@ export default function MovieReviews(props) {
         <div class="row">
           <div class="col-12">
             <div class="row align-items-center justify-content-center">
-              <strong style={{ fontSize: "1.3em" }}>REVIEWS</strong>
-              <div class="col-12 col-md text-md-center">
+              <strong class="m-2" style={{ fontSize: "1.3em" }}>
+                REVIEWS
+              </strong>
+              <div class=" m-2 col-12 col-md text-md-center">
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
@@ -68,9 +70,9 @@ export default function MovieReviews(props) {
                   </span>
                 </div>
               </div>
-              <div class="col-12 col-md-auto">
+              <div class="col-12 col-md-auto m-2">
                 <div
-                  class="rounded-0 review-button p-2"
+                  class="rounded-0 review-button p-3"
                   data-toggle="collapse"
                   href="#reviewForm"
                   aria-expanded="true"

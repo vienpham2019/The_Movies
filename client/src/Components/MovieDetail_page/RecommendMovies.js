@@ -1,16 +1,16 @@
 export default function RecommendMovies(props) {
   const { movie } = props;
   return (
-    <section class="movie__related my-5 bg--light--gray py-3">
+    <section class="movie__related my-5 bg-light py-5">
       <div class="movie__related--inner">
         <div
           class="masvideos masvideos-movies mx-auto"
           style={{ width: "80%" }}
         >
-          <strong class="text-dark" style={{ fontSize: "1.4em" }}>
-            You Also May Like
-          </strong>
-          <hr />
+          <h4 class="mb-4 border-bottom pb-2">
+            {" "}
+            <span class="py-3 bg-light">You Also May Like</span>
+          </h4>
 
           <div class="movies columns-8">
             <div class="movies__inner">
