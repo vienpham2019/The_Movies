@@ -3,8 +3,9 @@ import { useState } from "react";
 import { validateLength, validateEmail } from "../../validation";
 import ReviewDetail from "./ReviewDetail";
 import Pagination from ".././Pagination";
+import { connect } from "react-redux";
 
-export default function MovieReviews(props) {
+function MovieReviews(props) {
   let { movie } = props;
   const displayReviewAmount = 5;
 
@@ -207,3 +208,9 @@ export default function MovieReviews(props) {
     </section>
   );
 }
+
+const mapStateToProps = (state) => ({
+  movie: state.movieInfoReducer.movie,
+});
+
+export default connect(mapStateToProps)(MovieReviews);

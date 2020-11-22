@@ -1,6 +1,9 @@
+import { useState } from "react";
 import PersonalData from "./PersonalData";
 import ChangePassword from "./ChangePassword";
+import Favorites_Widhlist from "./Favorites_Widhlist";
 export default function UserProfile(props) {
+  const [nav_content, setNavContent] = useState("Personal data");
   const profileNav = [
     { key: "Widhlist", icon: "fas fa-plus" },
     { key: "Favorites", icon: "far fa-heart" },
@@ -22,6 +25,7 @@ export default function UserProfile(props) {
                   <span
                     class="list-group-item-action p-4 border-bottom d-flex bd-highlight"
                     role="button"
+                    onClick={() => setNavContent(value.key)}
                   >
                     <div className="bd-highlight">
                       <i class={`${value.icon} mr-2`}></i> {value.key}
@@ -34,6 +38,7 @@ export default function UserProfile(props) {
                 <span
                   class="list-group-item-action p-4 border-bottom d-flex bd-highlight"
                   role="button"
+                  onClick={() => props.history.push("/")}
                 >
                   <div className="bd-highlight">
                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
@@ -45,9 +50,15 @@ export default function UserProfile(props) {
               </div>
             </nav>
           </div>
-          <div class="col-12 col-md-9 col-lg-8 bg-light m-2 p-4">
-            <PersonalData />
-            {/* <ChangePassword /> */}
+          <div class="col-12 col-md-9 col-lg-8 bg-light m-2 p-0">
+            {nav_content === "Widhlist" && (
+              <Favorites_Widhlist title={"Widhlist"} />
+            )}
+            {nav_content === "Favorites" && (
+              <Favorites_Widhlist title={"Favorites"} />
+            )}
+            {nav_content === "Personal data" && <PersonalData />}
+            {nav_content === "Change password" && <ChangePassword />}
           </div>
         </div>
       </div>

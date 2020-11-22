@@ -1,6 +1,6 @@
 export default function PersonalData(props) {
   return (
-    <div>
+    <div class="p-4">
       <h4 class="mb-4 border-bottom pb-2">
         {" "}
         <span class="py-3 bg-light">Personal data</span>

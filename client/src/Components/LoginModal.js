@@ -1,8 +1,8 @@
 function LoginModal() {
   return (
     <div className="modal" tabindex="-1" id="login-modal" aria-hidden="true">
-      <div className="modal-dialog">
-        <div className="modal-content">
+      <div className="modal-dialog h-auto border">
+        <div className="modal-content rounded-0">
           <div>
             <div className="card-header px-lg-7 px-3 pt-3 pb-0 border-0 bg-transparent">
               <span
@@ -13,7 +13,7 @@ function LoginModal() {
               >
                 X
               </span>
-              <div className="row d-flex justify-content-center no-gutters">
+              <div className="row d-flex no-gutters border-bottom mb-3">
                 <ul className="nav list-inline" role="tablist">
                   <li className="list-inline-item">
                     <a
@@ -43,7 +43,6 @@ function LoginModal() {
                   </li>
                 </ul>
               </div>
-              <hr className="mb-3" />
             </div>
             <div className="tab-content">
               <div
@@ -85,10 +84,20 @@ function LoginModal() {
                 <div className="card-block px-lg-7 px-4 pt-6 pb-5">
                   <form>
                     <div className="form-group mb-3">
-                      <label className="form--label" for="name">
-                        Name *
-                      </label>
-                      <input className="form-control rounded" type="name" />
+                      <div className="row">
+                        <div className="col">
+                          <label className="form--label" for="first_name">
+                            First name *
+                          </label>
+                          <input className="form-control rounded" type="name" />
+                        </div>
+                        <div className="col">
+                          <label className="form--label" for="last_name">
+                            Last name *
+                          </label>
+                          <input className="form-control rounded" type="name" />
+                        </div>
+                      </div>
                     </div>
                     <div className="form-group mb-3">
                       <label className="form--label" for="email">

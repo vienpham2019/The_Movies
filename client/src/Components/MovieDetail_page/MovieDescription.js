@@ -1,5 +1,6 @@
 import { getDate } from "../../helper_method";
 import { useState } from "react";
+import { connect } from "react-redux";
 
 function MovieDescription(props) {
   const [activeDescription, setActiveDescription] = useState("STORYLINE");
@@ -126,4 +127,8 @@ function MovieDescription(props) {
   );
 }
 
-export default MovieDescription;
+const mapStateToProps = (state) => ({
+  movie: state.movieInfoReducer.movie,
+});
+
+export default connect(mapStateToProps)(MovieDescription);

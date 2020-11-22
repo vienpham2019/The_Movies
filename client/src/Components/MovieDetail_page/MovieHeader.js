@@ -1,5 +1,6 @@
 import { createUseStyles } from "react-jss";
 import { getDate, getFirstNGenre } from "../../helper_method";
+import { connect } from "react-redux";
 const styles = createUseStyles({
   backgroundImage: (props) => ({
     "&::after": {
@@ -133,4 +134,8 @@ function MovieHeader(props) {
   );
 }
 
-export default MovieHeader;
+const mapStateToProps = (state) => ({
+  movie: state.movieInfoReducer.movie,
+});
+
+export default connect(mapStateToProps)(MovieHeader);

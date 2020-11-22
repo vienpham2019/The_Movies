@@ -1,3 +1,4 @@
+import { getDate, getFirstNGenre } from "../../helper_method";
 function DisplayMovies(props) {
   let { movies, vodi_value } = props;
   return (
@@ -12,7 +13,7 @@ function DisplayMovies(props) {
             <div className="movie p-2" role="button">
               <div className="movie__poster">
                 <img
-                  src={movie.img}
+                  src={movie.poster_path}
                   className="movie__poster--image"
                   style={{ width: "300px" }}
                 />
@@ -22,10 +23,10 @@ function DisplayMovies(props) {
                   <div className="movie__info--head">
                     <div className="movie__meta">
                       <span className="movie__meta--release-year">
-                        {movie.year}
+                        {getDate(movie.release_date)[2]}
                       </span>
                       <span className="movie__meta--genre text-info">
-                        {movie.genre}
+                        {getFirstNGenre(movie.Genre, 3)}
                       </span>
                     </div>
                     <span className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
@@ -48,7 +49,7 @@ function DisplayMovies(props) {
                     }}
                   >
                     <div className="text-justify ">
-                      <p className="text__ px-2">{movie.description}</p>
+                      <p className="text__ px-2">{movie.Plot}</p>
                     </div>
                   </div>
                   <div className="movie__actions mt-5">
