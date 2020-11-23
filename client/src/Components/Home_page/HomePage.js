@@ -139,7 +139,7 @@ function HomePage() {
   ];
   return (
     <div className="page__content w-100 m-0 overflow-hidden">
-      <section class="section bg-custom-1 position-relative">
+      <section className="section bg-custom-1 position-relative">
         <HomeHeader movies={top_3} />
       </section>
       <br />
@@ -156,7 +156,7 @@ function HomePage() {
       >
         <TopRankingMovies />
       </section>
-      <section class="home-section section-movies-list pt-5">
+      <section className="home-section section-movies-list pt-5">
         <Top9OfWeek
           top_9_of_week={top_9_of_week}
           newest_movies={newest_movies}

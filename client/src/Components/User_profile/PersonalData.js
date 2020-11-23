@@ -1,38 +1,38 @@
 export default function PersonalData(props) {
   return (
-    <div class="p-4">
-      <h4 class="mb-4 border-bottom pb-2">
+    <div className="p-4">
+      <h4 className="mb-4 border-bottom pb-2">
         {" "}
-        <span class="py-3 bg-light">Personal data</span>
+        <span className="py-3 bg-light">Personal data</span>
       </h4>
-      <form class="w-100 p-0">
-        <div class="row mb-4">
+      <form className="w-100 p-0">
+        <div className="row mb-4">
           <div className="col">
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               placeholder="First Name *"
             />
           </div>
           <div className="col">
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               placeholder="Last name *"
             />
           </div>
         </div>
-        <div class="row my-4">
+        <div className="row my-4">
           <div className="col">
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               placeholder="Your Email *"
             />
           </div>
         </div>
         <span style={{ fontSize: "0.8em" }}>DATE OF BIRTH</span>
-        <div class="row mb-4 mt-2">
+        <div className="row mb-4 mt-2">
           <div className="col">
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               type="date"
               value="11/20/2020"
               min="1999-01-01"
@@ -46,32 +46,32 @@ export default function PersonalData(props) {
           </span>
         </div>
         <div className="row px-4 pt-2 pb-4 m-0">
-          <div class="form-check form-check-inline">
+          <div className="form-check form-check-inline">
             <input
-              class="form-check-input m-0"
+              className="form-check-input m-0"
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio1"
               value="option1"
             />
-            <label class="text-muted form-check-label" for="inlineRadio1">
+            <label className="text-muted form-check-label" for="inlineRadio1">
               MALE
             </label>
           </div>
-          <div class="form-check form-check-inline">
+          <div className="form-check form-check-inline">
             <input
-              class="form-check-input m-0"
+              className="form-check-input m-0"
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio2"
               value="option2"
             />
-            <label class="text-muted form-check-label" for="inlineRadio2">
+            <label className="text-muted form-check-label" for="inlineRadio2">
               FEMALE
             </label>
           </div>
         </div>
-        <button class="review-button w-100" type="submit">
+        <button className="review-button w-100" type="submit">
           SAVE CHANGE
         </button>
       </form>

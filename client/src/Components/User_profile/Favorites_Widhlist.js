@@ -128,17 +128,17 @@ function Favorites_Widhlist(props) {
       movies.slice((page - 1) * displayAmount, page * displayAmount)
     );
   return (
-    <div class="bg-dark p-4 h-100">
-      <h4 class="mb-4 border-bottom pb-2">
+    <div className="bg-dark p-4 h-100">
+      <h4 className="mb-4 border-bottom pb-2">
         {" "}
-        <span class="py-3 bg-dark text-white">{title}</span>
+        <span className="py-3 bg-dark text-white">{title}</span>
       </h4>
       {movies.length ? (
         <DisplayMovies movies={displayMovies} vodi_value={"grid-extended"} />
       ) : (
-        <div class="p-5 text-center">
-          <i class="fas fa-clipboard-list text-white fa-4x py-3"></i> <br />
-          <span class="text-white" style={{ fontSize: "2em" }}>
+        <div className="p-5 text-center">
+          <i className="fas fa-clipboard-list text-white fa-4x py-3"></i> <br />
+          <span className="text-white" style={{ fontSize: "2em" }}>
             Your {title} is empty!
           </span>
         </div>

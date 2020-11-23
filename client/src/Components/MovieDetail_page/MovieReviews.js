@@ -49,15 +49,15 @@ function MovieReviews(props) {
     }
   };
   return (
-    <section class="py-5 mb-5 text-dark">
-      <div class="container w-70">
-        <div class="row">
-          <div class="col-12">
-            <div class="row align-items-center justify-content-center">
-              <strong class="m-2" style={{ fontSize: "1.3em" }}>
+    <section className="py-5 mb-5 text-dark">
+      <div className="container w-70">
+        <div className="row">
+          <div className="col-12">
+            <div className="row align-items-center justify-content-center">
+              <strong className="m-2" style={{ fontSize: "1.3em" }}>
                 REVIEWS
               </strong>
-              <div class=" m-2 col-12 col-md text-md-center">
+              <div className=" m-2 col-12 col-md text-md-center">
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
@@ -71,9 +71,9 @@ function MovieReviews(props) {
                   </span>
                 </div>
               </div>
-              <div class="col-12 col-md-auto m-2">
+              <div className="col-12 col-md-auto m-2">
                 <div
-                  class="rounded-0 review-button p-3"
+                  className="rounded-0 review-button p-3"
                   data-toggle="collapse"
                   href="#reviewForm"
                   aria-expanded="true"
@@ -86,15 +86,19 @@ function MovieReviews(props) {
             </div>
 
             {/* new revew */}
-            <div class="collapse" id="reviewForm">
-              <hr class="my-8" />
+            <div className="collapse" id="reviewForm">
+              <hr className="my-8" />
 
               {/* new review form */}
-              <form onSubmit={handleSubmit} class="px-2" id="new-review-form">
-                <div class="row justify-content-between">
-                  <div class="col-12 mb-6 text-center">
-                    <p class="m-0 font-size-xs">Score:</p>
-                    <div class="col-12 col-md text-md-center mb-4">
+              <form
+                onSubmit={handleSubmit}
+                className="px-2"
+                id="new-review-form"
+              >
+                <div className="row justify-content-between">
+                  <div className="col-12 mb-6 text-center">
+                    <p className="m-0 font-size-xs">Score:</p>
+                    <div className="col-12 col-md text-md-center mb-4">
                       <div className="gt-stars">
                         {Array.from(Array(10)).map((_, i) => (
                           <i
@@ -110,75 +114,75 @@ function MovieReviews(props) {
                     </div>
                   </div>
 
-                  <div class="col-12 col-md-5 p-0 mb-3">
-                    <div class="new-review-effect">
+                  <div className="col-12 col-md-5 p-0 mb-3">
+                    <div className="new-review-effect">
                       <input
-                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                        className={`form-control form-control-sm rounded-0 new-review-input ${
                           movieNewReviewErrors.name_error && "is-invalid"
                         }`}
                         placeholder="Your Name *"
                       />
-                      <span class="gt-focus-border"> </span>
+                      <span className="gt-focus-border"> </span>
                     </div>
                     {movieNewReviewErrors.name_error && (
-                      <small class="error_message">
+                      <small className="error_message">
                         {movieNewReviewErrors.name_error}
                       </small>
                     )}
                   </div>
 
-                  <div class="col-12 col-md-6 p-0 mb-3">
-                    <div class="new-review-effect">
+                  <div className="col-12 col-md-6 p-0 mb-3">
+                    <div className="new-review-effect">
                       <input
-                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                        className={`form-control form-control-sm rounded-0 new-review-input ${
                           movieNewReviewErrors.email_error && "is-invalid"
                         }`}
                         placeholder="Your Email *"
                       />
-                      <span class="gt-focus-border"> </span>
+                      <span className="gt-focus-border"> </span>
                       {movieNewReviewErrors.email_error && (
-                        <small class="error_message">
+                        <small className="error_message">
                           {movieNewReviewErrors.email_error}
                         </small>
                       )}
                     </div>
                   </div>
 
-                  <div class="col-12 p-0 mb-3">
-                    <div class="new-review-effect">
+                  <div className="col-12 p-0 mb-3">
+                    <div className="new-review-effect">
                       <input
-                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                        className={`form-control form-control-sm rounded-0 new-review-input ${
                           movieNewReviewErrors.title_error && "is-invalid"
                         }`}
                         placeholder="Review Title *"
                       />
-                      <span class="gt-focus-border"> </span>
+                      <span className="gt-focus-border"> </span>
                       {movieNewReviewErrors.title_error && (
-                        <small class="error_message">
+                        <small className="error_message">
                           {movieNewReviewErrors.title_error}
                         </small>
                       )}
                     </div>
                   </div>
-                  <div class="col-12 p-0 mb-3">
-                    <div class="new-review-effect">
+                  <div className="col-12 p-0 mb-3">
+                    <div className="new-review-effect">
                       <textarea
-                        class={`form-control form-control-sm rounded-0 new-review-input ${
+                        className={`form-control form-control-sm rounded-0 new-review-input ${
                           movieNewReviewErrors.content_error && "is-invalid"
                         }`}
                         rows="5"
                         placeholder="Review Content *"
                       ></textarea>
-                      <span class="gt-focus-border"> </span>
+                      <span className="gt-focus-border"> </span>
                       {movieNewReviewErrors.content_error && (
-                        <small class="error_message">
+                        <small className="error_message">
                           {movieNewReviewErrors.content_error}
                         </small>
                       )}
                     </div>
                   </div>
-                  <div class="col-12 text-center p-0">
-                    <button class="review-button w-100" type="submit">
+                  <div className="col-12 text-center p-0">
+                    <button className="review-button w-100" type="submit">
                       Post Review
                     </button>
                   </div>
@@ -187,7 +191,7 @@ function MovieReviews(props) {
             </div>
 
             {/* review */}
-            <div class="mt-5">
+            <div className="mt-5">
               {displayReviews.map((review) => (
                 <ReviewDetail review={review} />
               ))}
@@ -195,7 +199,7 @@ function MovieReviews(props) {
 
             {/* pagination */}
             {pages > 1 && (
-              <div class="mt-5 border-top pt-2">
+              <div className="mt-5 border-top pt-2">
                 <Pagination
                   pages={pages}
                   handleDisplay={handelDisplayReviews}

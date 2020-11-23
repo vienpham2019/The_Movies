@@ -54,7 +54,7 @@ function PopularMovies() {
 
       <div className="home-section__footer-view-more-action ">
         <span className="home-section__footer-view-more-action__inner">
-          <a href="-" class="home-section__footer-view-more-action--link">
+          <a href="-" className="home-section__footer-view-more-action--link">
             + View more
           </a>
         </span>

@@ -99,8 +99,8 @@ function TopRankingMovies() {
         </div>
         {/*  */}
       </div>
-      <div class="d-flex flex-row-reverse bd-highlight border-top">
-        <p class="home-section__action-link p-2 bd-highlight" role="button">
+      <div className="d-flex flex-row-reverse bd-highlight border-top">
+        <p className="home-section__action-link p-2 bd-highlight" role="button">
           View All
         </p>
       </div>

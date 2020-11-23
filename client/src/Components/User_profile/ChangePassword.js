@@ -1,32 +1,32 @@
 export default function ChangePassword(props) {
   return (
-    <div class="p-4">
-      <h4 class="mb-4 border-bottom pb-2">
+    <div className="p-4">
+      <h4 className="mb-4 border-bottom pb-2">
         {" "}
-        <span class="py-3 bg-light">Change password</span>
+        <span className="py-3 bg-light">Change password</span>
       </h4>
-      <form class="w-100 m-0">
-        <div class="row mb-4 mt-2">
-          <div class="col">
+      <form className="w-100 m-0">
+        <div className="row mb-4 mt-2">
+          <div className="col">
             <span>Current password</span>
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               type="password"
               value="1234567"
               disabled
             />
           </div>
         </div>
-        <div class="row my-4">
+        <div className="row my-4">
           <div className="col">
             <input
-              class="form-control form-control-sm rounded-0 new-review-input"
+              className="form-control form-control-sm rounded-0 new-review-input"
               type="password"
               placeholder="New Password"
             />
           </div>
         </div>
-        <button class="review-button w-100" type="submit">
+        <button className="review-button w-100" type="submit">
           SAVE PASSWORD
         </button>
       </form>

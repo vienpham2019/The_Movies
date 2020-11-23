@@ -1,28 +1,30 @@
 function MovieContent(props) {
   let { title, year, genre, img } = props.movie;
   return (
-    <div class="movie">
-      <div class="movie__poster">
+    <div className="movie">
+      <div className="movie__poster">
         <a
           href="-"
-          class="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
+          className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
         >
           <img
             src={img}
             style={{ width: "300px", height: "450px" }}
-            class="movie__poster--image"
+            className="movie__poster--image"
           />
         </a>
       </div>
-      <div class="movie__body">
-        <div class="movie__info">
-          <div class="movie__info--head">
-            <div class="movie__meta">
-              <span class="movie__meta--release-year">{year}</span>
-              <span class="movie__meta--genre">{genre}</span>
+      <div className="movie__body">
+        <div className="movie__info">
+          <div className="movie__info--head">
+            <div className="movie__meta">
+              <span className="movie__meta--release-year">{year}</span>
+              <span className="movie__meta--genre">{genre}</span>
             </div>
 
-            <h3 class="masvideos-loop-movie__title  movie__title">{title}</h3>
+            <h3 className="masvideos-loop-movie__title  movie__title">
+              {title}
+            </h3>
           </div>{" "}
         </div>
 

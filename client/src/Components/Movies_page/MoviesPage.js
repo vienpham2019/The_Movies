@@ -103,15 +103,17 @@ function MoviesPage(props) {
               </li>
             </ul>
 
-            <div
-              className="custom-scrollbar w-100"
-              style={{
-                maxHeight: "120em",
-                overflowY: "auto",
-                overflowX: "hidden",
-              }}
-            >
-              <DisplayMovies movies={displayMovies} vodi_value={vodi_value} />
+            <div className="w-100">
+              <div
+                className="custom-scrollbar"
+                style={{
+                  maxHeight: "120em",
+                  overflowY: "auto",
+                  overflowX: "hidden",
+                }}
+              >
+                <DisplayMovies movies={displayMovies} vodi_value={vodi_value} />
+              </div>
               <hr />
               {pages > 1 && (
                 <Pagination pages={pages} handleDisplay={handleDisplayPage} />

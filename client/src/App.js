@@ -9,6 +9,7 @@ import NavBar from "./Components/NavBar";
 import LoginModal from "./Components/LoginModal";
 import MovieTrailerModal from "./Components/MovieTrailerModal";
 import UserProfile from "./Components/User_profile/UserProfile";
+import PageNotFound from "./Components/PageNotFound";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -36,6 +37,10 @@ function App() {
             exact
             path="/user_profile"
             render={(routerProps) => <UserProfile {...routerProps} />}
+          />
+          <Route
+            path="*"
+            render={(routerProps) => <PageNotFound {...routerProps} />}
           />
         </Router>
       </div>

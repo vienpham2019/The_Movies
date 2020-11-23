@@ -13,40 +13,43 @@ export default function MovieTrailerModal() {
 
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="movieTrailerModal"
       tabindex="-1"
       aria-labelledby="movieTrailerModal"
       aria-hidden="true"
     >
-      <div class="modal-dialog custom-scrollbar" style={{ minWidth: "90vw" }}>
+      <div
+        className="modal-dialog custom-scrollbar"
+        style={{ minWidth: "90vw" }}
+      >
         <div
-          class="modal-content rounded-0"
+          className="modal-content rounded-0"
           style={{ backgroundColor: "black" }}
         >
-          <div class="modal-header border-0 m-0">
+          <div className="modal-header border-0 m-0">
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="modal"
               aria-label="Close"
             >
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             </button>
           </div>
-          <div class="modal-body m-0 d-flex bd-highlight flex-nowrap overflow-hidden">
-            <div class="row w-100 mx-auto">
-              <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
-                <div class="row">
-                  <div class="mb-md-0 p-md-4 embed-responsive embed-responsive-21by9">
+          <div className="modal-body m-0 d-flex bd-highlight flex-nowrap overflow-hidden">
+            <div className="row w-100 mx-auto">
+              <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
+                <div className="row">
+                  <div className="mb-md-0 p-md-4 embed-responsive embed-responsive-21by9">
                     <iframe
-                      class="embed-responsive-item"
+                      className="embed-responsive-item"
                       src="https://www.youtube.com/embed/JUEofxUjbpM"
                       allowfullscreen
                     ></iframe>
                   </div>
                   <strong
-                    class="text-white my-4 ml-4"
+                    className="text-white my-4 ml-4"
                     style={{ fontSize: "1.3em" }}
                   >
                     The Hunchback of Notre Dame - 1996 Teaser Trailer (UK
@@ -54,22 +57,22 @@ export default function MovieTrailerModal() {
                   </strong>
                 </div>
               </div>
-              <div class="col-12 col-md-3 h-100 overflow-auto custom-scrollbar">
-                <nav class="mb-10 mb-md-0">
-                  <div class="list-group list-group-sm list-group-strong list-group-flush-x">
+              <div className="col-12 col-md-3 h-100 overflow-auto custom-scrollbar">
+                <nav className="mb-10 mb-md-0">
+                  <div className="list-group list-group-sm list-group-strong list-group-flush-x">
                     {Array.from(Array(9)).map((_) => (
-                      <div class="movie border-bottom" role="button">
-                        <div class="row">
-                          <div class="mx-2 col-4">
+                      <div className="movie border-bottom" role="button">
+                        <div className="row">
+                          <div className="mx-2 col-4">
                             <img
                               src="https://img.youtube.com/vi/H4chVzr6RLg/default.jpg"
-                              class="movie__poster--image"
+                              className="movie__poster--image"
                               width={400}
                             />
                           </div>
-                          <div class="col-7 p-0 p-2">
+                          <div className="col-7 p-0 p-2">
                             <span
-                              class="text-dark text-white"
+                              className="text-dark text-white"
                               style={{ fontSize: "0.8em" }}
                             >
                               The Hunchback of Notre Dame - 1996 Teaser Trailer
