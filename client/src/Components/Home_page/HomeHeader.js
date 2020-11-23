@@ -21,6 +21,7 @@ function HomeHeader(props) {
           {movies.map((movie, index) => (
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
+              data-interval="10000"
             >
               <div className="swiper-slide swiper-slide-active">
                 <div className="swiper-slide-caption main-section text-center text-md-left">

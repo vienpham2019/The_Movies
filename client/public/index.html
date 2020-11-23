@@ -111,8 +111,12 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      $(".carousel").carousel({
-        interval: false,
+      $(document).ready(function () {
+        //Event for pushed the video
+        $("#MovieTrailerModal").carousel({
+          pause: true,
+          interval: false,
+        });
       });
     </script>
   </body>

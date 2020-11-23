@@ -11,6 +11,14 @@ export default function MovieTrailerModal() {
     },
   ];
 
+  const stopVideo = () => {
+    let iframes = [...document.getElementsByClassName("movie_trailer_iframe")];
+    for (let iframe of iframes) {
+      let { src } = iframe;
+      iframe.src = src;
+    }
+  };
+
   return (
     <div
       className="modal fade"
@@ -20,7 +28,7 @@ export default function MovieTrailerModal() {
       aria-hidden="true"
     >
       <div
-        className="modal-dialog custom-scrollbar"
+        className="modal-dialog custom-scrollbar border"
         style={{ minWidth: "90vw" }}
       >
         <div
@@ -33,58 +41,42 @@ export default function MovieTrailerModal() {
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              onClick={() => stopVideo()}
             >
               <i className="fas fa-times"></i>
             </button>
           </div>
-          <div className="modal-body m-0 d-flex bd-highlight flex-nowrap overflow-hidden">
-            <div className="row w-100 mx-auto">
-              <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
-                <div className="row">
-                  <div className="mb-md-0 p-md-4 embed-responsive embed-responsive-21by9">
-                    <iframe
-                      className="embed-responsive-item"
-                      src="https://www.youtube.com/embed/JUEofxUjbpM"
-                      allowfullscreen
-                    ></iframe>
+          <div className="modal-body m-0">
+            <div
+              id="MovieTrailerModal"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <div class="carousel-inner">
+                {videos.map((v, i) => (
+                  <div class={`carousel-item p-5 ${i === 0 && "active"}`}>
+                    <div class="embed-responsive embed-responsive-21by9">
+                      <iframe
+                        class="embed-responsive-item movie_trailer_iframe"
+                        src={v.videoUrl}
+                        allowFullScreen
+                        title={v.title}
+                        videoPause
+                      ></iframe>
+                    </div>
                   </div>
-                  <strong
-                    className="text-white my-4 ml-4"
-                    style={{ fontSize: "1.3em" }}
-                  >
-                    The Hunchback of Notre Dame - 1996 Teaser Trailer (UK
-                    Version)
-                  </strong>
-                </div>
+                ))}
               </div>
-              <div className="col-12 col-md-3 h-100 overflow-auto custom-scrollbar">
-                <nav className="mb-10 mb-md-0">
-                  <div className="list-group list-group-sm list-group-strong list-group-flush-x">
-                    {Array.from(Array(9)).map((_) => (
-                      <div className="movie border-bottom" role="button">
-                        <div className="row">
-                          <div className="mx-2 col-4">
-                            <img
-                              src="https://img.youtube.com/vi/H4chVzr6RLg/default.jpg"
-                              className="movie__poster--image"
-                              width={400}
-                            />
-                          </div>
-                          <div className="col-7 p-0 p-2">
-                            <span
-                              className="text-dark text-white"
-                              style={{ fontSize: "0.8em" }}
-                            >
-                              The Hunchback of Notre Dame - 1996 Teaser Trailer
-                              (UK Version)
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </nav>
-              </div>
+              <ol class="carousel-indicators">
+                {videos.map((_, i) => (
+                  <li
+                    data-target="#MovieTrailerModal"
+                    data-slide-to={i}
+                    class={`${i === 0 && "active"}`}
+                    onClick={() => stopVideo()}
+                  ></li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>
