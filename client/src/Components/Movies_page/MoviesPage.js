@@ -49,7 +49,7 @@ function MoviesPage(props) {
       className="home-section section-movies-list w-100 m-0"
       style={{ paddingTop: "90px" }}
     >
-      <div className="mx-auto widget-area" style={{ width: "90%" }}>
+      <div className="mx-auto widget-area" style={{ width: "93%" }}>
         <div className="section-movies-list__inner">
           {/*  */}
           <div className={`sidebar ${displaySideBar ? "active" : ""}`}>
@@ -60,7 +60,7 @@ function MoviesPage(props) {
             >
               <i className="fas fa-times"></i>
             </div>
-            <MoviesFilter />
+            <MoviesFilter movies={movies} />
             <TopMovies movies={top_9_of_week} />
           </div>
 

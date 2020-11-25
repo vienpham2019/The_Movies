@@ -26,7 +26,7 @@ function DisplayMovies(props) {
                         {getDate(movie.release_date)[2]}
                       </span>
                       <span className="movie__meta--genre text-info">
-                        {getFirstNGenre(movie.Genre, 3)}
+                        {getFirstNGenre(movie.genre, 3)}
                       </span>
                     </div>
                     <span className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
@@ -49,7 +49,7 @@ function DisplayMovies(props) {
                     }}
                   >
                     <div className="text-justify ">
-                      <p className="text__ px-2">{movie.Plot}</p>
+                      <p className="text__ px-2">{movie.plot}</p>
                     </div>
                   </div>
                   <div className="movie__actions mt-5">
@@ -72,7 +72,7 @@ function DisplayMovies(props) {
                 </div>
                 <span className="text-info">
                   {" "}
-                  9.0 <i className="fas fa-star"></i>
+                  {movie.vote_average} <i className="fas fa-star"></i>
                 </span>
               </div>
             </div>
