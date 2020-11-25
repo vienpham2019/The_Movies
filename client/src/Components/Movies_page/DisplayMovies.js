@@ -1,4 +1,5 @@
 import { getDate, getFirstNGenre } from "../../helper_method";
+import { connect } from "react-redux";
 function DisplayMovies(props) {
   let { movies, vodi_value } = props;
   return (
@@ -10,7 +11,15 @@ function DisplayMovies(props) {
       >
         <div className="movies__inner">
           {movies.map((movie) => (
-            <div className="movie p-2" role="button">
+            <div
+              className="movie p-2"
+              role="button"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                props.setMovieInfo(movie);
+                props.history.push("/movie_info");
+              }}
+            >
               <div className="movie__poster">
                 <img
                   src={movie.poster_path}
@@ -82,4 +91,9 @@ function DisplayMovies(props) {
     </div>
   );
 }
-export default DisplayMovies;
+
+const mapDispatchToProps = (dispatch) => ({
+  setMovieInfo: (movie) =>
+    dispatch({ type: "SET_MOVIE_INFO", values: { movie } }),
+});
+export default connect(null, mapDispatchToProps)(DisplayMovies);

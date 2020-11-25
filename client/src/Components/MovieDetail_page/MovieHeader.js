@@ -37,7 +37,7 @@ function MovieHeader(props) {
               <strong>{movie.title}</strong>
             </span>
             <div className="gt-mini-summary">
-              <p>{movie.Plot}</p>
+              <p>{movie.plot}</p>
             </div>
             <div className="gt-items">
               <div className="gt-circular-items">
@@ -53,10 +53,10 @@ function MovieHeader(props) {
                 </div>
               </div>
               <div className="gt-dotted-items">
-                <div className="gt-item gt-time">{movie.Runtime}</div>
+                <div className="gt-item gt-time">{movie.runtime}</div>
                 <div className="gt-item gt-genres">
                   <ul>
-                    <li>{getFirstNGenre(movie.Genre, 3)}</li>
+                    <li>{getFirstNGenre(movie.genre, 3)}</li>
                   </ul>
                 </div>
                 <div className="gt-item gt-release-date">{`${month} ${day}, ${year}`}</div>
@@ -73,16 +73,17 @@ function MovieHeader(props) {
                 <div className="gt-results">
                   <span style={{ fontSize: "1.2em" }}>
                     <strong className="mr-2">
-                      Reviews({movie.movieReviews.length})
+                      Reviews(
+                      {movie.movie_reviews && movie.movie_reviews.length})
                     </strong>
-                    {movie.reviewsAvgScore}/10
+                    {movie.reviews_avg_score}/10
                   </span>
                 </div>
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reviewsAvgScore ? "fas" : "far"
+                        i + 1 <= movie.reviews_avg_score ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}

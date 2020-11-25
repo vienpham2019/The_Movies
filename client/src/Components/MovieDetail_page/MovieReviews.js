@@ -12,13 +12,13 @@ function MovieReviews(props) {
   const [reivewScore, setReviewScore] = useState(10);
   const [movieNewReviewErrors, setMovieNewReviewErrors] = useState({});
   const [displayReviews, setDisplayReview] = useState(
-    movie.movieReviews.slice(0, displayReviewAmount)
+    movie.movie_reviews ? movie.movie_reviews.slice(0, displayReviewAmount) : []
   );
-  const pages = Math.ceil(movie.movieReviews.length / displayReviewAmount);
+  const pages = Math.ceil(movie.movie_reviews.length / displayReviewAmount);
 
   const handelDisplayReviews = (current_page) => {
     setDisplayReview(
-      movie.movieReviews.slice(
+      movie.movie_reviews.slice(
         (current_page - 1) * displayReviewAmount,
         current_page * displayReviewAmount * 2
       )
@@ -62,12 +62,12 @@ function MovieReviews(props) {
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reviewsAvgScore ? "fas" : "far"
+                        i + 1 <= movie.reviews_avg_score ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}
                   <span className="ml-2">
-                    <strong>Reviews({movie.movieReviews.length})</strong>
+                    <strong>Reviews({movie.movie_reviews.length})</strong>
                   </span>
                 </div>
               </div>

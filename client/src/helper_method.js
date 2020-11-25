@@ -18,7 +18,7 @@ const getDate = (date) => {
 };
 
 const getFirstNGenre = (genre, amount) =>
-  genre.split(", ").slice(0, amount).join(", ");
+  genre === "N/A" ? "N/A" : genre.split(", ").slice(0, amount).join(", ");
 
 const getMovieFilter = (m) => {
   let categories = {

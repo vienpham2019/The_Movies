@@ -112,7 +112,11 @@ function MoviesPage(props) {
                   overflowX: "hidden",
                 }}
               >
-                <DisplayMovies movies={displayMovies} vodi_value={vodi_value} />
+                <DisplayMovies
+                  movies={displayMovies}
+                  vodi_value={vodi_value}
+                  history={props.history}
+                />
               </div>
               <hr />
               {pages > 1 && (

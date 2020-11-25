@@ -6,31 +6,35 @@ function MovieDescription(props) {
   const [activeDescription, setActiveDescription] = useState("STORYLINE");
   const {
     overview,
-    Genre,
-    Language,
-    Country,
+    genre,
+    language,
+    country,
     release_date,
-    Director,
-    Writer,
-    Actors,
-    Awards,
+    director,
+    writers,
+    actors,
+    awards,
     production_companies,
   } = props.movie;
   const [month, day, year] = getDate(release_date);
   const des_keys = ["STORYLINE", "ADDITIONAL INFOMATION"];
   const storyline = {
-    Genre,
-    Language,
-    Country,
+    genre,
+    language,
+    country,
     "Release Date": `${month} ${day}, ${year}`,
   };
 
   const addition_infomation = {
-    Director,
-    Actors,
-    Awards,
-    Writer,
+    director,
+    actors,
+    awards,
+    writers,
   };
+
+  const hideIcon = (element) =>
+    (element.src =
+      "https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg");
 
   return (
     <div className="container">
@@ -83,25 +87,53 @@ function MovieDescription(props) {
                 Production Companies
               </h5>
               <div
-                className="custom-scrollbar d-flex flex-wrap justify-content-center"
+                className="custom-scrollbar card-columns d-flex flex-wrap justify-content-center "
                 style={{
-                  maxHeight: "100px",
+                  maxHeight: "400px",
                   overflowY: "auto",
+                  overflowX: "hidden",
                 }}
               >
                 {production_companies.map((company) => (
-                  <img
-                    className="p-3 border m-2 bd-highlight"
-                    src={company.logo_path}
-                    alt={company.name}
-                    style={{ maxWidth: "9rem" }}
-                  />
+                  <div
+                    className="text-center p-2 my-2 rounded-pill"
+                    style={{
+                      width: "30%",
+                      height: "1%",
+                      backgroundColor: "black",
+                    }}
+                  >
+                    <div className="border-top-0 shadow">
+                      {company.logo_path.match(/null$/) ? (
+                        <div className="py-4 ">
+                          <strong className="movie_logo_title ">
+                            <i class="fas fa-film fa-2x mr-2"></i>{" "}
+                            {company.name}
+                          </strong>
+                        </div>
+                      ) : (
+                        <img
+                          className="img-fluid p-5"
+                          src={company.logo_path}
+                          alt={company.name}
+                        />
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
             {Object.entries(addition_infomation).map(([key, value]) => (
-              <div className="card p-3 mx-2 rounded-0 shadow">
-                <h5 className="card-title border-bottom">{key}</h5>
+              <div
+                className="card p-3 mx-2 rounded-0 shadow"
+                style={{ minWidth: "300px", minHeight: "150px" }}
+              >
+                <h5
+                  className="card-title border-bottom"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {key}
+                </h5>
                 {key === "Awards" ? (
                   <span className="card-text ml-2 text-secondary">{value}</span>
                 ) : (
@@ -112,9 +144,11 @@ function MovieDescription(props) {
                       overflowY: "auto",
                     }}
                   >
-                    {value.split(", ").map((val) => (
-                      <li> &#10731; {val}</li>
-                    ))}
+                    {value === "N/A" ? (
+                      <li>N/A</li>
+                    ) : (
+                      value.split(", ").map((val) => <li> &#10731; {val}</li>)
+                    )}
                   </ul>
                 )}
               </div>

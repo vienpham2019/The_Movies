@@ -124,3 +124,13 @@
   -webkit-box-orient: vertical;
   height: 3.2em;
 }
+
+.card_title h5 {
+  text-transform: capitalize;
+}
+
+.movie_logo_title {
+  font-weight: bolder;
+  font-size: 15px;
+  text-transform: uppercase;
+}

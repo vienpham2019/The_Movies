@@ -6,6 +6,7 @@ function Pagination(props) {
   const [afterCurrent, setAfterCurrent] = useState(4);
 
   const handelCurrentPage = (page) => {
+    window.scrollTo(0, 0);
     setCurrentPage(page);
     let b_c = page - 1 > 0 && page <= pages - 2 ? page - 1 : pages - 3;
     setBeforeCurrent(b_c);
