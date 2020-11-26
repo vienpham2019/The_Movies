@@ -21,7 +21,7 @@ const getFirstNGenre = (genre, amount) =>
   genre === "N/A" ? "N/A" : genre.split(", ").slice(0, amount).join(", ");
 
 const getMovieFilter = (m) => {
-  let categories = {
+  let genres = {
     All: 0,
     Action: 0,
     Adventure: 0,
@@ -57,12 +57,11 @@ const getMovieFilter = (m) => {
     "2019-2021": 0,
   };
   for (let movie of m) {
-    categories["All"] += 1;
     let year = Math.floor(movie.release_date.split("-")[0]);
     let vote_average = Math.floor(movie.vote_average);
     for (let genre of movie.genre.split(", ")) {
       if (genre === "N/A") continue;
-      categories[genre] += 1;
+      genres[genre] += 1;
     }
     if (!ratings[vote_average]) ratings[vote_average] = 0;
     ratings[vote_average] += 1;
@@ -80,7 +79,7 @@ const getMovieFilter = (m) => {
     }
   }
   return {
-    categories,
+    genres,
     years,
     ratings,
   };

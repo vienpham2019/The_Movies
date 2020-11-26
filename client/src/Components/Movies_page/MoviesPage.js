@@ -7,12 +7,12 @@ import "./Movies.css";
 import { connect } from "react-redux";
 
 function MoviesPage(props) {
-  let { movies } = props;
+  let { movies, display_movies } = props;
   const displayMoviesAmount = 20;
   const [vodi_value, setVodiValue] = useState("grid");
   const [displaySideBar, setSideBar] = useState(false);
   const [displayMovies, setDisplayMovies] = useState(
-    movies.slice(0, displayMoviesAmount)
+    display_movies.slice(0, displayMoviesAmount)
   );
   let vodi = [
     { type: "grid", value: "fas fa-th" },
@@ -37,11 +37,14 @@ function MoviesPage(props) {
     { title: "Dirt", year: "2019", genre: "Action, Sport" },
   ];
 
-  const pages = Math.ceil(movies.length / displayMoviesAmount);
+  const pages = Math.ceil(display_movies.length / displayMoviesAmount);
 
   const handleDisplayPage = (page) =>
     setDisplayMovies(
-      movies.slice((page - 1) * displayMoviesAmount, page * displayMoviesAmount)
+      display_movies.slice(
+        (page - 1) * displayMoviesAmount,
+        page * displayMoviesAmount
+      )
     );
 
   return (
@@ -60,7 +63,7 @@ function MoviesPage(props) {
             >
               <i className="fas fa-times"></i>
             </div>
-            <MoviesFilter movies={movies} />
+            <MoviesFilter />
             <TopMovies movies={top_9_of_week} />
           </div>
 
@@ -131,7 +134,7 @@ function MoviesPage(props) {
   );
 }
 const mapStateToProps = (state) => {
-  let { movies } = state.moviesReducer;
-  return { movies };
+  let { movies, display_movies } = state.moviesReducer;
+  return { movies, display_movies };
 };
 export default connect(mapStateToProps)(MoviesPage);

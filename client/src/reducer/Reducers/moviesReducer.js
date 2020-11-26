@@ -1,6 +1,7 @@
 let initState = {
   movies: [],
   home_header_movies: [],
+  display_movies: [],
 };
 
 export default function moviesReducer(state = initState, action) {
@@ -9,6 +10,7 @@ export default function moviesReducer(state = initState, action) {
       return {
         ...state,
         ...action.values,
+        display_movies: action.values.movies,
       };
     default:
       return state;
