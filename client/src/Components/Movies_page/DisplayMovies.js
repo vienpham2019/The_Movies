@@ -1,7 +1,11 @@
 import { getDate, getFirstNGenre } from "../../helper_method";
-import { connect } from "react-redux";
-function DisplayMovies(props) {
-  let { movies, vodi_value } = props;
+import { useSelector, useDispatch } from "react-redux";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+
+export default function DisplayMovies(props) {
+  let { vodi_value, display_movies } = props;
+  // const { display_movies } = useSelector((state) => state.moviesReducer);
+  const dispatch = useDispatch();
   return (
     <div className="vodi-archive-wrapper" data-view={vodi_value}>
       <div
@@ -10,13 +14,13 @@ function DisplayMovies(props) {
         }`}
       >
         <div className="movies__inner">
-          {movies.map((movie) => (
+          {display_movies.map((movie) => (
             <div
               className="movie p-2"
               role="button"
               onClick={() => {
                 window.scrollTo(0, 0);
-                props.setMovieInfo(movie);
+                dispatch(A_set_movie_info(movie));
                 props.history.push("/movie_info");
               }}
             >
@@ -91,9 +95,3 @@ function DisplayMovies(props) {
     </div>
   );
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  setMovieInfo: (movie) =>
-    dispatch({ type: "SET_MOVIE_INFO", values: { movie } }),
-});
-export default connect(null, mapDispatchToProps)(DisplayMovies);

@@ -1,45 +1,47 @@
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMovieFilter } from "../../helper_method";
 
-function MoviesFilter(props) {
-  const { movies, display_movies } = props;
+import { A_filter_movies } from "../../reducer/Actions/movies_action";
+
+export default function MoviesFilter() {
+  const { movies, filter_movies } = useSelector((state) => state.moviesReducer);
+  const dispatch = useDispatch();
   const [genre, setGenre] = useState("All");
   const [year, setYear] = useState(" ");
-  const [displayMovies, setDisplayMovies] = useState(display_movies);
 
-  let { genres, years, ratings } = getMovieFilter(displayMovies);
+  let { genres, years, ratings } = getMovieFilter(filter_movies);
   genres["All"] = movies.length;
 
   const filterByGenre = (genre) => {
-    let d_movies;
+    let f_movies;
     if (genre === "All") {
-      d_movies = movies;
+      f_movies = movies;
       setYear(" ");
     } else {
-      d_movies = displayMovies.filter((movie) =>
+      f_movies = filter_movies.filter((movie) =>
         movie.genre.match(new RegExp(genre, "i"))
       );
     }
     setGenre(genre);
-    setDisplayMovies(d_movies);
+    dispatch(A_filter_movies(f_movies));
   };
 
   const filterByYear = (year) => {
     let [y_start, y_end] = year.split("-");
-    let d_movies = displayMovies.filter((movie) => {
+    let f_movies = filter_movies.filter((movie) => {
       let y = Math.floor(movie.release_date.split("-")[0]);
       return Math.floor(y_start) <= y && Math.floor(y_end) >= y;
     });
     setYear(year);
-    setDisplayMovies(d_movies);
+    dispatch(A_filter_movies(f_movies));
   };
 
   const filterByRating = (rating) => {
-    let d_movies = displayMovies.filter(
+    let f_movies = filter_movies.filter(
       (movie) => Math.floor(movie.vote_average) === Math.floor(rating)
     );
-    setDisplayMovies(d_movies);
+    dispatch(A_filter_movies(f_movies));
   };
 
   return (
@@ -127,10 +129,3 @@ function MoviesFilter(props) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-  let { movies, display_movies } = state.moviesReducer;
-  return { movies, display_movies };
-};
-
-export default connect(mapStateToProps)(MoviesFilter);

@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DisplayMovies from "./DisplayMovies";
 import MoviesFilter from "./MoviesFilter";
 import TopMovies from "./TopMovies";
 import Pagination from ".././Pagination";
 import "./Movies.css";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { A_display_movies } from "../../reducer/Actions/movies_action";
 
-function MoviesPage(props) {
-  let { movies, display_movies } = props;
+export default function MoviesPage(props) {
+  const { filter_movies, display_movies } = useSelector(
+    (state) => state.moviesReducer
+  );
+  const dispatch = useDispatch();
   const displayMoviesAmount = 20;
   const [vodi_value, setVodiValue] = useState("grid");
   const [displaySideBar, setSideBar] = useState(false);
-  const [displayMovies, setDisplayMovies] = useState(
-    display_movies.slice(0, displayMoviesAmount)
-  );
+
+  useEffect(() => {
+    dispatch(A_display_movies(filter_movies.slice(0, displayMoviesAmount)));
+  });
+
   let vodi = [
     { type: "grid", value: "fas fa-th" },
     { type: "grid-extended", value: "fas fa-th-large" },
@@ -37,15 +43,15 @@ function MoviesPage(props) {
     { title: "Dirt", year: "2019", genre: "Action, Sport" },
   ];
 
-  const pages = Math.ceil(display_movies.length / displayMoviesAmount);
+  const pages = Math.ceil(filter_movies.length / displayMoviesAmount);
 
-  const handleDisplayPage = (page) =>
-    setDisplayMovies(
-      display_movies.slice(
-        (page - 1) * displayMoviesAmount,
-        page * displayMoviesAmount
-      )
+  const handleDisplayPage = (page) => {
+    let d_movies = filter_movies.slice(
+      (page - 1) * displayMoviesAmount,
+      page * displayMoviesAmount
     );
+    dispatch(A_display_movies(d_movies));
+  };
 
   return (
     <div
@@ -67,7 +73,7 @@ function MoviesPage(props) {
             <TopMovies movies={top_9_of_week} />
           </div>
 
-          <div className="featured-with-list-view-movies-list pl-4">
+          <div className="featured-with-list-view-movies-list pl-4 w-100">
             <header className="featured-with-list-view-movies-list__header">
               <div className="row w-100 m-0">
                 <h2 className="section-movies-list__title">Movies</h2>
@@ -110,13 +116,13 @@ function MoviesPage(props) {
               <div
                 className="custom-scrollbar"
                 style={{
-                  maxHeight: "120em",
+                  height: "120em",
                   overflowY: "auto",
                   overflowX: "hidden",
                 }}
               >
                 <DisplayMovies
-                  movies={displayMovies}
+                  display_movies={display_movies}
                   vodi_value={vodi_value}
                   history={props.history}
                 />
@@ -133,8 +139,3 @@ function MoviesPage(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  let { movies, display_movies } = state.moviesReducer;
-  return { movies, display_movies };
-};
-export default connect(mapStateToProps)(MoviesPage);
