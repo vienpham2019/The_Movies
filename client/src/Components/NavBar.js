@@ -1,4 +1,7 @@
+import { useDispatch } from "react-redux";
+import { A_display_movies_amount } from "../reducer/Actions/movies_action";
 function NavBar(props) {
+  const dispatch = useDispatch();
   return (
     <nav
       className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom w-100 overflow-hidden"
@@ -44,6 +47,7 @@ function NavBar(props) {
                 onClick={() => {
                   window.scrollTo(0, 0);
                   props.history.push("/movies");
+                  dispatch(A_display_movies_amount(20));
                 }}
               >
                 Movies
@@ -70,6 +74,7 @@ function NavBar(props) {
                 data-target="#login-modal"
                 onClick={() => {
                   window.scrollTo(0, 0);
+                  dispatch(A_display_movies_amount(8));
                 }}
               >
                 <i className="far fa-user mr-2"></i>

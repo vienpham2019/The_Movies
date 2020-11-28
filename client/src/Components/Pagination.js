@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { A_movie_page } from "../reducer/Actions/movies_action";
 function Pagination(props) {
-  const { pages, handleDisplay } = props;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [beforeCurrent, setBeforeCurrent] = useState(1);
-  const [afterCurrent, setAfterCurrent] = useState(4);
+  const dispatch = useDispatch();
+  const { pages } = props;
+  const { movie_page } = useSelector((state) => state.moviesReducer);
+
+  const currentPage = movie_page + 1;
+  const beforeCurrent =
+    currentPage === 1
+      ? 1
+      : currentPage > pages - 3
+      ? pages - 3
+      : currentPage - 1;
+  const afterCurrent = currentPage > 4 ? currentPage + 1 : 4;
 
   const handelCurrentPage = (page) => {
-    window.scrollTo(0, 0);
-    setCurrentPage(page);
-    let b_c = page - 1 > 0 && page <= pages - 2 ? page - 1 : pages - 3;
-    setBeforeCurrent(b_c);
-    let a_c = page + 1 < pages && page >= 3 ? page + 1 : 4;
-    setAfterCurrent(a_c);
-    handleDisplay(page);
+    // window.scrollTo(0, 0);
+    console.log(page);
+    dispatch(A_movie_page(page - 1));
   };
 
   return (
@@ -35,7 +40,7 @@ function Pagination(props) {
       </div>
       <div
         className={`pagination-item dropdown ${
-          currentPage < 4 || pages < 4 ? "d-none" : ""
+          currentPage <= 4 || pages - 2 < 4 ? "d-none" : ""
         }`}
       >
         <span
@@ -77,7 +82,7 @@ function Pagination(props) {
       {Array.from(
         Array(pages - 5 > 0 ? 3 : pages - 2 <= 0 ? 0 : pages - 2),
         (_, i) =>
-          currentPage < 4
+          currentPage <= 4
             ? i + 2
             : currentPage > pages - 3
             ? pages - 3 + i

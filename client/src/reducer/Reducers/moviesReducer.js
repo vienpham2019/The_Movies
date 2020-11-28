@@ -2,7 +2,8 @@ let initState = {
   movies: [],
   home_header_movies: [],
   filter_movies: [],
-  display_movies: [],
+  movie_page: 0,
+  display_movies_amount: 20,
 };
 
 export default function moviesReducer(state = initState, action) {
@@ -21,7 +22,13 @@ export default function moviesReducer(state = initState, action) {
         ...action.values,
       };
 
-    case "DISPLAY_MOVIES":
+    case "MOVIE_PAGE":
+      return {
+        ...state,
+        ...action.values,
+      };
+
+    case "DISPLAY_MOVIES_AMOUNT":
       return {
         ...state,
         ...action.values,

@@ -1,24 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DisplayMovies from "./DisplayMovies";
 import MoviesFilter from "./MoviesFilter";
 import TopMovies from "./TopMovies";
 import Pagination from ".././Pagination";
 import "./Movies.css";
-import { useSelector, useDispatch } from "react-redux";
-import { A_display_movies } from "../../reducer/Actions/movies_action";
+import { useSelector } from "react-redux";
 
 export default function MoviesPage(props) {
-  const { filter_movies, display_movies } = useSelector(
-    (state) => state.moviesReducer
-  );
-  const dispatch = useDispatch();
+  const { filter_movies } = useSelector((state) => state.moviesReducer);
   const displayMoviesAmount = 20;
   const [vodi_value, setVodiValue] = useState("grid");
   const [displaySideBar, setSideBar] = useState(false);
-
-  useEffect(() => {
-    dispatch(A_display_movies(filter_movies.slice(0, displayMoviesAmount)));
-  });
 
   let vodi = [
     { type: "grid", value: "fas fa-th" },
@@ -44,14 +36,6 @@ export default function MoviesPage(props) {
   ];
 
   const pages = Math.ceil(filter_movies.length / displayMoviesAmount);
-
-  const handleDisplayPage = (page) => {
-    let d_movies = filter_movies.slice(
-      (page - 1) * displayMoviesAmount,
-      page * displayMoviesAmount
-    );
-    dispatch(A_display_movies(d_movies));
-  };
 
   return (
     <div
@@ -122,15 +106,12 @@ export default function MoviesPage(props) {
                 }}
               >
                 <DisplayMovies
-                  display_movies={display_movies}
                   vodi_value={vodi_value}
                   history={props.history}
                 />
               </div>
               <hr />
-              {pages > 1 && (
-                <Pagination pages={pages} handleDisplay={handleDisplayPage} />
-              )}
+              {pages > 1 && <Pagination pages={pages} />}
               {/*  */}
             </div>
           </div>

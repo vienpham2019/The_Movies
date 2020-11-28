@@ -1,11 +1,17 @@
 import { getDate, getFirstNGenre } from "../../helper_method";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 
 export default function DisplayMovies(props) {
-  let { vodi_value, display_movies } = props;
-  // const { display_movies } = useSelector((state) => state.moviesReducer);
+  let { vodi_value } = props;
+  const { filter_movies, movie_page, display_movies_amount } = useSelector(
+    (state) => state.moviesReducer
+  );
   const dispatch = useDispatch();
+  const display_movies = filter_movies.slice(
+    movie_page * display_movies_amount,
+    (movie_page + 1) * display_movies_amount
+  );
   return (
     <div className="vodi-archive-wrapper" data-view={vodi_value}>
       <div

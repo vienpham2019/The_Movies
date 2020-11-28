@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieFilter } from "../../helper_method";
 
-import { A_filter_movies } from "../../reducer/Actions/movies_action";
+import {
+  A_filter_movies,
+  A_movie_page,
+} from "../../reducer/Actions/movies_action";
 
 export default function MoviesFilter() {
   const { movies, filter_movies } = useSelector((state) => state.moviesReducer);
@@ -25,6 +28,7 @@ export default function MoviesFilter() {
     }
     setGenre(genre);
     dispatch(A_filter_movies(f_movies));
+    dispatch(A_movie_page(0));
   };
 
   const filterByYear = (year) => {
@@ -35,6 +39,7 @@ export default function MoviesFilter() {
     });
     setYear(year);
     dispatch(A_filter_movies(f_movies));
+    dispatch(A_movie_page(0));
   };
 
   const filterByRating = (rating) => {
@@ -42,6 +47,7 @@ export default function MoviesFilter() {
       (movie) => Math.floor(movie.vote_average) === Math.floor(rating)
     );
     dispatch(A_filter_movies(f_movies));
+    dispatch(A_movie_page(0));
   };
 
   return (
