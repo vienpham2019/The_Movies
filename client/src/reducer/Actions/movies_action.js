@@ -13,4 +13,17 @@ const A_display_movies_amount = (display_movies_amount) => ({
   values: { display_movies_amount },
 });
 
-export { A_filter_movies, A_movie_page, A_display_movies_amount };
+const A_set_fillter_genre_and_year = (
+  fillter_movie_by_genre,
+  fillter_movie_by_year
+) => ({
+  type: "SET_FILLTER_GENRE_AND_YEAR",
+  values: { fillter_movie_by_genre, fillter_movie_by_year },
+});
+
+export {
+  A_filter_movies,
+  A_movie_page,
+  A_display_movies_amount,
+  A_set_fillter_genre_and_year,
+};

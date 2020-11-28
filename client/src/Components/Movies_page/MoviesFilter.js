@@ -1,17 +1,20 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieFilter } from "../../helper_method";
 
 import {
   A_filter_movies,
   A_movie_page,
+  A_set_fillter_genre_and_year,
 } from "../../reducer/Actions/movies_action";
 
 export default function MoviesFilter() {
-  const { movies, filter_movies } = useSelector((state) => state.moviesReducer);
+  const {
+    movies,
+    filter_movies,
+    fillter_movie_by_year,
+    fillter_movie_by_genre,
+  } = useSelector((state) => state.moviesReducer);
   const dispatch = useDispatch();
-  const [genre, setGenre] = useState("All");
-  const [year, setYear] = useState(" ");
 
   let { genres, years, ratings } = getMovieFilter(filter_movies);
   genres["All"] = movies.length;
@@ -20,13 +23,13 @@ export default function MoviesFilter() {
     let f_movies;
     if (genre === "All") {
       f_movies = movies;
-      setYear(" ");
+      dispatch(A_set_fillter_genre_and_year(genre, " "));
     } else {
       f_movies = filter_movies.filter((movie) =>
         movie.genre.match(new RegExp(genre, "i"))
       );
+      dispatch(A_set_fillter_genre_and_year(genre, fillter_movie_by_year));
     }
-    setGenre(genre);
     dispatch(A_filter_movies(f_movies));
     dispatch(A_movie_page(0));
   };
@@ -37,8 +40,8 @@ export default function MoviesFilter() {
       let y = Math.floor(movie.release_date.split("-")[0]);
       return Math.floor(y_start) <= y && Math.floor(y_end) >= y;
     });
-    setYear(year);
     dispatch(A_filter_movies(f_movies));
+    dispatch(A_set_fillter_genre_and_year(fillter_movie_by_genre, year));
     dispatch(A_movie_page(0));
   };
 
@@ -66,7 +69,7 @@ export default function MoviesFilter() {
               <input
                 id={`checkbox-${_genre}`}
                 type="checkbox"
-                checked={_genre === genre && count !== 0}
+                checked={_genre === fillter_movie_by_genre && count !== 0}
                 disabled={count === 0}
                 onClick={() => filterByGenre(_genre)}
               />
@@ -95,7 +98,7 @@ export default function MoviesFilter() {
           {Object.entries(years).map(([_year, count]) => (
             <div
               className={`px-2 py-3 bd-highlight col m-2 text-center text-info btn btn-dark ${
-                _year === year && "border-success"
+                _year === fillter_movie_by_year && "border-success"
               } ${count === 0 && "text-muted"}`}
               role="button"
               aria-disabled="true"

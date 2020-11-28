@@ -1,6 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { randomNumber } from "../../helper_method";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 export default function RecommendMovies() {
+  const { movies } = useSelector((state) => state.moviesReducer);
   const { movie } = useSelector((state) => state.movieInfoReducer);
+  const genres = movie.genre.split(",");
+  const genre = genres[randomNumber(0, genres.length)];
+  const ran_num = randomNumber(8, movies.length - 8) + 8;
+  const recommend_movies = movies
+    .filter(
+      (_movie) =>
+        _movie.genre.match(new RegExp(genre, "i")) &&
+        _movie.title !== movie.title
+    )
+    .slice(ran_num - 8, ran_num);
+  const dispatch = useDispatch();
+
   return (
     <section className="movie__related my-5 bg-light py-5">
       <div className="movie__related--inner">
@@ -15,8 +30,15 @@ export default function RecommendMovies() {
 
           <div className="movies columns-8">
             <div className="movies__inner">
-              {Array.from(Array(8)).map((_) => (
-                <div className="movie" role="button">
+              {recommend_movies.map((movie) => (
+                <div
+                  className="movie"
+                  role="button"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    dispatch(A_set_movie_info(movie));
+                  }}
+                >
                   <div className="movie__poster">
                     <div className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
                       <img
@@ -35,7 +57,7 @@ export default function RecommendMovies() {
                           </span>
 
                           <span className="movie__meta--genre">
-                            {movie.Genre}
+                            {movie.genre}
                           </span>
                         </div>
 

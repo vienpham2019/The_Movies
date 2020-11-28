@@ -5,7 +5,10 @@ import TopMovies from "./TopMovies";
 import Pagination from ".././Pagination";
 import "./Movies.css";
 import { useSelector, useDispatch } from "react-redux";
-import { A_filter_movies } from "../../reducer/Actions/movies_action";
+import {
+  A_filter_movies,
+  A_set_fillter_genre_and_year,
+} from "../../reducer/Actions/movies_action";
 
 export default function MoviesPage(props) {
   const { filter_movies, movies } = useSelector((state) => state.moviesReducer);
@@ -42,6 +45,7 @@ export default function MoviesPage(props) {
       movie.title.match(new RegExp(title, "i"))
     );
     dispatch(A_filter_movies(f_movies));
+    dispatch(A_set_fillter_genre_and_year("All", " "));
   };
 
   const pages = Math.ceil(filter_movies.length / displayMoviesAmount);

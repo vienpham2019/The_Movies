@@ -74,7 +74,7 @@ const getMovieFilter = (m) => {
       years["1981-2010"] += 1;
     } else if (year >= 1951 && year <= 1980) {
       years["1951-1980"] += 1;
-    } else {
+    } else if (year >= 1920 && year <= 1950) {
       years["1920-1950"] += 1;
     }
   }
@@ -85,4 +85,6 @@ const getMovieFilter = (m) => {
   };
 };
 
-export { getDate, getFirstNGenre, getMovieFilter };
+const randomNumber = (min, max) => Math.random() * (max - min) + min;
+
+export { getDate, getFirstNGenre, getMovieFilter, randomNumber };
