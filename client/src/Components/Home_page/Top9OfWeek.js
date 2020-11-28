@@ -16,10 +16,7 @@ function Top9OfWeek(props) {
               <div className="movies columns-1">
                 <div className="movies__inner">
                   {top_9_of_week.map((value) => (
-                    <div
-                      className="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action hvr-shrink"
-                      role="button"
-                    >
+                    <div className="movie" role="button">
                       <div className="movie-list">
                         <div className="movie-list__body">
                           <span className="movie-list__year">{value.year}</span>

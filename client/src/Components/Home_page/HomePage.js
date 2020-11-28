@@ -5,7 +5,7 @@ import Top9OfWeek from "./Top9OfWeek";
 import HomeHeader from "./HomeHeader";
 import "./HomePage.css";
 
-function HomePage() {
+export default function HomePage(props) {
   let top_3 = [
     {
       title: "Sorry We Missed You",
@@ -140,16 +140,16 @@ function HomePage() {
   return (
     <div className="page__content w-100 m-0 overflow-hidden">
       <section className="section bg-custom-1 position-relative">
-        <HomeHeader movies={top_3} />
+        <HomeHeader history={props.history} />
       </section>
       <br />
       <section
         className="home-section home-movie-section-aside-header pt-5"
         style={{ paddingBottom: "13px", paddingTop: "9px" }}
       >
-        <PopularMovies />
+        <PopularMovies history={props.history} />
       </section>
-      <MidSection top_3={top_3} />
+      <MidSection history={props.history} />
       <section
         className="home-section section-movies-carousel-flex-header has-bg-color more-light style-2"
         style={{ paddingBottom: "10px", paddingTop: "60px" }}
@@ -165,5 +165,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

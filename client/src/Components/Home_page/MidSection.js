@@ -1,17 +1,30 @@
-function MidSection(props) {
+import { useDispatch, useSelector } from "react-redux";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+import { randomNumber } from "../../helper_method";
+
+export default function MidSection(props) {
+  const dispatch = useDispatch();
+  const { newest_movies } = useSelector((state) => state.topMoviesReducer);
+  const ran_num = randomNumber(0, newest_movies.length - 3);
   return (
-    <div className="movie-slider mb-1">
+    <div className="bg-dark movie-slider mb-1">
       <div className="masvideos masvideos-movies ">
         <div className="movies columns-3">
           <div className="movies__inner">
             {/*  */}
-            {props.top_3.map((movie) => (
-              <div className="post-288 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-adventure movie_genre-animation movie_tag-4k-ultra movie_tag-king movie_tag-premieres movie_tag-viking">
+            {newest_movies.slice(ran_num, ran_num + 3).map((movie) => (
+              <div
+                className="movie has-bg py-5"
+                key={movie.title}
+                style={{
+                  backgroundImage: `url(${movie.poster_path})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
                 <div
-                  className="slider-movie"
-                  style={{
-                    backgroundImage: "url(" + movie.img + ")",
-                  }}
+                  className="slider-movie mx-1"
+                  style={{ background: "rgba(255, 255, 255, 0.2)" }}
                 >
                   <div className="slider-movie__hover">
                     <div className="slider-movie__hover_watch-now">
@@ -42,21 +55,29 @@ function MidSection(props) {
                     </a>
                     <div className="slider-movie__meta">
                       <ul className="movie-details">
-                        <li className="movie-duration">{movie.duration}</li>
+                        <li className="movie-duration">{movie.runtime}</li>
                         <li className="movie-genre">{movie.genre}</li>
                       </ul>
                     </div>
                     <div className="slider-movie-description-wrap">
                       <div className="movie__short-description">
                         <div>
-                          <p>{movie.description}</p>
+                          <p>{movie.plot}</p>
                         </div>
                       </div>
                     </div>
                     <div className="movie__actions">
-                      <a href="-" className="movie-actions--link_watch">
+                      <span
+                        className="movie-actions--link_watch text-white"
+                        role="button"
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          props.history.push("/movie_info");
+                          dispatch(A_set_movie_info(movie));
+                        }}
+                      >
                         More Info
-                      </a>
+                      </span>
                       <div className="movie-actions--link_add-to-playlist dropdown">
                         <a
                           className="dropdown-toggle"
@@ -84,5 +105,3 @@ function MidSection(props) {
     </div>
   );
 }
-
-export default MidSection;

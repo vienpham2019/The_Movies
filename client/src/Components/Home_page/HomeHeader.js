@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 
 export default function HomeHeader(props) {
-  // let { movies } = props;
+  const dispatch = useDispatch();
   const { newest_movies } = useSelector((state) => state.topMoviesReducer);
   return (
     <div>
@@ -25,7 +26,8 @@ export default function HomeHeader(props) {
           {newest_movies.slice(0, 5).map((movie, index) => (
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
-              data-interval="10000"
+              data-interval="15000"
+              key={`home header movie content ${index}`}
             >
               <div className="swiper-slide swiper-slide-active">
                 <div className="swiper-slide-caption main-section text-center text-md-left">
@@ -66,6 +68,10 @@ export default function HomeHeader(props) {
                           <span
                             className="button-custom fadeInUp animated"
                             role="button"
+                            onClick={() => {
+                              dispatch(A_set_movie_info(movie));
+                              props.history.push("/movie_info");
+                            }}
                           >
                             <i className="fas fa-info mr-2 my-auto"></i>MORE
                             INFO

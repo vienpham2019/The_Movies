@@ -13,6 +13,7 @@ import UserProfile from "./Components/User_profile/UserProfile";
 import PageNotFound from "./Components/PageNotFound";
 
 import { A_set_top_movies } from "./reducer/Actions/top_movies_action";
+import { A_set_movies } from "./reducer/Actions/movies_action";
 
 export default function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function App() {
     dispatch(
       A_set_top_movies(newest_movies, top_ranking_movies, popular_movies)
     );
+    dispatch(A_set_movies(data));
   };
 
   return (

@@ -1,3 +1,8 @@
+const A_set_movies = (movies) => ({
+  type: "SET_MOVIES",
+  values: { movies },
+});
+
 const A_filter_movies = (filter_movies) => ({
   type: "FILTER_MOVIES",
   values: { filter_movies },
@@ -22,6 +27,7 @@ const A_set_fillter_genre_and_year = (
 });
 
 export {
+  A_set_movies,
   A_filter_movies,
   A_movie_page,
   A_display_movies_amount,
