@@ -15,8 +15,7 @@ function Pagination(props) {
   const afterCurrent = currentPage > 4 ? currentPage + 1 : 4;
 
   const handelCurrentPage = (page) => {
-    // window.scrollTo(0, 0);
-    console.log(page);
+    window.scrollTo(0, 0);
     dispatch(A_movie_page(page - 1));
   };
 

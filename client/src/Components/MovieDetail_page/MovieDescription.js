@@ -1,9 +1,10 @@
 import { getDate } from "../../helper_method";
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-function MovieDescription(props) {
+export default function MovieDescription(props) {
   const [activeDescription, setActiveDescription] = useState("STORYLINE");
+
   const {
     overview,
     genre,
@@ -15,7 +16,7 @@ function MovieDescription(props) {
     actors,
     awards,
     production_companies,
-  } = props.movie;
+  } = useSelector((state) => state.movieInfoReducer.movie);
   const [month, day, year] = getDate(release_date);
   const des_keys = ["STORYLINE", "ADDITIONAL INFOMATION"];
   const storyline = {
@@ -87,25 +88,20 @@ function MovieDescription(props) {
                 Production Companies
               </h5>
               <div
-                className="custom-scrollbar card-columns d-flex flex-wrap justify-content-center "
+                className="custom-scrollbar card-columns h-auto"
                 style={{
-                  maxHeight: "400px",
                   overflowY: "auto",
                   overflowX: "hidden",
                 }}
               >
                 {production_companies.map((company) => (
                   <div
-                    className="text-center p-2 my-2 rounded-pill"
-                    style={{
-                      width: "30%",
-                      height: "1%",
-                      backgroundColor: "black",
-                    }}
+                    className="text-center p-2 my-2 card border-0"
+                    style={{ maxWidth: "20em" }}
                   >
-                    <div className="border-top-0 shadow">
+                    <div className="border-bottom border-right shadow-sm">
                       {company.logo_path.match(/null$/) ? (
-                        <div className="py-4 ">
+                        <div className="p-4">
                           <strong className="movie_logo_title ">
                             <i class="fas fa-film fa-2x mr-2"></i>{" "}
                             {company.name}
@@ -160,9 +156,3 @@ function MovieDescription(props) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => ({
-  movie: state.movieInfoReducer.movie,
-});
-
-export default connect(mapStateToProps)(MovieDescription);

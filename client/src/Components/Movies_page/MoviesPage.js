@@ -4,11 +4,13 @@ import MoviesFilter from "./MoviesFilter";
 import TopMovies from "./TopMovies";
 import Pagination from ".././Pagination";
 import "./Movies.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { A_filter_movies } from "../../reducer/Actions/movies_action";
 
 export default function MoviesPage(props) {
-  const { filter_movies } = useSelector((state) => state.moviesReducer);
+  const { filter_movies, movies } = useSelector((state) => state.moviesReducer);
   const displayMoviesAmount = 20;
+  const dispatch = useDispatch();
   const [vodi_value, setVodiValue] = useState("grid");
   const [displaySideBar, setSideBar] = useState(false);
 
@@ -34,6 +36,13 @@ export default function MoviesPage(props) {
     { title: "Pacific Rim: Uprising", year: "2019", genre: "Action, Sci-Fi" },
     { title: "Dirt", year: "2019", genre: "Action, Sport" },
   ];
+
+  const handelSearchMovie = (title) => {
+    const f_movies = movies.filter((movie) =>
+      movie.title.match(new RegExp(title, "i"))
+    );
+    dispatch(A_filter_movies(f_movies));
+  };
 
   const pages = Math.ceil(filter_movies.length / displayMoviesAmount);
 
@@ -66,6 +75,7 @@ export default function MoviesPage(props) {
                   className="mx-auto w-50 text-white rounded-pill border-white movies-search"
                   style={{ maxHeight: "30px" }}
                   placeholder="Search..."
+                  onChange={(e) => handelSearchMovie(e.target.value)}
                 />
               </div>
             </header>

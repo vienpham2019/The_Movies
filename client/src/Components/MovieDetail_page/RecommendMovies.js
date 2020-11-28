@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-function RecommendMovies(props) {
-  const { movie } = props;
+import { useSelector } from "react-redux";
+export default function RecommendMovies() {
+  const { movie } = useSelector((state) => state.movieInfoReducer);
   return (
     <section className="movie__related my-5 bg-light py-5">
       <div className="movie__related--inner">
@@ -54,9 +54,3 @@ function RecommendMovies(props) {
     </section>
   );
 }
-
-const mapStateToProps = (state) => ({
-  movie: state.movieInfoReducer.movie,
-});
-
-export default connect(mapStateToProps)(RecommendMovies);

@@ -12,6 +12,7 @@ export default function DisplayMovies(props) {
     movie_page * display_movies_amount,
     (movie_page + 1) * display_movies_amount
   );
+
   return (
     <div className="vodi-archive-wrapper" data-view={vodi_value}>
       <div
@@ -30,10 +31,11 @@ export default function DisplayMovies(props) {
                 props.history.push("/movie_info");
               }}
             >
-              <div className="movie__poster">
+              <div className="movie__poster h-100">
                 <img
                   src={movie.poster_path}
-                  className="movie__poster--image"
+                  alt={movie.title}
+                  className="movie__poster--image h-100"
                   style={{ width: "300px" }}
                 />
               </div>

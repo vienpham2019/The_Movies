@@ -3,22 +3,24 @@ import { useState } from "react";
 import { validateLength, validateEmail } from "../../validation";
 import ReviewDetail from "./ReviewDetail";
 import Pagination from ".././Pagination";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-function MovieReviews(props) {
-  let { movie } = props;
+export default function MovieReviews() {
+  const { movie, movie_reviews } = useSelector(
+    (state) => state.movieInfoReducer
+  );
   const displayReviewAmount = 5;
 
   const [reivewScore, setReviewScore] = useState(10);
   const [movieNewReviewErrors, setMovieNewReviewErrors] = useState({});
   const [displayReviews, setDisplayReview] = useState(
-    movie.movie_reviews ? movie.movie_reviews.slice(0, displayReviewAmount) : []
+    movie_reviews ? movie_reviews.slice(0, displayReviewAmount) : []
   );
-  const pages = Math.ceil(movie.movie_reviews.length / displayReviewAmount);
+  const pages = Math.ceil(movie_reviews.length / displayReviewAmount);
 
   const handelDisplayReviews = (current_page) => {
     setDisplayReview(
-      movie.movie_reviews.slice(
+      movie_reviews.slice(
         (current_page - 1) * displayReviewAmount,
         current_page * displayReviewAmount * 2
       )
@@ -67,7 +69,7 @@ function MovieReviews(props) {
                     ></i>
                   ))}
                   <span className="ml-2">
-                    <strong>Reviews({movie.movie_reviews.length})</strong>
+                    <strong>Reviews({movie_reviews.length})</strong>
                   </span>
                 </div>
               </div>
@@ -212,9 +214,3 @@ function MovieReviews(props) {
     </section>
   );
 }
-
-const mapStateToProps = (state) => ({
-  movie: state.movieInfoReducer.movie,
-});
-
-export default connect(mapStateToProps)(MovieReviews);

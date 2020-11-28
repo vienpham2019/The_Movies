@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 import { getDate, getFirstNGenre } from "../../helper_method";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 const styles = createUseStyles({
   backgroundImage: (props) => ({
     "&::after": {
@@ -19,8 +19,10 @@ const styles = createUseStyles({
     },
   }),
 });
-function MovieHeader(props) {
-  const { movie } = props;
+export default function MovieHeader() {
+  const { movie, movie_reviews } = useSelector(
+    (state) => state.movieInfoReducer
+  );
   const [month, day, year] = getDate(movie.release_date);
   return (
     <div className="gt-title-overview gt-style-1">
@@ -74,7 +76,7 @@ function MovieHeader(props) {
                   <span style={{ fontSize: "1.2em" }}>
                     <strong className="mr-2">
                       Reviews(
-                      {movie.movie_reviews && movie.movie_reviews.length})
+                      {movie_reviews && movie_reviews.length})
                     </strong>
                     {movie.reviews_avg_score}/10
                   </span>
@@ -134,9 +136,3 @@ function MovieHeader(props) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => ({
-  movie: state.movieInfoReducer.movie,
-});
-
-export default connect(mapStateToProps)(MovieHeader);
