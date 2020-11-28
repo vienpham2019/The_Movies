@@ -3,12 +3,15 @@ import { useState } from "react";
 import { validateLength, validateEmail } from "../../validation";
 import ReviewDetail from "./ReviewDetail";
 import Pagination from ".././Pagination";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { A_add_movie_reviews } from "../../reducer/Actions/movie_info_action";
 
 export default function MovieReviews() {
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
   );
+
+  const dispatch = useDispatch();
   const displayReviewAmount = 5;
 
   const [reivewScore, setReviewScore] = useState(10);
@@ -29,6 +32,7 @@ export default function MovieReviews() {
 
   const resetReviewForm = () => {
     document.getElementById("new-review-form").reset();
+    document.getElementById("write_new_review_button").click();
     setMovieNewReviewErrors({});
   };
 
@@ -47,9 +51,26 @@ export default function MovieReviews() {
         content_error,
       });
     } else {
-      console.log("no error");
+      let date = new Date();
+      let [day, mounth, year] = [
+        date.getDate(),
+        date.toLocaleString("default", { month: "long" }),
+        date.getFullYear(),
+      ];
+      let review = {
+        author: name.value,
+        title: title.value,
+        content: content.value,
+        score: reivewScore,
+        date: `${mounth} ${day}, ${year}`,
+      };
+      movie.reviews_total_score += reivewScore;
+
+      dispatch(A_add_movie_reviews(movie, [review, ...movie_reviews]));
+      resetReviewForm();
     }
   };
+
   return (
     <section className="py-5 mb-5 text-dark">
       <div className="container w-70">
@@ -64,7 +85,10 @@ export default function MovieReviews() {
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reviews_avg_score ? "fas" : "far"
+                        i + 1 <=
+                        movie.reviews_total_score / movie_reviews.length
+                          ? "fas"
+                          : "far"
                       } fa-star`}
                     ></i>
                   ))}
@@ -81,6 +105,7 @@ export default function MovieReviews() {
                   aria-expanded="true"
                   role="buttom"
                   onClick={() => resetReviewForm()}
+                  id="write_new_review_button"
                 >
                   Write Review
                 </div>
@@ -194,7 +219,7 @@ export default function MovieReviews() {
 
             {/* review */}
             <div className="mt-5">
-              {displayReviews.map((review) => (
+              {movie_reviews.map((review) => (
                 <ReviewDetail review={review} />
               ))}
             </div>

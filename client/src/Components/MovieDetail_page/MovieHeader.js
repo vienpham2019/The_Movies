@@ -24,6 +24,9 @@ export default function MovieHeader() {
     (state) => state.movieInfoReducer
   );
   const [month, day, year] = getDate(movie.release_date);
+  const revies_avg_score = movie_reviews.length
+    ? movie.reviews_total_score / movie_reviews.length
+    : 0;
   return (
     <div className="gt-title-overview gt-style-1">
       <div
@@ -78,14 +81,15 @@ export default function MovieHeader() {
                       Reviews(
                       {movie_reviews && movie_reviews.length})
                     </strong>
-                    {movie.reviews_avg_score}/10
+                    {revies_avg_score}
+                    /10
                   </span>
                 </div>
                 <div className="gt-stars">
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${
-                        i + 1 <= movie.reviews_avg_score ? "fas" : "far"
+                        i + 1 <= revies_avg_score ? "fas" : "far"
                       } fa-star`}
                     ></i>
                   ))}

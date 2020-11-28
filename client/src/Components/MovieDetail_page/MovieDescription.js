@@ -2,7 +2,7 @@ import { getDate } from "../../helper_method";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function MovieDescription(props) {
+export default function MovieDescription() {
   const [activeDescription, setActiveDescription] = useState("STORYLINE");
 
   const {
@@ -32,10 +32,6 @@ export default function MovieDescription(props) {
     awards,
     writers,
   };
-
-  const hideIcon = (element) =>
-    (element.src =
-      "https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg");
 
   return (
     <div className="container">
