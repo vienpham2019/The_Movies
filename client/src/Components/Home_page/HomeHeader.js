@@ -1,5 +1,8 @@
-function HomeHeader(props) {
-  let { movies } = props;
+import { useSelector, useDispatch } from "react-redux";
+
+export default function HomeHeader(props) {
+  // let { movies } = props;
+  const { newest_movies } = useSelector((state) => state.topMoviesReducer);
   return (
     <div>
       <div
@@ -7,10 +10,11 @@ function HomeHeader(props) {
         className="carousel slide position-relative swiper-wrapper"
       >
         <ol className="carousel-indicators swiper--pagination">
-          {movies.map((_, index) => (
+          {newest_movies.slice(0, 5).map((_, index) => (
             <li
               data-target="#carouselExampleControls"
               data-slide-to={index}
+              key={`home header pagination ${index}`}
               className="active bg-info"
               style={{ height: "10px", width: "50px" }}
             ></li>
@@ -18,7 +22,7 @@ function HomeHeader(props) {
         </ol>
 
         <div className="carousel-inner">
-          {movies.map((movie, index) => (
+          {newest_movies.slice(0, 5).map((movie, index) => (
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
               data-interval="10000"
@@ -32,9 +36,9 @@ function HomeHeader(props) {
                           className="list-movie-info animate__animated animate__fadeInDown"
                           style={{ animationDelay: "2s" }}
                         >
-                          <li>{movie.year}</li>
-                          <li>imdb: 7,4\10</li>
-                          <li>{movie.duration}</li>
+                          <li>{movie.release_date.split("-")[0]}</li>
+                          <li>imdb: {movie.vote_average}\10</li>
+                          <li>{movie.runtime}</li>
                         </ul>
                         <small
                           className="ml-1 text-info animate__animated animate__fadeInDown"
@@ -52,7 +56,7 @@ function HomeHeader(props) {
                           className="block-9 animate__animated animate__fadeInUp"
                           style={{ animationDelay: "2.6s" }}
                         >
-                          {movie.description}
+                          {movie.plot}
                         </p>
 
                         <div
@@ -63,13 +67,17 @@ function HomeHeader(props) {
                             className="button-custom fadeInUp animated"
                             role="button"
                           >
-                            <i className="fas fa-play mx-1"></i>WATCH NOW
+                            <i className="fas fa-info mr-2 my-auto"></i>MORE
+                            INFO
                           </span>
                         </div>
                       </div>
                       <div className="col-md-6 col-lg-7 col-xl-5 onset-1 animate__animated animate__fadeInRight animate__delay-1s">
                         <div className="slider-image onset-left-2">
-                          <img src={movie.img} style={{ width: "422px" }} />
+                          <img
+                            src={movie.poster_path}
+                            style={{ width: "422px" }}
+                          />
                           <div className="slider-image-title">
                             <span>{movie.genre.split(",")[0]}</span>
                           </div>
@@ -101,5 +109,3 @@ function HomeHeader(props) {
     </div>
   );
 }
-
-export default HomeHeader;

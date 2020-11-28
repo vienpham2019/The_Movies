@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import HomePage from "./Components/Home_page/HomePage";
@@ -12,20 +12,33 @@ import MovieTrailerModal from "./Components/MovieTrailerModal";
 import UserProfile from "./Components/User_profile/UserProfile";
 import PageNotFound from "./Components/PageNotFound";
 
-function App(props) {
+import { A_set_top_movies } from "./reducer/Actions/top_movies_action";
+
+export default function App() {
   useEffect(() => {
     getMovies();
   });
 
+  const dispatch = useDispatch();
+
   const getMovies = async () => {
     const res = await fetch("http://localhost:3000/movie");
     const data = await res.json();
-    let top_5_newest_popular = data
-      .filter((movie) => movie.release_date.split("-")[0] === "2020")
-      .sort((a, b) => b.popularity - a.popularity)
-      .slice(0, 6);
+    let popular_movies = data.sort((a, b) => b.popularity - a.popularity);
 
-    props.setMovies(data, top_5_newest_popular);
+    let top_ranking_movies = data.sort(
+      (a, b) => b.vote_average - a.vote_average
+    );
+
+    let newest_movies = top_ranking_movies.filter(
+      (movie) =>
+        movie.release_date.split("-")[0] === "2020" ||
+        movie.release_date.split("-")[0] === "2021"
+    );
+
+    dispatch(
+      A_set_top_movies(newest_movies, top_ranking_movies, popular_movies)
+    );
   };
 
   return (
@@ -67,12 +80,3 @@ function App(props) {
     </div>
   );
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setMovies: (movies, home_header_movies) =>
-      dispatch({ type: "SET_MOVIES", values: { movies, home_header_movies } }),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(App);
