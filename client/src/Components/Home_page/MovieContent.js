@@ -4,7 +4,7 @@ function MovieContent(props) {
   let { title, release_date, genre, poster_path } = props.movie;
   const dispatch = useDispatch();
   return (
-    <div className="movie">
+    <div className="movie shadow-hover-dark m-2 p-0">
       <div className="movie__poster">
         <div
           className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
@@ -22,14 +22,14 @@ function MovieContent(props) {
           />
         </div>
       </div>
-      <div className="movie__body">
+      <div className="movie__body px-2">
         <div className="movie__info">
           <div className="movie__info--head">
             <div className="movie__meta">
               <span className="movie__meta--release-year">
                 {release_date.split("-")[0]}
               </span>
-              <span className="movie__meta--genre">{genre}</span>
+              <span className="movie__meta--genre text-info">{genre}</span>
             </div>
 
             <h3 className="masvideos-loop-movie__title  movie__title">

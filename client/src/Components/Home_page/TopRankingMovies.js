@@ -1,40 +1,50 @@
-function TopRankingMovies() {
-  const movie = {
-    title: "Bpm",
-    genre: "Action , Drama",
-  };
-  let genres = ["Action", "Biology", "Sci-Fi", "Crime", "Drama", "Kids"];
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  A_set_info_movie,
+  A_set_movie_info,
+} from "../../reducer/Actions/movie_info_action";
 
-  const getMovies = () => {
-    let movies = [];
-    for (let i = 0; i < 10; i++) {
-      let img =
-        i % 2 === 0
-          ? "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/33-a-woman-under-the-influence-300x450.jpg"
-          : "https://demo3.madrasthemes.com/vodi-demos/main/wp-content/uploads/sites/2/2019/04/46-she-is-funny-that-way-300x450.jpg";
-      let year = "201" + i;
-      movies.push({ ...movie, img, year });
-    }
-    return movies;
+export default function TopRankingMovies(props) {
+  const genres = ["Action", "Horror", "Sci-Fi", "Crime", "Drama", "Animation"];
+  const dispatch = useDispatch();
+  const { top_ranking_movies } = useSelector((state) => state.topMoviesReducer);
+  const [filter_genre, setFilterGenre] = useState("Action");
+  const [display_movies, setDisplayMovies] = useState(
+    top_ranking_movies
+      .filter((movie) => movie.genre.match(new RegExp(filter_genre, "i")))
+      .slice(0, 10)
+  );
+
+  const handleFilter = (genre) => {
+    setFilterGenre(genre);
+    setDisplayMovies(
+      top_ranking_movies
+        .filter((movie) => movie.genre.match(new RegExp(genre, "i")))
+        .slice(0, 10)
+    );
   };
 
   return (
     <div className="mx-auto" style={{ width: "80%" }}>
       <div className="home-section__inner">
-        <header className="home-section__flex-header">
-          <h2 className="section-title">Top Ranking Movies</h2>
-          <ul className="nav">
+        <header>
+          <strong className="section-title">
+            <span className="ml-2">Top Ranking Movies</span>
+          </strong>
+          <ul className="nav w-100 shadow-sm d-flex justify-content-center py-2 mb-3">
             {genres.map((genre, index) => (
-              <li className="nav-item mx-3">
-                <span
-                  className="text-info left-underline"
-                  onClick={() => {
-                    getMovies(index + 5);
-                  }}
+              <li className="nav-item px-3 py-1" key={index}>
+                <strong
+                  className={`left-underline ${
+                    filter_genre === genre ? "text-info" : "text-muted"
+                  }`}
                   role="button"
+                  onClick={() => handleFilter(genre)}
+                  style={{ fontSize: "1.1em" }}
                 >
                   {genre}
-                </span>
+                </strong>
               </li>
             ))}
           </ul>
@@ -45,44 +55,47 @@ function TopRankingMovies() {
               <div className="movies colums-7">
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
-                    <div className="slick-track d-flex justify-content-center flex-wrap">
-                      {getMovies().map((value) => (
+                    <div className="slick-track d-flex justify-content-center flex-wrap mb-5">
+                      {display_movies.map((movie, index) => (
                         <div
-                          className="slick-slide hvr-shrink animate__animated animate__zoomIn p-2 bd-highlight"
+                          className="slick-slide shadow-hover-dark m-2 bd-highlight"
                           style={{ width: "265px" }}
                           role="button"
+                          key={index}
+                          onClick={() => {
+                            dispatch(A_set_movie_info(movie));
+                            window.scrollTo(0, 0);
+                            props.history.push("/movie_info");
+                          }}
                         >
                           <div
-                            className="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action"
+                            className="movie"
                             style={{
                               width: "100%",
                               display: "inline-block",
                             }}
                           >
                             <div className="movie__poster">
-                              <a
-                                href="-"
-                                className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
-                              >
+                              <span className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
                                 <img
-                                  src={value.img}
+                                  src={movie.poster_path}
                                   className="movie__poster--image"
                                 />
-                              </a>
+                              </span>
                             </div>
-                            <div className="movie__body">
+                            <div className="movie__body px-2">
                               <div className="movie__info">
                                 <div className="movie__info--head">
                                   <div className="movie__meta">
                                     <span className="movie__meta--release-year">
-                                      {value.year}
+                                      {movie.release_date.split("-")[0]}
                                     </span>
                                     <span className="movie__meta--genre text-info">
-                                      {value.genre}
+                                      {movie.genre}
                                     </span>
                                   </div>
-                                  <h3 className="masvideos-loop-movie__title movie__title text-white">
-                                    {value.title}
+                                  <h3 className="masvideos-loop-movie__title movie__title">
+                                    {movie.title}
                                   </h3>
                                 </div>
                               </div>
@@ -107,5 +120,3 @@ function TopRankingMovies() {
     </div>
   );
 }
-
-export default TopRankingMovies;

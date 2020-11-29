@@ -7,7 +7,7 @@ export default function MidSection(props) {
   const { newest_movies } = useSelector((state) => state.topMoviesReducer);
   const ran_num = randomNumber(0, newest_movies.length - 3);
   return (
-    <div className="bg-dark movie-slider mb-1">
+    <div className="bg-dark movie-slider mb-1 mt-5">
       <div className="masvideos masvideos-movies ">
         <div className="movies columns-3">
           <div className="movies__inner">

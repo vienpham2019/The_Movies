@@ -106,9 +106,8 @@
 }
 .section-title {
   font-size: 2em;
-}
-.section-title::after {
-  background-color: black;
+  font-weight: bolder;
+  border-left: 3px solid rgb(12, 156, 240);
 }
 
 /* end Home Header */

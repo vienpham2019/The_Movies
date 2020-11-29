@@ -70,6 +70,21 @@ a {
   transform: scale(0.9);
 }
 
+/* -------Shadow Hover Effect ------------ */
+.shadow-hover-dark {
+  box-shadow: 6px 6px 10px rgb(73, 73, 73);
+  transition: ease-in-out 0.3s;
+}
+
+.shadow-hover-light {
+  box-shadow: 6px 6px 10px rgb(184, 183, 183);
+  transition: ease-in-out 0.3s;
+}
+.shadow-hover-dark:hover,
+.shadow-hover-light:hover {
+  box-shadow: none;
+}
+
 /* Login Modal */
 .nav-link.active {
   color: #bcac76;

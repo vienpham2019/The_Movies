@@ -144,23 +144,20 @@ export default function HomePage(props) {
       </section>
       <br />
       <section
-        className="home-section home-movie-section-aside-header pt-5"
+        className="home-section home-movie-section-aside-header py-5"
         style={{ paddingBottom: "13px", paddingTop: "9px" }}
       >
         <PopularMovies history={props.history} />
       </section>
       <MidSection history={props.history} />
       <section
-        className="home-section section-movies-carousel-flex-header has-bg-color more-light style-2"
+        className="home-section section-movies-carousel-flex-header bg-light"
         style={{ paddingBottom: "10px", paddingTop: "60px" }}
       >
-        <TopRankingMovies />
+        <TopRankingMovies history={props.history} />
       </section>
       <section className="home-section section-movies-list pt-5">
-        <Top9OfWeek
-          top_9_of_week={top_9_of_week}
-          newest_movies={newest_movies}
-        />
+        <Top9OfWeek history={props.history} />
       </section>
     </div>
   );

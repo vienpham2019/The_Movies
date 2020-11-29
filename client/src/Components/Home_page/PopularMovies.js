@@ -1,5 +1,5 @@
 import MovieContent from "./MovieContent";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function PopularMovies(props) {
   const { popular_movies } = useSelector((state) => state.topMoviesReducer);
@@ -44,16 +44,6 @@ export default function PopularMovies(props) {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* View more button */}
-
-      <div className="home-section__footer-view-more-action ">
-        <span className="home-section__footer-view-more-action__inner">
-          <a href="-" className="home-section__footer-view-more-action--link">
-            + View more
-          </a>
-        </span>
       </div>
     </div>
   );
