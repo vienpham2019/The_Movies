@@ -1,5 +1,8 @@
-function TopMovies(props) {
-  const { movies } = props;
+import { useSelector, useDispatch } from "react-redux";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+export default function TopMovies(props) {
+  const dispatch = useDispatch();
+  const { movies } = useSelector((state) => state.moviesReducer);
   return (
     <div className="top-movies-list" style={{ maxWidth: "350px" }}>
       <header className="top-movies-list__header">
@@ -9,16 +12,24 @@ function TopMovies(props) {
         <div className="masvideos masvideos-movies">
           <div className="movies columns-1">
             <div className="movies__inner">
-              {movies.map((value) => (
+              {movies.slice(0, 5).map((movie, index) => (
                 <div
-                  className="post-2930 movie type-movie status-publish has-post-thumbnail hentry movie_genre-action hvr-shrink"
+                  className="movie"
                   role="button"
+                  key={index}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    dispatch(A_set_movie_info(movie));
+                    props.history.push("/movie_info");
+                  }}
                 >
                   <div className="movie-list">
                     <div className="movie-list__body">
-                      <span className="movie-list__year">{value.year}</span>
-                      <h3 className="movie-list__name">{value.title}</h3>
-                      <span className="movie-list__genre">{value.genre}</span>
+                      <span className="movie-list__year">
+                        {movie.release_date.split("-")[0]}
+                      </span>
+                      <h3 className="movie-list__name">{movie.title}</h3>
+                      <span className="movie-list__genre">{movie.genre}</span>
                     </div>
                   </div>
                 </div>
@@ -30,5 +41,3 @@ function TopMovies(props) {
     </div>
   );
 }
-
-export default TopMovies;

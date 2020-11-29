@@ -26,17 +26,21 @@ export default function App() {
   const getMovies = async () => {
     const res = await fetch("http://localhost:3000/movie");
     const data = await res.json();
-    let popular_movies = data.sort((a, b) => b.popularity - a.popularity);
+    let popular_movies = data
+      .slice()
+      .sort((a, b) => b.popularity - a.popularity);
 
-    let top_ranking_movies = data.sort(
-      (a, b) => b.vote_average - a.vote_average
-    );
+    let top_ranking_movies = data
+      .slice()
+      .sort((a, b) => b.vote_average - a.vote_average);
 
-    let newest_movies = top_ranking_movies.filter(
-      (movie) =>
-        movie.release_date.split("-")[0] === "2020" ||
-        movie.release_date.split("-")[0] === "2021"
-    );
+    let newest_movies = top_ranking_movies
+      .slice()
+      .filter(
+        (movie) =>
+          movie.release_date.split("-")[0] === "2020" ||
+          movie.release_date.split("-")[0] === "2021"
+      );
 
     dispatch(
       A_set_top_movies(newest_movies, top_ranking_movies, popular_movies)

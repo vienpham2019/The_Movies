@@ -185,6 +185,12 @@ export default function Top9OfWeek(props) {
           </div>
         </div>
       </div>
+
+      <div className="d-flex flex-row-reverse bd-highlight border-top w-100 mt-5">
+        <p className="home-section__action-link p-2 text-white" role="button">
+          View All
+        </p>
+      </div>
     </div>
   );
 }

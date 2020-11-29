@@ -24,22 +24,6 @@ export default function MoviesPage(props) {
     { type: "list", value: "fas fa-bars" },
   ];
 
-  let top_9_of_week = [
-    { title: "Delta Brovo", year: "2017", genre: "Action" },
-    { title: "Mad", year: "2016", genre: "Drama" },
-    { title: "Oh Lucky", year: "2018", genre: "Action, Comedy" },
-    { title: "Euphoria", year: "2018", genre: "Action, Adventure" },
-    { title: "Black Mirror", year: "2018", genre: "Action, Adventure" },
-    {
-      title: "The Conveninet Groom",
-      year: "2016",
-      genre: "Action, Adventure, Romance",
-    },
-    { title: "Paradigm Lost", year: "2017", genre: "Action, Documentary" },
-    { title: "Pacific Rim: Uprising", year: "2019", genre: "Action, Sci-Fi" },
-    { title: "Dirt", year: "2019", genre: "Action, Sport" },
-  ];
-
   const handelSearchMovie = (title) => {
     const f_movies = movies.filter((movie) =>
       movie.title.match(new RegExp(title, "i"))
@@ -67,7 +51,7 @@ export default function MoviesPage(props) {
               <i className="fas fa-times"></i>
             </div>
             <MoviesFilter />
-            <TopMovies movies={top_9_of_week} />
+            <TopMovies history={props.history} />
           </div>
 
           <div className="featured-with-list-view-movies-list pl-4 w-100">

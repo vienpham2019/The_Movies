@@ -6,6 +6,7 @@ let initState = {
   display_movies_amount: 20,
   fillter_movie_by_year: "",
   fillter_movie_by_genre: "All",
+  sort_movie_by: "Years",
 };
 
 export default function moviesReducer(state = initState, action) {
@@ -37,6 +38,12 @@ export default function moviesReducer(state = initState, action) {
       };
 
     case "SET_FILLTER_GENRE_AND_YEAR":
+      return {
+        ...state,
+        ...action.values,
+      };
+
+    case "SORT_MOVIES_BY":
       return {
         ...state,
         ...action.values,

@@ -26,10 +26,16 @@ const A_set_fillter_genre_and_year = (
   values: { fillter_movie_by_genre, fillter_movie_by_year },
 });
 
+const A_set_sort_movies_by = (sort_movie_by) => ({
+  type: "SORT_MOVIES_BY",
+  values: { sort_movie_by },
+});
+
 export {
   A_set_movies,
   A_filter_movies,
   A_movie_page,
   A_display_movies_amount,
   A_set_fillter_genre_and_year,
+  A_set_sort_movies_by,
 };
