@@ -1,14 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+import {
+  A_filter_movies,
+  A_set_sort_movies_by,
+  A_set_fillter_genre_and_year,
+  A_movie_page,
+} from "../../reducer/Actions/movies_action";
 export default function Top9OfWeek(props) {
   const dispatch = useDispatch();
   const genres = ["Action", "Horror", "Animation", "Drama"];
   const { newest_movies } = useSelector((state) => state.topMoviesReducer);
   const [display_movies, setDisplayMovies] = useState(
-    newest_movies
-      .filter((movie) => movie.genre.match(new RegExp("Action", "i")))
-      .slice(0, 10)
+    newest_movies.filter((movie) =>
+      movie.genre.match(new RegExp("Action", "i"))
+    )
   );
   const [newest_movie_info, setNewestMovieInfo] = useState(display_movies[0]);
 
@@ -21,9 +27,7 @@ export default function Top9OfWeek(props) {
   const handleFilterMovies = (genre) => {
     setFilterGenre(genre);
     setDisplayMovies(
-      newest_movies
-        .filter((movie) => movie.genre.match(new RegExp(genre, "i")))
-        .slice(0, 10)
+      newest_movies.filter((movie) => movie.genre.match(new RegExp(genre, "i")))
     );
   };
   return (
@@ -118,7 +122,7 @@ export default function Top9OfWeek(props) {
                               </div>
                             </div>
                             <div className="movie__short-description">
-                              <div>{newest_movie_info.plot}</div>
+                              <div>{newest_movie_info.overview}</div>
                             </div>
                             <div className="movie__actions">
                               <span
@@ -150,7 +154,7 @@ export default function Top9OfWeek(props) {
               <div className="masvideos masvideos-movies">
                 <div className="movies columns-1">
                   <div className="movies__inner">
-                    {display_movies.map((movie, index) => (
+                    {display_movies.slice(0, 8).map((movie, index) => (
                       <div
                         className="movie"
                         onClick={() => setNewestMovieInfo(movie)}
@@ -187,7 +191,18 @@ export default function Top9OfWeek(props) {
       </div>
 
       <div className="d-flex flex-row-reverse bd-highlight border-top w-100 mt-5">
-        <p className="home-section__action-link p-2 text-white" role="button">
+        <p
+          className="home-section__action-link p-2 text-white"
+          role="button"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            dispatch(A_filter_movies(display_movies));
+            dispatch(A_set_fillter_genre_and_year(filter_genre, " "));
+            dispatch(A_set_sort_movies_by("Years"));
+            dispatch(A_movie_page(0));
+            props.history.push("/movies");
+          }}
+        >
           View All
         </p>
       </div>

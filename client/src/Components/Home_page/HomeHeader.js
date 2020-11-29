@@ -4,6 +4,9 @@ import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 export default function HomeHeader(props) {
   const dispatch = useDispatch();
   const { newest_movies } = useSelector((state) => state.topMoviesReducer);
+  const display_movies = newest_movies
+    .filter((movie) => movie.genre.match(new RegExp("Sci-fi", "i")))
+    .slice(0, 7);
   return (
     <div>
       <div
@@ -11,7 +14,7 @@ export default function HomeHeader(props) {
         className="carousel slide position-relative swiper-wrapper"
       >
         <ol className="carousel-indicators swiper--pagination">
-          {newest_movies.slice(0, 5).map((_, index) => (
+          {display_movies.map((_, index) => (
             <li
               data-target="#carouselExampleControls"
               data-slide-to={index}
@@ -23,7 +26,7 @@ export default function HomeHeader(props) {
         </ol>
 
         <div className="carousel-inner">
-          {newest_movies.slice(0, 5).map((movie, index) => (
+          {display_movies.map((movie, index) => (
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
               data-interval="15000"
@@ -49,16 +52,16 @@ export default function HomeHeader(props) {
                           {movie.genre}
                         </small>
                         <h1
-                          className="animate__animated animate__fadeInUp ml-4"
-                          style={{ fontSize: "4em", animationDelay: "2.4s" }}
+                          className="animate__animated animate__fadeInUp ml-4 movie_header_title"
+                          style={{ animationDelay: "2.4s" }}
                         >
                           {movie.title}
                         </h1>
                         <p
-                          className="block-9 animate__animated animate__fadeInUp"
+                          className="animate__animated animate__fadeInUp"
                           style={{ animationDelay: "2.6s" }}
                         >
-                          {movie.plot}
+                          {movie.overview}
                         </p>
 
                         <div

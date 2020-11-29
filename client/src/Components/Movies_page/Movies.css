@@ -71,6 +71,9 @@ input[type="checkbox"] {
 }
 
 /* end filter checkbox */
+.display_movie_container_height {
+  height: 120em;
+}
 
 @media (max-width: 767px) {
   .vodi-button {
@@ -128,6 +131,9 @@ input[type="checkbox"] {
 
   .sidebar--toggler {
     display: block;
+  }
+  .display_movie_container_height {
+    height: auto;
   }
 }
 

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 import {
-  A_set_info_movie,
-  A_set_movie_info,
-} from "../../reducer/Actions/movie_info_action";
+  A_filter_movies,
+  A_set_sort_movies_by,
+  A_set_fillter_genre_and_year,
+  A_movie_page,
+} from "../../reducer/Actions/movies_action";
 
 export default function TopRankingMovies(props) {
   const genres = ["Action", "Horror", "Sci-Fi", "Crime", "Drama", "Animation"];
@@ -11,17 +14,17 @@ export default function TopRankingMovies(props) {
   const { top_ranking_movies } = useSelector((state) => state.topMoviesReducer);
   const [filter_genre, setFilterGenre] = useState("Action");
   const [display_movies, setDisplayMovies] = useState(
-    top_ranking_movies
-      .filter((movie) => movie.genre.match(new RegExp(filter_genre, "i")))
-      .slice(0, 10)
+    top_ranking_movies.filter((movie) =>
+      movie.genre.match(new RegExp(filter_genre, "i"))
+    )
   );
 
   const handleFilter = (genre) => {
     setFilterGenre(genre);
     setDisplayMovies(
-      top_ranking_movies
-        .filter((movie) => movie.genre.match(new RegExp(genre, "i")))
-        .slice(0, 10)
+      top_ranking_movies.filter((movie) =>
+        movie.genre.match(new RegExp(genre, "i"))
+      )
     );
   };
 
@@ -56,7 +59,7 @@ export default function TopRankingMovies(props) {
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
                     <div className="slick-track d-flex justify-content-center flex-wrap mb-5">
-                      {display_movies.map((movie, index) => (
+                      {display_movies.slice(0, 10).map((movie, index) => (
                         <div
                           className="slick-slide shadow-hover-dark m-2 bd-highlight"
                           style={{ width: "265px" }}
@@ -113,7 +116,18 @@ export default function TopRankingMovies(props) {
         {/*  */}
       </div>
       <div className="d-flex flex-row-reverse bd-highlight border-top">
-        <p className="home-section__action-link p-2 bd-highlight" role="button">
+        <p
+          className="home-section__action-link p-2 bd-highlight"
+          role="button"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            dispatch(A_set_sort_movies_by("IBM Rating"));
+            dispatch(A_filter_movies(display_movies));
+            dispatch(A_set_fillter_genre_and_year(filter_genre, " "));
+            dispatch(A_movie_page(0));
+            props.history.push("/movies");
+          }}
+        >
           View All
         </p>
       </div>

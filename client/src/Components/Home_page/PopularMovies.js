@@ -1,7 +1,13 @@
 import MovieContent from "./MovieContent";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  A_filter_movies,
+  A_set_sort_movies_by,
+  A_movie_page,
+} from "../../reducer/Actions/movies_action";
 
 export default function PopularMovies(props) {
+  const dispatch = useDispatch();
   const { popular_movies } = useSelector((state) => state.topMoviesReducer);
 
   return (
@@ -24,6 +30,14 @@ export default function PopularMovies(props) {
                     <span
                       className="home-section__action-link left-underline"
                       role="button"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        dispatch(A_filter_movies(popular_movies));
+                        dispatch(A_set_sort_movies_by("Popularity"));
+                        dispatch(A_movie_page(0));
+
+                        props.history.push("/movies");
+                      }}
                     >
                       View all
                     </span>

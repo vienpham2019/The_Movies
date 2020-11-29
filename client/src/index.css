@@ -168,7 +168,7 @@ li {
 /* end Login Modal */
 
 .text__ {
-  max-height: 3.6em; /* exactly 2 lines */
+  max-height: 5em; /* exactly 3 lines */
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -208,5 +208,3 @@ textarea:-webkit-autofill:hover {
   border-color: rgb(219, 219, 219);
 }
 /* --------------------------- */
-
-/* ---------- Movie Trailer Modal -----------------*/

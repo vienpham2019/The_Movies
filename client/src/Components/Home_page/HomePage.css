@@ -83,6 +83,10 @@
   padding: 10px 0 20px 12.5px;
 }
 
+.movie_header_title {
+  font-size: 4em;
+}
+
 @media (min-width: 1200px) {
   .home-section_header {
     -webkit-box-flex: 0;
@@ -90,6 +94,12 @@
     flex: 0 0 28.5714285714%;
     max-width: 28.5714285714%;
     padding-right: 67.5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .movie_header_title {
+    font-size: 3em;
   }
 }
 

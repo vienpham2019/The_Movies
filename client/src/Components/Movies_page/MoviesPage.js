@@ -25,11 +25,16 @@ export default function MoviesPage(props) {
   ];
 
   const handelSearchMovie = (title) => {
-    const f_movies = movies.filter((movie) =>
-      movie.title.match(new RegExp(title, "i"))
-    );
-    dispatch(A_filter_movies(f_movies));
-    dispatch(A_set_fillter_genre_and_year("All", " "));
+    if (title === "") {
+      dispatch(A_set_fillter_genre_and_year("All", " "));
+    } else {
+      const f_movies = movies.filter((movie) =>
+        movie.title.match(new RegExp(title, "i"))
+      );
+      let genre = f_movies[0] ? f_movies[0].genre.split(", ")[0] : "All";
+      dispatch(A_filter_movies(f_movies));
+      dispatch(A_set_fillter_genre_and_year(genre, " "));
+    }
   };
 
   const pages = Math.ceil(filter_movies.length / displayMoviesAmount);
@@ -96,9 +101,8 @@ export default function MoviesPage(props) {
 
             <div className="w-100">
               <div
-                className="custom-scrollbar"
+                className="custom-scrollbar display_movie_container_height"
                 style={{
-                  height: "120em",
                   overflowY: "auto",
                   overflowX: "hidden",
                 }}

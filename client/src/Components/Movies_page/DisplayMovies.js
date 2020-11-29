@@ -14,24 +14,24 @@ export default function DisplayMovies(props) {
   );
 
   return (
-    <div className="vodi-archive-wrapper" data-view={vodi_value}>
+    <div className="vodi-archive-wrapper px-3" data-view={vodi_value}>
       <div
         className={`movies ${
           vodi_value === "grid-extended" ? "columns-4" : "columns-5"
         }`}
       >
         <div className="movies__inner">
-          {display_movies.map((movie) => (
-            <div
-              className="movie p-2"
-              role="button"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                dispatch(A_set_movie_info(movie));
-                props.history.push("/movie_info");
-              }}
-            >
-              <div className="movie__poster h-100">
+          {display_movies.map((movie, index) => (
+            <div className="movie p-2" key={index}>
+              <div
+                className="movie__poster h-100"
+                role="button"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  dispatch(A_set_movie_info(movie));
+                  props.history.push("/movie_info");
+                }}
+              >
                 <img
                   src={movie.poster_path}
                   alt={movie.title}
@@ -70,7 +70,7 @@ export default function DisplayMovies(props) {
                     }}
                   >
                     <div className="text-justify ">
-                      <p className="text__ px-2">{movie.plot}</p>
+                      <p className="text__ px-2">{movie.overview}</p>
                     </div>
                   </div>
                   <div className="movie__actions mt-5">
@@ -78,8 +78,13 @@ export default function DisplayMovies(props) {
                       className="btn_ btn-block_ btn-outline-dark_ text-white mx-2 border"
                       role="button"
                       style={{ width: "200px" }}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        dispatch(A_set_movie_info(movie));
+                        props.history.push("/movie_info");
+                      }}
                     >
-                      Watch Now
+                      More Info
                     </span>
                     <div className="movie-actions--link_add-to-playlist dropdown border">
                       <span

@@ -34,13 +34,7 @@ export default function App() {
       .slice()
       .sort((a, b) => b.vote_average - a.vote_average);
 
-    let newest_movies = top_ranking_movies
-      .slice()
-      .filter(
-        (movie) =>
-          movie.release_date.split("-")[0] === "2020" ||
-          movie.release_date.split("-")[0] === "2021"
-      );
+    let newest_movies = data;
 
     dispatch(
       A_set_top_movies(newest_movies, top_ranking_movies, popular_movies)
