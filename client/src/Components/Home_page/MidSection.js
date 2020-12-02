@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
-import { randomNumber } from "../../helper_method";
+import { randomNumber, getMovieReviews } from "../../helper_method";
 
 export default function MidSection(props) {
   const dispatch = useDispatch();
@@ -70,10 +70,11 @@ export default function MidSection(props) {
                       <span
                         className="movie-actions--link_watch text-white"
                         role="button"
-                        onClick={() => {
+                        onClick={async () => {
+                          let reviews = await getMovieReviews(movie);
+                          dispatch(A_set_movie_info(movie, reviews));
                           window.scrollTo(0, 0);
                           props.history.push("/movie_info");
-                          dispatch(A_set_movie_info(movie));
                         }}
                       >
                         More Info

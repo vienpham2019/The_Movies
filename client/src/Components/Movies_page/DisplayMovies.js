@@ -1,4 +1,4 @@
-import { getDate, getFirstNGenre } from "../../helper_method";
+import { getDate, getFirstNGenre, getMovieReviews } from "../../helper_method";
 import { useDispatch, useSelector } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 
@@ -26,9 +26,10 @@ export default function DisplayMovies(props) {
               <div
                 className="movie__poster h-100"
                 role="button"
-                onClick={() => {
+                onClick={async () => {
+                  let reviews = await getMovieReviews(movie);
                   window.scrollTo(0, 0);
-                  dispatch(A_set_movie_info(movie));
+                  dispatch(A_set_movie_info(movie, reviews));
                   props.history.push("/movie_info");
                 }}
               >

@@ -1,3 +1,4 @@
+import { A_set_movie_info } from "./reducer/Actions/movie_info_action";
 const getDate = (date) => {
   const [year, month, day] = date.split("-");
   const months = [
@@ -87,4 +88,16 @@ const getMovieFilter = (m) => {
 
 const randomNumber = (min, max) => Math.random() * (max - min) + min;
 
-export { getDate, getFirstNGenre, getMovieFilter, randomNumber };
+const getMovieReviews = async (movie) => {
+  let res = await fetch(`http://localhost:3000/get_reviews/${movie.id}`);
+  let data = await res.json();
+  return data.reviews;
+};
+
+export {
+  getDate,
+  getFirstNGenre,
+  getMovieFilter,
+  randomNumber,
+  getMovieReviews,
+};

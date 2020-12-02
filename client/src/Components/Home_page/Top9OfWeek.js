@@ -7,6 +7,8 @@ import {
   A_set_fillter_genre_and_year,
   A_movie_page,
 } from "../../reducer/Actions/movies_action";
+
+import { getMovieReviews } from "../../helper_method";
 export default function Top9OfWeek(props) {
   const dispatch = useDispatch();
   const genres = ["Action", "Horror", "Animation", "Drama"];
@@ -128,9 +130,14 @@ export default function Top9OfWeek(props) {
                               <span
                                 className="movie-actions--link_watch"
                                 role="button"
-                                onClick={() => {
+                                onClick={async () => {
+                                  let reviews = await getMovieReviews(
+                                    newest_movie_info
+                                  );
                                   window.scrollTo(0, 0);
-                                  dispatch(A_set_movie_info(newest_movie_info));
+                                  dispatch(
+                                    A_set_movie_info(newest_movie_info, reviews)
+                                  );
                                   props.history.push("/movie_info");
                                 }}
                               >

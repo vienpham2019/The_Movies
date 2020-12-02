@@ -1,6 +1,6 @@
-const A_set_movie_info = (movie) => ({
+const A_set_movie_info = (movie, movie_reviews = []) => ({
   type: "SET_MOVIE_INFO",
-  values: { movie },
+  values: { movie, movie_reviews },
 });
 
 const A_add_movie_reviews = (movie, movie_reviews) => ({

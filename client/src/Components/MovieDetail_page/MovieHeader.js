@@ -81,7 +81,7 @@ export default function MovieHeader() {
                       Reviews(
                       {movie_reviews && movie_reviews.length})
                     </strong>
-                    {revies_avg_score}
+                    {Math.floor(revies_avg_score)}
                     /10
                   </span>
                 </div>

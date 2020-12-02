@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+import { getMovieReviews } from "../../helper_method";
 
 export default function HomeHeader(props) {
   const dispatch = useDispatch();
@@ -71,8 +72,10 @@ export default function HomeHeader(props) {
                           <span
                             className="button-custom fadeInUp animated"
                             role="button"
-                            onClick={() => {
-                              dispatch(A_set_movie_info(movie));
+                            onClick={async () => {
+                              let reviews = await getMovieReviews(movie);
+                              window.scrollTo(0, 0);
+                              dispatch(A_set_movie_info(movie, reviews));
                               props.history.push("/movie_info");
                             }}
                           >

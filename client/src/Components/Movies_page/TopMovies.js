@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+import { getMovieReviews } from "../../helper_method";
 export default function TopMovies(props) {
   const dispatch = useDispatch();
   const { movies } = useSelector((state) => state.moviesReducer);
@@ -17,9 +18,10 @@ export default function TopMovies(props) {
                   className="movie"
                   role="button"
                   key={index}
-                  onClick={() => {
+                  onClick={async () => {
+                    let reviews = await getMovieReviews(movie);
                     window.scrollTo(0, 0);
-                    dispatch(A_set_movie_info(movie));
+                    dispatch(A_set_movie_info(movie, reviews));
                     props.history.push("/movie_info");
                   }}
                 >

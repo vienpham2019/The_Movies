@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { randomNumber } from "../../helper_method";
+import { randomNumber, getMovieReviews } from "../../helper_method";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 export default function RecommendMovies() {
   const { movies } = useSelector((state) => state.moviesReducer);
@@ -34,9 +34,10 @@ export default function RecommendMovies() {
                 <div
                   className="movie"
                   role="button"
-                  onClick={() => {
+                  onClick={async () => {
+                    let reviews = await getMovieReviews(movie);
                     window.scrollTo(0, 0);
-                    dispatch(A_set_movie_info(movie));
+                    dispatch(A_set_movie_info(movie, reviews));
                   }}
                 >
                   <div className="movie__poster">

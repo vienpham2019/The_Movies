@@ -25,8 +25,8 @@ export default function ReviewDetail(props) {
                   ))}
                 </div>
               </div>
-              <div class="col-12 mb-3">
-                <span class="font-size-xs text-muted">
+              <div class="col-12 mb-3 mt-1">
+                <span class="font-size-xs" style={{ fontSize: "0.9em" }}>
                   {author}, <time>{date}</time>
                 </span>
               </div>

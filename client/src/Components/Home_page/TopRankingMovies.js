@@ -8,6 +8,8 @@ import {
   A_movie_page,
 } from "../../reducer/Actions/movies_action";
 
+import { getMovieReviews } from "../../helper_method";
+
 export default function TopRankingMovies(props) {
   const genres = ["Action", "Horror", "Sci-Fi", "Crime", "Drama", "Animation"];
   const dispatch = useDispatch();
@@ -65,8 +67,9 @@ export default function TopRankingMovies(props) {
                           style={{ width: "265px" }}
                           role="button"
                           key={index}
-                          onClick={() => {
-                            dispatch(A_set_movie_info(movie));
+                          onClick={async () => {
+                            let reviews = await getMovieReviews(movie);
+                            dispatch(A_set_movie_info(movie, reviews));
                             window.scrollTo(0, 0);
                             props.history.push("/movie_info");
                           }}

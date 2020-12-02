@@ -33,6 +33,7 @@ export default function MovieReviews() {
   const resetReviewForm = () => {
     document.getElementById("new-review-form").reset();
     document.getElementById("write_new_review_button").click();
+    setReviewScore(10);
     setMovieNewReviewErrors({});
   };
 
