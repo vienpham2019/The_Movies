@@ -6,6 +6,8 @@ import Pagination from ".././Pagination";
 import { useSelector, useDispatch } from "react-redux";
 import { A_add_movie_reviews } from "../../reducer/Actions/movie_info_action";
 
+import { addMovieReview } from "../../helper_method";
+
 export default function MovieReviews() {
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
@@ -37,7 +39,7 @@ export default function MovieReviews() {
     setMovieNewReviewErrors({});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let [name, email, title, content] = e.target;
     let name_error = validateLength(name.value, "Name", 3);
@@ -65,9 +67,9 @@ export default function MovieReviews() {
         score: reivewScore,
         date: `${mounth} ${day}, ${year}`,
       };
-      movie.reviews_total_score += reivewScore;
 
-      dispatch(A_add_movie_reviews(movie, [review, ...movie_reviews]));
+      let data = await addMovieReview(movie, review);
+      dispatch(A_add_movie_reviews(data.movie, data.movie_reviews));
       resetReviewForm();
     }
   };

@@ -94,10 +94,29 @@ const getMovieReviews = async (movie) => {
   return data.reviews;
 };
 
+const addMovieReview = async (movie, review) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      movie_id: movie.id,
+      user_id: 2,
+      ...review,
+    }),
+  };
+
+  let res = await fetch("http://localhost:3000/add_review", obj);
+  let data = await res.json();
+  return data;
+};
+
 export {
   getDate,
   getFirstNGenre,
   getMovieFilter,
   randomNumber,
   getMovieReviews,
+  addMovieReview,
 };
