@@ -222,7 +222,7 @@ export default function MovieReviews() {
 
             {/* review */}
             <div className="mt-5">
-              {movie_reviews.map((review) => (
+              {displayReviews.map((review) => (
                 <ReviewDetail review={review} />
               ))}
             </div>

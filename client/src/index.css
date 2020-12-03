@@ -208,3 +208,7 @@ textarea:-webkit-autofill:hover {
   border-color: rgb(219, 219, 219);
 }
 /* --------------------------- */
+
+.bg--success {
+  background-color: rgb(138, 223, 138);
+}
