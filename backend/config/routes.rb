@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  #user 
+  post "/login", to: "user#login"
+  post "/register" , to: "user#register"
+
   # movie 
   resources :movie, only: [:index]
 
