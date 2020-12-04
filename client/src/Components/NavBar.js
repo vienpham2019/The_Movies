@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { A_display_movies_amount } from "../reducer/Actions/movies_action";
+import {
+  A_display_movies_amount,
+  A_movie_page,
+} from "../reducer/Actions/movies_action";
 function NavBar(props) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
@@ -49,6 +52,7 @@ function NavBar(props) {
                   window.scrollTo(0, 0);
                   props.history.push("/movies");
                   dispatch(A_display_movies_amount(20));
+                  dispatch(A_movie_page(0));
                 }}
               >
                 Movies
@@ -83,7 +87,8 @@ function NavBar(props) {
                     document.getElementById("login_nav_button").click();
                     return;
                   }
-                  dispatch(A_display_movies_amount(8));
+                  dispatch(A_display_movies_amount(10));
+                  dispatch(A_movie_page(0));
                   props.history.push("/user_profile");
                 }}
               >

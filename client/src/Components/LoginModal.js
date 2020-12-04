@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { A_set_user } from "../reducer/Actions/user_action";
 import { validateLength, validateEmail } from "../validation";
-import { login, register } from "../user_helper_method";
+import {
+  login,
+  register,
+  set_widhlists_and_favorites,
+} from "../user_helper_method";
 
 export default function LoginModal() {
   const dispatch = useDispatch();
+  const { movies } = useSelector((state) => state.moviesReducer);
   const [loginError, setLoginError] = useState(false);
   const [loginValue, setLoginValue] = useState({ email: "", password: "" });
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -28,8 +33,10 @@ export default function LoginModal() {
     if (email_error || password_error || data.error) {
       setLoginError(true);
     } else {
-      // dispatch(A_set_user(data.user));
-      console.log(data);
+      let widhlists = new Set(data.user.widhlists.map((w) => w.movie_id));
+      let favorites = new Set(data.user.favorites.map((w) => w.movie_id));
+      let w_and_f = set_widhlists_and_favorites(movies, widhlists, favorites);
+      dispatch(A_set_user(data, w_and_f));
       setLoginError(false);
       setLoginSuccess(true);
     }

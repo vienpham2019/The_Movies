@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PersonalData from "./PersonalData";
 import ChangePassword from "./ChangePassword";
 import Favorites_Widhlist from "./Favorites_Widhlist";
+import { A_movie_page } from "../../reducer/Actions/movies_action";
 export default function UserProfile(props) {
+  const dispatch = useDispatch();
   const [nav_content, setNavContent] = useState("Personal data");
   const { user } = useSelector((state) => state.userReducer);
   const profileNav = [
@@ -37,7 +39,11 @@ export default function UserProfile(props) {
                   <span
                     class="list-group-item-action p-4 border-bottom d-flex bd-highlight"
                     role="button"
-                    onClick={() => setNavContent(value.key)}
+                    onClick={() => {
+                      if (value.key === "Favorites" || value.key === "Widhlist")
+                        dispatch(A_movie_page(0));
+                      setNavContent(value.key);
+                    }}
                   >
                     <div className="bd-highlight">
                       <i class={`${value.icon} mr-2`}></i> {value.key}
@@ -62,16 +68,24 @@ export default function UserProfile(props) {
               </div>
             </nav>
           </div>
-          <div class="col-12 col-md-9 col-lg-8 bg-light m-2 p-0">
-            {nav_content === "Widhlist" && (
-              <Favorites_Widhlist title={"Widhlist"} />
-            )}
-            {nav_content === "Favorites" && (
-              <Favorites_Widhlist title={"Favorites"} />
-            )}
-            {nav_content === "Personal data" && <PersonalData />}
-            {nav_content === "Change password" && <ChangePassword />}
-          </div>
+          {user && (
+            <div class="col-12 col-md-9 col-lg-8 bg-light m-2 p-0">
+              {nav_content === "Widhlist" && (
+                <Favorites_Widhlist
+                  title={"Widhlist"}
+                  history={props.history}
+                />
+              )}
+              {nav_content === "Favorites" && (
+                <Favorites_Widhlist
+                  title={"Favorites"}
+                  history={props.history}
+                />
+              )}
+              {nav_content === "Personal data" && <PersonalData />}
+              {nav_content === "Change password" && <ChangePassword />}
+            </div>
+          )}
         </div>
       </div>
     </section>

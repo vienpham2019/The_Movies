@@ -1,5 +1,8 @@
 const initState = {
   user: null,
+  widhlists: [],
+  favorites: [],
+  token: null,
 };
 
 export default function userReducer(state = initState, action) {

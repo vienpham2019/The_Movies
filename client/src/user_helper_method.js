@@ -30,4 +30,14 @@ const register = async (value) => {
   return data;
 };
 
-export { login, register };
+const set_widhlists_and_favorites = (movies, _widhlists, _favorites) => {
+  let widhlists = new Map();
+  let favorites = new Map();
+  for (let movie of movies) {
+    if (_widhlists.has(movie.id)) widhlists.set(movie.id, movie);
+    if (_favorites.has(movie.id)) favorites.set(movie.id, movie);
+  }
+  return { widhlists, favorites };
+};
+
+export { login, register, set_widhlists_and_favorites };
