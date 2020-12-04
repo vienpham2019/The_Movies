@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { A_display_movies_amount } from "../reducer/Actions/movies_action";
 function NavBar(props) {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.userReducer);
   return (
     <nav
       className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom w-100 overflow-hidden"
@@ -54,15 +55,21 @@ function NavBar(props) {
               </span>
             </li>
             <li className="nav-item mx-2">
-              <span
-                role="button"
-                className="btn btn-link"
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                }}
-              >
-                Logout
-              </span>
+              {user ? (
+                <span role="button" className="btn btn-link">
+                  Logout
+                </span>
+              ) : (
+                <span
+                  role="button"
+                  id="login_nav_button"
+                  className="btn btn-link"
+                  data-toggle="modal"
+                  data-target="#login-modal"
+                >
+                  Login
+                </span>
+              )}
             </li>
 
             <li className="nav-item mx-2">
@@ -70,11 +77,14 @@ function NavBar(props) {
                 className="btn btn-link"
                 type="button"
                 role="button"
-                data-toggle="modal"
-                data-target="#login-modal"
                 onClick={() => {
                   window.scrollTo(0, 0);
+                  if (!user) {
+                    document.getElementById("login_nav_button").click();
+                    return;
+                  }
                   dispatch(A_display_movies_amount(8));
+                  props.history.push("/user_profile");
                 }}
               >
                 <i className="far fa-user mr-2"></i>

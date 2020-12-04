@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { A_set_user } from "../reducer/Actions/user_action";
 import { validateLength, validateEmail } from "../validation";
 import { login, register } from "../user_helper_method";
 
 export default function LoginModal() {
+  const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(false);
   const [loginValue, setLoginValue] = useState({ email: "", password: "" });
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -25,6 +28,8 @@ export default function LoginModal() {
     if (email_error || password_error || data.error) {
       setLoginError(true);
     } else {
+      // dispatch(A_set_user(data.user));
+      console.log(data);
       setLoginError(false);
       setLoginSuccess(true);
     }

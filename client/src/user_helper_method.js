@@ -11,7 +11,8 @@ const login = async (email, password) => {
   };
 
   const res = await fetch("http://localhost:3000/login", obj);
-  return await res.json();
+  const data = await res.json();
+  return data;
 };
 
 const register = async (value) => {

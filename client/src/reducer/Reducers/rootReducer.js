@@ -1,10 +1,12 @@
-import movieInfoReducer from "../Reducers/movieInfoReducer";
-import moviesReducer from "../Reducers/moviesReducer";
-import topMoviesReducer from "../Reducers/topMoviesReducer";
+import movieInfoReducer from "./movieInfoReducer";
+import moviesReducer from "./moviesReducer";
+import topMoviesReducer from "./topMoviesReducer";
+import userReducer from "./userReducer";
 import { combineReducers } from "redux";
 
 export default combineReducers({
   movieInfoReducer,
   moviesReducer,
   topMoviesReducer,
+  userReducer,
 });

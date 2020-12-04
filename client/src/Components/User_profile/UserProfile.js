@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import PersonalData from "./PersonalData";
 import ChangePassword from "./ChangePassword";
 import Favorites_Widhlist from "./Favorites_Widhlist";
 export default function UserProfile(props) {
   const [nav_content, setNavContent] = useState("Personal data");
+  const { user } = useSelector((state) => state.userReducer);
   const profileNav = [
     { key: "Widhlist", icon: "fas fa-plus" },
     { key: "Favorites", icon: "far fa-heart" },
     { key: "Personal data", icon: "fas fa-user-edit" },
     { key: "Change password", icon: "fas fa-lock" },
   ];
+
+  useEffect(() => {
+    if (!user) {
+      props.history.push("/");
+      document.getElementById("login_nav_button").click();
+    }
+  });
+
   return (
     <section
       class="pt-7 pb-12 mb-5"
@@ -18,7 +28,9 @@ export default function UserProfile(props) {
       <div class="w-100 px-5">
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-md-3 bg-light p-4 m-2">
-            <h6 class="text-muted mb-5">WELCOME, JOHN DOE!</h6>
+            <h6 class="text-muted mb-5 text-uppercase">
+              WELCOME, {user && `${user.first_name} ${user.last_name}`}!
+            </h6>
             <nav class="mb-10 mb-md-0">
               <div class="list-group list-group-sm list-group-strong list-group-flush-x">
                 {profileNav.map((value) => (
