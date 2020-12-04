@@ -2,13 +2,15 @@
 # Movie.destroy_all 
 # User.destroy_all 
 # MovieReview.destroy_all
+# Widhlist.destroy_all
+# Favorite.destroy_all
 
 # path = File.join(File.dirname(__FILE__), "./db.json")
 # records = JSON.parse(File.read(path))["movies"].uniq{|movie| [movie["title"],movie["release_date"]]}
 
 # sort_movies = records.sort{|a,b| b["release_date"].split("-").join("").to_i <=> a["release_date"].split("-").join("").to_i}
 
-# user = User.create({first_name: "vien" , last_name: "pham" , password: "1234" , email: "vienpham2019@gmail.com"})
+# user = User.create({first_name: "vien" , last_name: "pham" , password: "1234567" , email: "vienpham2019@gmail.com"})
 
 # for movie in sort_movies do 
 #     if(movie["poster_path"] != "https://image.tmdb.org/t/p/w500null")
@@ -63,7 +65,11 @@
 #                 total += ran_num
 #             end
 #             movie.update(reviews_total_score: total)
-            
+#         end
+
+#         if(rand(-30...5) > 0)
+#             Favorite.create({user_id: user.id ,movie_id: movie.id})
+#             Widhlist.create({user_id: user.id ,movie_id: movie.id})
 #         end
 
 #     end

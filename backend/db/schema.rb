@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_232016) do
+ActiveRecord::Schema.define(version: 2020_12_04_041813) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "movie_reviews", force: :cascade do |t|
     t.integer "movie_id"
@@ -55,6 +62,15 @@ ActiveRecord::Schema.define(version: 2020_11_27_232016) do
     t.string "last_name"
     t.string "password_digest"
     t.string "email"
+    t.string "dob", default: ""
+    t.string "gender", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "widhlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

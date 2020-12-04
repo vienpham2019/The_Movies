@@ -12,7 +12,10 @@ class UserController < ApplicationController
     def login
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
-            render json: @user
+        render json: {
+            user: @user.as_json(only: [:first_name, :last_name, :email, :dob , :gender] , include: {widhlists: {only: [:movie_id]} , favorites: {only: [:movie_id]}}) , 
+            token: encode_token({user_id: @user.id}),
+        }
         else 
             render json: {error: "Invalid Username or Password"}
         end
