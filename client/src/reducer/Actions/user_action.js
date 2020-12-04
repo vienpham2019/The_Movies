@@ -11,4 +11,11 @@ const A_set_user = (data, widhlists_and_favorites) => {
   };
 };
 
-export { A_set_user };
+const A_update_user_info = (user) => ({
+  type: "UPDATE_USER_INFO",
+  values: {
+    user,
+  },
+});
+
+export { A_set_user, A_update_user_info };

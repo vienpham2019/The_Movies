@@ -23,6 +23,13 @@ export default function MovieHeader() {
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
   );
+  const { widhlists, favorites, user } = useSelector(
+    (state) => state.userReducer
+  );
+
+  const is_widhlists = user && widhlists.has(movie.id);
+  const is_favorites = user && favorites.has(movie.id);
+
   const [month, day, year] = getDate(movie.release_date);
   const revies_avg_score = movie_reviews.length
     ? movie.reviews_total_score / movie_reviews.length
@@ -118,19 +125,29 @@ export default function MovieHeader() {
             </div>
             <div className="gt-buttons">
               <div
-                className="gt-button gt-style-2 rounded-0 mx-2 btn btn-dark"
+                className={`gt-button gt-style-2 rounded-0 mx-2 btn btn-dark ${
+                  is_widhlists && "border-success"
+                }`}
                 role="button"
               >
                 <span className="btn">
-                  <i className="fas fa-plus text-white"></i>
+                  <i
+                    className={`fas fa-plus ${
+                      is_widhlists ? "text-success" : "text-white"
+                    }`}
+                  ></i>
                 </span>
               </div>
               <div
-                className="gt-button gt-style-2 border mx-2 btn rounded-0"
+                className={`gt-button gt-style-2 mx-2 btn rounded-0 ${
+                  is_favorites ? "border-success" : "border-secondary"
+                }`}
                 role="button"
               >
                 <div className="btn">
-                  <i className="far fa-heart"></i>
+                  <i
+                    className={`far fa-heart ${is_favorites && "text-success"}`}
+                  ></i>
                 </div>
               </div>
             </div>

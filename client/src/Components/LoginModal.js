@@ -35,6 +35,7 @@ export default function LoginModal() {
     } else {
       let widhlists = new Set(data.user.widhlists.map((w) => w.movie_id));
       let favorites = new Set(data.user.favorites.map((w) => w.movie_id));
+      console.log(widhlists, favorites);
       let w_and_f = set_widhlists_and_favorites(movies, widhlists, favorites);
       dispatch(A_set_user(data, w_and_f));
       setLoginError(false);

@@ -30,6 +30,21 @@ const register = async (value) => {
   return data;
 };
 
+const update_user_info = async (value) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...value,
+    }),
+  };
+  const res = await fetch("http://localhost:3000/update_user_info", obj);
+  const data = res.json();
+  return data;
+};
+
 const set_widhlists_and_favorites = (movies, _widhlists, _favorites) => {
   let widhlists = new Map();
   let favorites = new Map();
@@ -40,4 +55,4 @@ const set_widhlists_and_favorites = (movies, _widhlists, _favorites) => {
   return { widhlists, favorites };
 };
 
-export { login, register, set_widhlists_and_favorites };
+export { login, register, set_widhlists_and_favorites, update_user_info };
