@@ -11,6 +11,10 @@ export default function userReducer(state = initState, action) {
       return { ...state, ...action.values };
     case "UPDATE_USER_INFO":
       return { ...state, ...action.values };
+    case "UPDATE_WIDHLISTS":
+      return { ...state, ...action.values };
+    case "UPDATE_FAVORITES":
+      return { ...state, ...action.values };
     default:
       return state;
   }

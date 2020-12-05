@@ -18,4 +18,18 @@ const A_update_user_info = (user) => ({
   },
 });
 
-export { A_set_user, A_update_user_info };
+const A_update_widhlist = (widhlists) => ({
+  type: "UPDATE_WIDHLISTS",
+  values: {
+    widhlists,
+  },
+});
+
+const A_update_favorite = (favorites) => ({
+  type: "UPDATE_FAVORITES",
+  values: {
+    favorites,
+  },
+});
+
+export { A_set_user, A_update_user_info, A_update_widhlist, A_update_favorite };

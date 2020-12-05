@@ -1,17 +1,38 @@
 import { getDate, getFirstNGenre, getMovieReviews } from "../../helper_method";
+import {
+  handle_update_widhlist,
+  handle_update_favorite,
+} from "../../user_helper_method";
 import { useDispatch, useSelector } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
+import {
+  A_update_widhlist,
+  A_update_favorite,
+} from "../../reducer/Actions/user_action";
 
 export default function DisplayMovies(props) {
   let { vodi_value } = props;
   const { filter_movies, movie_page, display_movies_amount } = useSelector(
     (state) => state.moviesReducer
   );
+  const { widhlists, favorites, user, token } = useSelector(
+    (state) => state.userReducer
+  );
   const dispatch = useDispatch();
   const display_movies = filter_movies.slice(
     movie_page * display_movies_amount,
     (movie_page + 1) * display_movies_amount
   );
+
+  const handle_widhlist = async (movie) => {
+    if (!user) return;
+    dispatch(A_update_widhlist(handle_update_widhlist(widhlists, movie)));
+  };
+
+  const handle_favorite = async (movie) => {
+    if (!user) return;
+    dispatch(A_update_favorite(handle_update_favorite(favorites, movie)));
+  };
 
   return (
     <div className="vodi-archive-wrapper px-3" data-view={vodi_value}>
@@ -40,9 +61,9 @@ export default function DisplayMovies(props) {
                   style={{ width: "300px" }}
                 />
               </div>
-              <div className="movie__body px-2 ">
+              <div className="movie__body px-2">
                 <div className="movie__info">
-                  <div className="movie__info--head">
+                  <div className="movie__info--head mb-2">
                     <div className="movie__meta">
                       <span className="movie__meta--release-year">
                         {getDate(movie.release_date)[2]}
@@ -70,7 +91,7 @@ export default function DisplayMovies(props) {
                           : "none",
                     }}
                   >
-                    <div className="text-justify ">
+                    <div className="text-justify">
                       <p className="text__ px-2">{movie.overview}</p>
                     </div>
                   </div>
@@ -85,22 +106,32 @@ export default function DisplayMovies(props) {
                         props.history.push("/movie_info");
                       }}
                     >
-                      More Info
+                      <i class="fas fa-info"></i> More Info
                     </span>
-                    <div className="movie-actions--link_add-to-playlist dropdown border mx-2">
+                    <div className="mx-1">
                       <span
-                        className="btn_ btn-block_ btn-outline-dark_ text-white"
+                        className={`btn_ btn-block_ btn-outline-dark_ ${
+                          user && widhlists.has(movie.id)
+                            ? "text-success border-success"
+                            : "text-white border"
+                        }`}
                         role="button"
+                        onClick={() => handle_widhlist(movie)}
                       >
-                        Playlist
+                        <i class="fas fa-plus"></i> Widhlist
                       </span>
                     </div>
-                    <div className="movie-actions--link_add-to-playlist dropdown border mx-2">
+                    <div className="mx-1">
                       <span
-                        className="btn_ btn-block_ btn-outline-dark_ text-white"
+                        className={`btn_ btn-block_ btn-outline-dark_ ${
+                          user && favorites.has(movie.id)
+                            ? "text-success border-success"
+                            : "text-white border"
+                        }`}
                         role="button"
+                        onClick={() => handle_favorite(movie)}
                       >
-                        Favorite
+                        <i class="fas fa-heart"></i> Favorite
                       </span>
                     </div>
                   </div>
