@@ -1,7 +1,6 @@
 import DisplayMovies from ".././Movies_page/DisplayMovies";
 import Pagination from ".././Pagination";
 import { useSelector } from "react-redux";
-
 import { useState } from "react";
 function Favorites_Widhlist(props) {
   let { title } = props;
@@ -27,11 +26,7 @@ function Favorites_Widhlist(props) {
         <span className="py-3 bg-dark text-white">{title}</span>
       </h4>
       {movies.length ? (
-        <DisplayMovies
-          movies={displayMovies}
-          vodi_value={"grid"}
-          history={props.history}
-        />
+        <DisplayMovies vodi_value={"list-large"} history={props.history} />
       ) : (
         <div className="p-5 text-center">
           <i className="fas fa-clipboard-list text-white fa-4x py-3"></i> <br />

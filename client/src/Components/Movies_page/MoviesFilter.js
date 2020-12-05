@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieFilter } from "../../helper_method";
-
 import {
   A_filter_movies,
   A_movie_page,

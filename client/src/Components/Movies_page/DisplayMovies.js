@@ -76,9 +76,9 @@ export default function DisplayMovies(props) {
                   </div>
                   <div className="movie__actions mt-5">
                     <span
-                      className="btn_ btn-block_ btn-outline-dark_ text-white mx-2 border"
+                      className="btn_ btn-block_ btn-outline-dark_ text-white border mr-2"
                       role="button"
-                      style={{ width: "200px" }}
+                      style={{ width: "150px" }}
                       onClick={() => {
                         window.scrollTo(0, 0);
                         dispatch(A_set_movie_info(movie));
@@ -87,12 +87,20 @@ export default function DisplayMovies(props) {
                     >
                       More Info
                     </span>
-                    <div className="movie-actions--link_add-to-playlist dropdown border">
+                    <div className="movie-actions--link_add-to-playlist dropdown border mx-2">
                       <span
-                        className="btn_ btn-block_ btn-outline-dark_ w-55 text-white mx-2"
+                        className="btn_ btn-block_ btn-outline-dark_ text-white"
                         role="button"
                       >
-                        + Playlist
+                        Playlist
+                      </span>
+                    </div>
+                    <div className="movie-actions--link_add-to-playlist dropdown border mx-2">
+                      <span
+                        className="btn_ btn-block_ btn-outline-dark_ text-white"
+                        role="button"
+                      >
+                        Favorite
                       </span>
                     </div>
                   </div>
