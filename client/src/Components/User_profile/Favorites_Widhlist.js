@@ -1,7 +1,7 @@
 import DisplayMovies from ".././Movies_page/DisplayMovies";
 import Pagination from ".././Pagination";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+
 function Favorites_Widhlist(props) {
   let { title } = props;
   let { widhlists, favorites } = useSelector((state) => state.userReducer);
@@ -10,17 +10,10 @@ function Favorites_Widhlist(props) {
       ? Array.from(widhlists.values())
       : Array.from(favorites.values());
   const displayAmount = 10;
-  const [displayMovies, setDisplayMovies] = useState(
-    movies.slice(0, displayAmount)
-  );
   const pages = Math.ceil(movies.length / displayAmount);
 
-  const handleDisplayPage = (page) =>
-    setDisplayMovies(
-      movies.slice((page - 1) * displayAmount, page * displayAmount)
-    );
   return (
-    <div className="bg-dark p-4 h-100">
+    <div className="bg-dark p-4 h-100 border">
       <h4 className="mb-4 border-bottom pb-2">
         {" "}
         <span className="py-3 bg-dark text-white">{title}</span>
@@ -38,7 +31,7 @@ function Favorites_Widhlist(props) {
       {pages > 1 && (
         <div>
           <hr />
-          <Pagination pages={pages} handleDisplay={handleDisplayPage} />
+          <Pagination pages={pages} />
         </div>
       )}
     </div>

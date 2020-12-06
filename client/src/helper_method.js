@@ -112,6 +112,17 @@ const addMovieReview = async (movie, review) => {
   return data;
 };
 
+const rotate_array = (array) => {
+  let p_1 = 0;
+  let p_2 = array.length - 1;
+  while (p_1 < p_2) {
+    let holder = array[p_1];
+    array[p_1++] = array[p_2];
+    array[p_2--] = holder;
+  }
+  return array;
+};
+
 export {
   getDate,
   getFirstNGenre,
@@ -119,4 +130,5 @@ export {
   randomNumber,
   getMovieReviews,
   addMovieReview,
+  rotate_array,
 };

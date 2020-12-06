@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import PersonalData from "./PersonalData";
 import ChangePassword from "./ChangePassword";
 import Favorites_Widhlist from "./Favorites_Widhlist";
+import { rotate_array } from "../../helper_method";
+
 import {
   A_movie_page,
   A_set_fillter_genre_and_year,
   A_set_sort_movies_by,
   A_filter_movies,
 } from "../../reducer/Actions/movies_action";
+import { A_set_user } from "../../reducer/Actions/user_action";
 export default function UserProfile(props) {
   const dispatch = useDispatch();
   const [nav_content, setNavContent] = useState("Personal data");
@@ -31,8 +34,8 @@ export default function UserProfile(props) {
 
   return (
     <section
-      class="pt-7 pb-12 mb-5 w-100 overflow-hidden"
-      style={{ marginTop: "120px", minHeight: "60vh" }}
+      class="pt-7 pb-12 mb-5 w-100"
+      style={{ marginTop: "120px", minHeight: "60vh", overflowX: "hidden" }}
     >
       <div class="w-100">
         <div class="row d-flex justify-content-center">
@@ -58,11 +61,12 @@ export default function UserProfile(props) {
                           dispatch(
                             A_filter_movies(
                               value.key === "Favorites"
-                                ? Array.from(favorites.values())
-                                : Array.from(widhlists.values())
+                                ? rotate_array(Array.from(favorites.values()))
+                                : rotate_array(Array.from(widhlists.values()))
                             )
                           );
                         }
+
                         setNavContent(value.key);
                       }}
                     >
@@ -79,7 +83,15 @@ export default function UserProfile(props) {
                 <span
                   class="list-group-item-action p-4 border-bottom d-flex bd-highlight"
                   role="button"
-                  onClick={() => props.history.push("/")}
+                  onClick={() => {
+                    props.history.push("/");
+                    dispatch(
+                      A_set_user(
+                        { user: null, token: null },
+                        { widhlists: [], favorites: [] }
+                      )
+                    );
+                  }}
                 >
                   <div className="bd-highlight">
                     <i class="fas fa-sign-out-alt mr-2"></i> Logout

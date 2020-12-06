@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { A_set_user } from "../reducer/Actions/user_action";
 import { validateLength, validateEmail } from "../validation";
 import {
@@ -10,11 +10,11 @@ import {
 
 export default function LoginModal() {
   const dispatch = useDispatch();
-  const { movies } = useSelector((state) => state.moviesReducer);
   const [loginError, setLoginError] = useState(false);
   const [loginValue, setLoginValue] = useState({ email: "", password: "" });
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [registerError, setRegisterError] = useState({});
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [registerValue, setRegisterValue] = useState({
     firstName: "",
@@ -29,22 +29,23 @@ export default function LoginModal() {
     let { email, password } = loginValue;
     let email_error = validateEmail(email);
     let password_error = validateLength(password, "Password", 5);
+    setIsLoginLoading(true);
     let data = await login(email, password);
     if (email_error || password_error || data.error) {
       setLoginError(true);
     } else {
-      let widhlists = new Set(data.user.widhlists.map((w) => w.movie_id));
-      let favorites = new Set(data.user.favorites.map((w) => w.movie_id));
-      let w_and_f = set_widhlists_and_favorites(movies, widhlists, favorites);
+      let w_and_f = set_widhlists_and_favorites(data.widhlists, data.favorites);
       dispatch(A_set_user(data, w_and_f));
       setLoginError(false);
       setLoginSuccess(true);
     }
+    setIsLoginLoading(false);
   };
 
   const resetLogin = () => {
     setLoginSuccess(false);
     setLoginError(false);
+    setIsLoginLoading(false);
     setLoginValue({ email: "", password: "" });
   };
 
@@ -164,10 +165,23 @@ export default function LoginModal() {
                 aria-labelledby="nav-login-modal-modal-tab"
               >
                 {loginSuccess && (
-                  <div class="w-100 bg--success py-3 text-white text-center animate__animated animate__fadeIn">
-                    <i class="fas fa-check mr-1"></i>Login Success!
+                  <div className="w-100 bg--success py-3 text-white text-center animate__animated animate__fadeIn">
+                    <i className="fas fa-check mr-1"></i>Login Success!
                   </div>
                 )}
+                {isLoginLoading && (
+                  <div className="container">
+                    <div
+                      className="spinner-border"
+                      style={{ width: "1.5em", height: "1.5em" }}
+                      role="status"
+                    >
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                    <span className="ml-2">Loading....</span>
+                  </div>
+                )}
+
                 <div className="card-block px-lg-7 px-3 pt-6 pb-5">
                   <form onSubmit={handleLogin}>
                     <div className="col-12 p-0 my-4">
@@ -239,6 +253,7 @@ export default function LoginModal() {
                     please login...!
                   </div>
                 )}
+
                 <div className="card-block px-lg-7 px-4 pt-6 pb-5">
                   <form onSubmit={handleRegister}>
                     <div className="row px-2 my-3">

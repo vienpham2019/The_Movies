@@ -6,6 +6,7 @@ import {
   A_set_fillter_genre_and_year,
   A_filter_movies,
 } from "../reducer/Actions/movies_action";
+import { A_set_user } from "../reducer/Actions/user_action";
 function NavBar(props) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
@@ -67,7 +68,18 @@ function NavBar(props) {
             </li>
             <li className="nav-item mx-2">
               {user ? (
-                <span role="button" className="btn btn-link">
+                <span
+                  role="button"
+                  className="btn btn-link"
+                  onClick={() => {
+                    dispatch(
+                      A_set_user(
+                        { user: null, token: null },
+                        { widhlists: [], favorites: [] }
+                      )
+                    );
+                  }}
+                >
                   Logout
                 </span>
               ) : (

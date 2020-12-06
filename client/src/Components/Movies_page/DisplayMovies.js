@@ -26,12 +26,16 @@ export default function DisplayMovies(props) {
 
   const handle_widhlist = async (movie) => {
     if (!user) return;
-    dispatch(A_update_widhlist(handle_update_widhlist(widhlists, movie)));
+    dispatch(
+      A_update_widhlist(await handle_update_widhlist(widhlists, movie, token))
+    );
   };
 
   const handle_favorite = async (movie) => {
     if (!user) return;
-    dispatch(A_update_favorite(handle_update_favorite(favorites, movie)));
+    dispatch(
+      A_update_favorite(handle_update_favorite(favorites, movie, token))
+    );
   };
 
   return (

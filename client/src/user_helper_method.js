@@ -62,36 +62,51 @@ const add_widhlist = async (movie_id, token) => {
   return data;
 };
 
-const set_widhlists_and_favorites = (movies, _widhlists, _favorites) => {
+const remove_widhlist = async (movie_id, token) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      movie_id,
+      token,
+    }),
+  };
+
+  const res = await fetch("http://localhost:3000/remove_widhlist", obj);
+  const data = res.json();
+  return data;
+};
+
+const set_widhlists_and_favorites = (_widhlists, _favorites) => {
   let widhlists = new Map();
   let favorites = new Map();
-  for (let movie of movies) {
-    if (_widhlists.has(movie.id)) widhlists.set(movie.id, movie);
-    if (_favorites.has(movie.id)) favorites.set(movie.id, movie);
+  for (let w_movie of _widhlists) {
+    widhlists.set(w_movie.movie_id, w_movie.movie);
+  }
+  for (let f_movie of _favorites) {
+    favorites.set(f_movie.movie_id, f_movie.movie);
   }
   return { widhlists, favorites };
 };
 
-const handle_update_widhlist = (widhlists, movie) => {
+const handle_update_widhlist = async (widhlists, movie, token) => {
+  let data;
   if (widhlists.has(movie.id)) {
-    widhlists.delete(movie.id);
+    data = await remove_widhlist(movie.id, token);
+    if (data) widhlists.delete(movie.id);
   } else {
-    // let widhlist = await add_widhlist(movie.id, token);
-    // if (widhlist) {
-    widhlists.set(movie.id, movie);
-    // }
+    if (await add_widhlist(movie.id, token)) widhlists.set(movie.id, movie);
   }
   return widhlists;
 };
 
-const handle_update_favorite = (favorites, movie) => {
+const handle_update_favorite = async (favorites, movie, token) => {
   if (favorites.has(movie.id)) {
     favorites.delete(movie.id);
   } else {
-    // let widhlist = await add_widhlist(movie.id, token);
-    // if (widhlist) {
     favorites.set(movie.id, movie);
-    // }
   }
   return favorites;
 };
@@ -101,7 +116,6 @@ export {
   register,
   set_widhlists_and_favorites,
   update_user_info,
-  add_widhlist,
   handle_update_widhlist,
   handle_update_favorite,
 };
