@@ -10,7 +10,7 @@ const login = async (email, password) => {
     }),
   };
 
-  const res = await fetch("http://localhost:3000/login", obj);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, obj);
   const data = await res.json();
   return data;
 };
@@ -25,7 +25,7 @@ const register = async (value) => {
       ...value,
     }),
   };
-  const res = await fetch("http://localhost:3000/register", obj);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, obj);
   const data = await res.json();
   return data;
 };
@@ -40,7 +40,10 @@ const update_user_info = async (value) => {
       ...value,
     }),
   };
-  const res = await fetch("http://localhost:3000/update_user_info", obj);
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/update_user_info`,
+    obj
+  );
   const data = res.json();
   return data;
 };
@@ -57,7 +60,7 @@ const add_widhlist = async (movie_id, token) => {
     }),
   };
 
-  const res = await fetch("http://localhost:3000/add_widhlist", obj);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/add_widhlist`, obj);
   const data = res.json();
   return data;
 };
@@ -74,7 +77,10 @@ const remove_widhlist = async (movie_id, token) => {
     }),
   };
 
-  const res = await fetch("http://localhost:3000/remove_widhlist", obj);
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/remove_widhlist`,
+    obj
+  );
   const data = res.json();
   return data;
 };

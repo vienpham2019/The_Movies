@@ -11,6 +11,7 @@ import LoginModal from "./Components/LoginModal";
 import MovieTrailerModal from "./Components/MovieTrailerModal";
 import UserProfile from "./Components/User_profile/UserProfile";
 import PageNotFound from "./Components/PageNotFound";
+import LoadingPage from "./Components/LoadingPage";
 
 import { A_set_top_movies } from "./reducer/Actions/top_movies_action";
 import { A_set_movies } from "./reducer/Actions/movies_action";
@@ -24,7 +25,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const getMovies = async () => {
-    const res = await fetch("http://localhost:3000/movie");
+    const res = await fetch(process.env.REACT_APP_API_URL + "/movie");
     const data = await res.json();
     let popular_movies = data
       .slice()
@@ -45,7 +46,7 @@ export default function App() {
 
   return (
     <div>
-      {!load && (
+      {!load ? (
         <div>
           <div>
             <Router>
@@ -82,6 +83,8 @@ export default function App() {
           <Footer />
           <LoginModal />
         </div>
+      ) : (
+        <LoadingPage />
       )}
     </div>
   );
