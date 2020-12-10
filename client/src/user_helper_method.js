@@ -117,6 +117,26 @@ const handle_update_favorite = async (favorites, movie, token) => {
   return favorites;
 };
 
+const handle_update_password = async (password, token) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      password,
+      token,
+    }),
+  };
+
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/update_user_password`,
+    obj
+  );
+  const data = res.json();
+  return data;
+};
+
 export {
   login,
   register,
@@ -124,4 +144,5 @@ export {
   update_user_info,
   handle_update_widhlist,
   handle_update_favorite,
+  handle_update_password,
 };

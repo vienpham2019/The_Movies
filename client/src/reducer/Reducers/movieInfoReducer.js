@@ -2,6 +2,7 @@ let initState = {
   movie: null,
   movie_reviews: [],
   displayVideos: [],
+  movie_token: null,
 };
 
 export default function movieInfoReducer(state = initState, action) {

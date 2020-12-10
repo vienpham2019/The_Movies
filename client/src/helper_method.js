@@ -92,18 +92,17 @@ const getMovieAndReviews = async (movie) => {
     `${process.env.REACT_APP_API_URL}/get_reviews/${movie.id}`
   );
   let data = await res.json();
-  console.log(data);
   return data;
 };
 
-const addMovieReview = async (movie, review) => {
+const addMovieReview = async (movie_token, review) => {
   const obj = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      movie_id: movie.id,
+      movie_token,
       ...review,
     }),
   };

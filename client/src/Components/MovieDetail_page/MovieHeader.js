@@ -37,7 +37,6 @@ export default function MovieHeader() {
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
   );
-  console.log(movie);
 
   const { widhlists, favorites, user, token } = useSelector(
     (state) => state.userReducer

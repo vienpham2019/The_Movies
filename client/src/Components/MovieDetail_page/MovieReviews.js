@@ -9,7 +9,7 @@ import { A_add_movie_reviews } from "../../reducer/Actions/movie_info_action";
 import { addMovieReview, rotate_array } from "../../helper_method";
 
 export default function MovieReviews() {
-  const { movie, movie_reviews } = useSelector(
+  const { movie, movie_reviews, movie_token } = useSelector(
     (state) => state.movieInfoReducer
   );
 
@@ -21,7 +21,7 @@ export default function MovieReviews() {
   const [reivewScore, setReviewScore] = useState(10);
   const [movieNewReviewErrors, setMovieNewReviewErrors] = useState({});
 
-  const displayReviews = movie_reviews.slice(
+  const displayReviews = rotate_array(movie_reviews).slice(
     movie_page * displayReviewAmount,
     (movie_page + 1) * displayReviewAmount
   );
@@ -60,8 +60,7 @@ export default function MovieReviews() {
         score: reivewScore,
         date: `${mounth} ${day}, ${year}`,
       };
-
-      let data = await addMovieReview(movie, review);
+      let data = await addMovieReview(movie_token, review);
       dispatch(A_add_movie_reviews(data.movie, data.movie_reviews));
       resetReviewForm();
     }
@@ -199,7 +198,7 @@ export default function MovieReviews() {
 
             {/* review */}
             <div className="mt-5">
-              {rotate_array(displayReviews).map((review) => (
+              {displayReviews.map((review) => (
                 <ReviewDetail review={review} />
               ))}
             </div>
