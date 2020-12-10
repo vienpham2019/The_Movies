@@ -59,7 +59,6 @@ for movie in sort_movies do
                 ran_num = rand(1..10)
                 review['score'] = ran_num 
                 review['date'] = "#{months[rand(0..11)]} #{rand(1..28)}, #{movie["release_date"].split("-")[0]}"
-                review['user_id'] = user.id
                 review['movie_id'] = movie.id
                 MovieReview.create(review)
                 total += ran_num

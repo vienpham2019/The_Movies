@@ -36,6 +36,12 @@ class UserController < ApplicationController
         end
     end 
 
+    def update_user_password
+        @user = User.find(decode_token(params[:token]))
+        @user.update(password: params[:password])
+        render json: {message: "Update success"}
+    end 
+
     private 
       def user_params 
         params.permit(:first_name , :last_name , :email , :password)

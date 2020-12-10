@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_12_04_041813) do
 
   create_table "movie_reviews", force: :cascade do |t|
     t.integer "movie_id"
-    t.integer "user_id"
     t.string "date"
     t.integer "score"
     t.string "author"

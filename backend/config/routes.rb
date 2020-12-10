@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post "/login", to: "user#login"
   post "/register" , to: "user#register"
   post "/update_user_info" , to: "user#update_user_info"
+  post "/update_user_password" , to: "user#update_user_password"
 
   # widhlist 
   post "/add_widhlist", to: "widhlist#add_widhlist"
