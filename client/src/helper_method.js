@@ -87,12 +87,13 @@ const getMovieFilter = (m) => {
 
 const randomNumber = (min, max) => Math.random() * (max - min) + min;
 
-const getMovieReviews = async (movie) => {
+const getMovieAndReviews = async (movie) => {
   let res = await fetch(
     `${process.env.REACT_APP_API_URL}/get_reviews/${movie.id}`
   );
   let data = await res.json();
-  return data.reviews;
+  console.log(data);
+  return data;
 };
 
 const addMovieReview = async (movie, review) => {
@@ -103,7 +104,6 @@ const addMovieReview = async (movie, review) => {
     },
     body: JSON.stringify({
       movie_id: movie.id,
-      user_id: 2,
       ...review,
     }),
   };
@@ -129,7 +129,7 @@ export {
   getFirstNGenre,
   getMovieFilter,
   randomNumber,
-  getMovieReviews,
+  getMovieAndReviews,
   addMovieReview,
   rotate_array,
 };

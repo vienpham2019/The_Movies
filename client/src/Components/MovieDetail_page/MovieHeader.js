@@ -1,6 +1,19 @@
 import { createUseStyles } from "react-jss";
 import { getDate, getFirstNGenre } from "../../helper_method";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  A_update_widhlist,
+  A_update_favorite,
+} from "../../reducer/Actions/user_action";
+
+import { A_set_display_videos } from "../../reducer/Actions/movie_info_action";
+
+import {
+  handle_update_widhlist,
+  handle_update_favorite,
+} from "../../user_helper_method";
+
 const styles = createUseStyles({
   backgroundImage: (props) => ({
     "&::after": {
@@ -20,10 +33,13 @@ const styles = createUseStyles({
   }),
 });
 export default function MovieHeader() {
+  const dispatch = useDispatch();
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
   );
-  const { widhlists, favorites, user } = useSelector(
+  console.log(movie);
+
+  const { widhlists, favorites, user, token } = useSelector(
     (state) => state.userReducer
   );
 
@@ -34,6 +50,27 @@ export default function MovieHeader() {
   const revies_avg_score = movie_reviews.length
     ? movie.reviews_total_score / movie_reviews.length
     : 0;
+
+  const handle_widhlist = async () => {
+    if (!user) {
+      document.getElementById("login_nav_button").click();
+      return;
+    }
+    dispatch(
+      A_update_widhlist(await handle_update_widhlist(widhlists, movie, token))
+    );
+  };
+
+  const handle_favorite = async () => {
+    if (!user) {
+      document.getElementById("login_nav_button").click();
+      return;
+    }
+    dispatch(
+      A_update_favorite(await handle_update_favorite(favorites, movie, token))
+    );
+  };
+
   return (
     <div className="gt-title-overview gt-style-1">
       <div
@@ -55,7 +92,15 @@ export default function MovieHeader() {
               <div className="gt-circular-items">
                 <div className="gt-item gt-watch-trailer">
                   <div className="gt-button gt-style-3 gt-dark">
-                    <div role="button" className="d-flex align-items-center">
+                    <div
+                      role="button"
+                      className="d-flex align-items-center"
+                      data-toggle="modal"
+                      data-target="#movieTrailerModal"
+                      onClick={() =>
+                        dispatch(A_set_display_videos(movie.videos))
+                      }
+                    >
                       <div className="gt-icon">
                         <i className="fas fa-play"></i>
                       </div>
@@ -125,23 +170,26 @@ export default function MovieHeader() {
             </div>
             <div className="gt-buttons">
               <div
-                className={`gt-button gt-style-2 rounded-0 mx-2 btn btn-dark ${
-                  is_widhlists && "border-success"
+                className={`gt-button gt-style-2 mx-2 btn rounded-0 bg-dark ${
+                  is_widhlists ? "border-success" : "border-secondary"
                 }`}
+                onClick={async () => handle_widhlist()}
                 role="button"
               >
-                <span className="btn">
+                <div className="btn">
                   <i
                     className={`fas fa-plus ${
                       is_widhlists ? "text-success" : "text-white"
                     }`}
                   ></i>
-                </span>
+                </div>
               </div>
+
               <div
                 className={`gt-button gt-style-2 mx-2 btn rounded-0 ${
                   is_favorites ? "border-success" : "border-secondary"
                 }`}
+                onClick={async () => handle_favorite()}
                 role="button"
               >
                 <div className="btn">

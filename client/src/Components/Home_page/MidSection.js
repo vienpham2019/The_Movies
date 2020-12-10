@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
-import { randomNumber, getMovieReviews } from "../../helper_method";
+import {
+  A_set_movie_info,
+  A_set_display_videos,
+} from "../../reducer/Actions/movie_info_action";
+import { randomNumber, getMovieAndReviews } from "../../helper_method";
 
 export default function MidSection(props) {
   const dispatch = useDispatch();
@@ -33,6 +36,9 @@ export default function MidSection(props) {
                         role="button"
                         data-toggle="modal"
                         data-target="#movieTrailerModal"
+                        onClick={() =>
+                          dispatch(A_set_display_videos(movie.videos))
+                        }
                       >
                         <div className="watch-now-btn-bg">
                           <svg width="49px" height="54px">
@@ -68,31 +74,17 @@ export default function MidSection(props) {
                     </div>
                     <div className="movie__actions">
                       <span
-                        className="movie-actions--link_watch text-white"
+                        className="btn btn-dark text-white border border-dark rounded-0 w-50 py-2"
                         role="button"
                         onClick={async () => {
-                          let reviews = await getMovieReviews(movie);
-                          dispatch(A_set_movie_info(movie, reviews));
+                          let data = await getMovieAndReviews(movie);
+                          dispatch(A_set_movie_info(data));
                           window.scrollTo(0, 0);
                           props.history.push("/movie_info");
                         }}
                       >
-                        More Info
+                        MORE INFO
                       </span>
-                      <div className="movie-actions--link_add-to-playlist dropdown">
-                        <a
-                          className="dropdown-toggle"
-                          href="-"
-                          data-toggle="dropdown"
-                        >
-                          + Playlist
-                        </a>
-                        <div className="dropdown-menu">
-                          <a className="login-link" href="-">
-                            Sign in to add this movie to a playlist.
-                          </a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

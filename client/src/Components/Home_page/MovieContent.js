@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
-import { getMovieReviews } from "../../helper_method";
+import { getMovieAndReviews } from "../../helper_method";
 function MovieContent(props) {
   let { title, release_date, genre, poster_path } = props.movie;
   const dispatch = useDispatch();
@@ -11,8 +11,8 @@ function MovieContent(props) {
           className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
           role="button"
           onClick={async () => {
-            let reviews = await getMovieReviews(props.movie);
-            dispatch(A_set_movie_info(props.movie, reviews));
+            let _data = await getMovieAndReviews(props.movie);
+            dispatch(A_set_movie_info(_data));
             window.scrollTo(0, 0);
             props.history.push("/movie_info");
           }}

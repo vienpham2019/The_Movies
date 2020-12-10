@@ -1,15 +1,7 @@
+import { useSelector } from "react-redux";
+
 export default function MovieTrailerModal() {
-  const videos = [
-    {
-      videoUrl: "https://www.youtube.com/embed/H4chVzr6RLg",
-      videoName: "The Hunchback of Notre Dame",
-    },
-    {
-      videoUrl: "https://www.youtube.com/embed/JUEofxUjbpM",
-      videoName:
-        "The Hunchback of Notre Dame - 1996 Teaser Trailer (UK Version)",
-    },
-  ];
+  const { displayVideos } = useSelector((state) => state.movieInfoReducer);
 
   const stopVideo = () => {
     let iframes = [...document.getElementsByClassName("movie_trailer_iframe")];
@@ -47,37 +39,47 @@ export default function MovieTrailerModal() {
             </button>
           </div>
           <div className="modal-body m-0">
-            <div
-              id="MovieTrailerModal"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner">
-                {videos.map((v, i) => (
-                  <div class={`carousel-item p-5 ${i === 0 && "active"}`}>
-                    <div class="embed-responsive embed-responsive-21by9">
-                      <iframe
-                        class="embed-responsive-item movie_trailer_iframe"
-                        src={v.videoUrl}
-                        allowFullScreen
-                        title={v.title}
-                        videoPause
-                      ></iframe>
+            {!!displayVideos.length ? (
+              <div
+                id="MovieTrailerModal"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  {displayVideos.map((v, i) => (
+                    <div class={`carousel-item p-5 ${i === 0 && "active"}`}>
+                      <div class="embed-responsive embed-responsive-21by9">
+                        <iframe
+                          class="embed-responsive-item movie_trailer_iframe"
+                          src={v.videoUrl}
+                          allowFullScreen
+                          title={v.title}
+                          videoPause
+                        ></iframe>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <ol class="carousel-indicators">
+                  {displayVideos.map((_, i) => (
+                    <li
+                      data-target="#MovieTrailerModal"
+                      data-slide-to={i}
+                      class={`${i === 0 && "active"}`}
+                      onClick={() => stopVideo()}
+                    ></li>
+                  ))}
+                </ol>
               </div>
-              <ol class="carousel-indicators">
-                {videos.map((_, i) => (
-                  <li
-                    data-target="#MovieTrailerModal"
-                    data-slide-to={i}
-                    class={`${i === 0 && "active"}`}
-                    onClick={() => stopVideo()}
-                  ></li>
-                ))}
-              </ol>
-            </div>
+            ) : (
+              <div className="h-100 d-flex align-items-center">
+                <div className="text-center mx-auto">
+                  <i class="fas fa-film fa-5x text-white"></i>
+                  <h3 className="text-white">Movie Trailer</h3>
+                  <h3 className="text-white">No Longer Avaliable</h3>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

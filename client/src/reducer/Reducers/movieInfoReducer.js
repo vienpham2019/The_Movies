@@ -1,6 +1,7 @@
 let initState = {
   movie: null,
   movie_reviews: [],
+  displayVideos: [],
 };
 
 export default function movieInfoReducer(state = initState, action) {
@@ -9,6 +10,9 @@ export default function movieInfoReducer(state = initState, action) {
       return { ...state, ...action.values };
 
     case "ADD_MOVIE_REVIEWS":
+      return { ...state, ...action.values };
+
+    case "SET_DISPLAY_VIDEOS":
       return { ...state, ...action.values };
 
     default:

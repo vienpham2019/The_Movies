@@ -25,7 +25,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const getMovies = async () => {
-    const res = await fetch(process.env.REACT_APP_API_URL + "/movie");
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/movie`);
     const data = await res.json();
     let popular_movies = data
       .slice()

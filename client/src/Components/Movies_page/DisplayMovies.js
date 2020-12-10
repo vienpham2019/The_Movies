@@ -1,4 +1,8 @@
-import { getDate, getFirstNGenre, getMovieReviews } from "../../helper_method";
+import {
+  getDate,
+  getFirstNGenre,
+  getMovieAndReviews,
+} from "../../helper_method";
 import {
   handle_update_widhlist,
   handle_update_favorite,
@@ -34,7 +38,7 @@ export default function DisplayMovies(props) {
   const handle_favorite = async (movie) => {
     if (!user) return;
     dispatch(
-      A_update_favorite(handle_update_favorite(favorites, movie, token))
+      A_update_favorite(await handle_update_favorite(favorites, movie, token))
     );
   };
 
@@ -52,9 +56,9 @@ export default function DisplayMovies(props) {
                 className="movie__poster h-100"
                 role="button"
                 onClick={async () => {
-                  let reviews = await getMovieReviews(movie);
+                  let _data = await getMovieAndReviews(movie);
                   window.scrollTo(0, 0);
-                  dispatch(A_set_movie_info(movie, reviews));
+                  dispatch(A_set_movie_info(_data));
                   props.history.push("/movie_info");
                 }}
               >
