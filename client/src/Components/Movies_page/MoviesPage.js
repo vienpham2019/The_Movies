@@ -25,9 +25,7 @@ export default function MoviesPage(props) {
   ];
 
   const handelSearchMovie = (title) => {
-    if (title === "") {
-      dispatch(A_set_fillter_genre_and_year("All", " "));
-    } else {
+    if (title !== "") {
       const f_movies = movies.filter((movie) =>
         movie.title.match(new RegExp(title, "i"))
       );
@@ -68,7 +66,7 @@ export default function MoviesPage(props) {
                   className="mx-auto w-50 text-white rounded-pill border-white movies-search"
                   style={{ maxHeight: "30px" }}
                   placeholder="Search..."
-                  onChange={(e) => handelSearchMovie(e.target.value)}
+                  onChange={(e) => handelSearchMovie(e.target.value.trim())}
                 />
               </div>
             </header>

@@ -27,7 +27,6 @@ export default function MoviesFilter() {
     if (genre === "All") {
       f_movies = movies;
       dispatch(A_set_fillter_genre_and_year(genre, " "));
-      dispatch(A_set_sort_movies_by("Years"));
     } else {
       f_movies = filter_movies.filter((movie) =>
         movie.genre.match(new RegExp(genre, "i"))

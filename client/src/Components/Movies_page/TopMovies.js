@@ -5,7 +5,10 @@ export default function TopMovies(props) {
   const dispatch = useDispatch();
   const { movies } = useSelector((state) => state.moviesReducer);
   return (
-    <div className="top-movies-list" style={{ maxWidth: "350px" }}>
+    <div
+      className="top-movies-list"
+      style={{ minWidth: "350px", maxWidth: "400px" }}
+    >
       <header className="top-movies-list__header">
         <h2 className="section-movies-list__title">Top 5 List</h2>
       </header>
