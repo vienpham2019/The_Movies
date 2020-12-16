@@ -123,6 +123,23 @@ const rotate_array = (array) => {
   return array;
 };
 
+const get_current_time = () => {
+  const currentdate = new Date();
+  const datetime =
+    currentdate.getDate() +
+    "/" +
+    (currentdate.getMonth() + 1) +
+    "/" +
+    currentdate.getFullYear() +
+    " @ " +
+    currentdate.getHours() +
+    ":" +
+    currentdate.getMinutes() +
+    ":" +
+    currentdate.getSeconds();
+  return datetime;
+};
+
 export {
   getDate,
   getFirstNGenre,
@@ -131,4 +148,5 @@ export {
   getMovieAndReviews,
   addMovieReview,
   rotate_array,
+  get_current_time,
 };

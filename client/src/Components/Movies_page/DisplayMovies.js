@@ -6,6 +6,7 @@ import {
 import {
   handle_update_widhlist,
   handle_update_favorite,
+  handle_notification,
 } from "../../user_helper_method";
 import { useDispatch, useSelector } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
@@ -14,8 +15,11 @@ import {
   A_update_favorite,
 } from "../../reducer/Actions/user_action";
 
+import { A_set_notification } from "../../reducer/Actions/notification_action";
+
 export default function DisplayMovies(props) {
   let { vodi_value } = props;
+  const { notifications } = useSelector((state) => state.notificationReducer);
   const { filter_movies, movie_page, display_movies_amount } = useSelector(
     (state) => state.moviesReducer
   );
@@ -29,14 +33,32 @@ export default function DisplayMovies(props) {
   );
 
   const handle_widhlist = async (movie) => {
-    if (!user) return;
+    if (!user) {
+      document.getElementById("login_nav_button").click();
+      return;
+    }
+    dispatch(
+      A_set_notification([
+        ...notifications,
+        handle_notification(widhlists, "Wishlists", movie),
+      ])
+    );
     dispatch(
       A_update_widhlist(await handle_update_widhlist(widhlists, movie, token))
     );
   };
 
   const handle_favorite = async (movie) => {
-    if (!user) return;
+    if (!user) {
+      document.getElementById("login_nav_button").click();
+      return;
+    }
+    dispatch(
+      A_set_notification([
+        ...notifications,
+        handle_notification(favorites, "Favorites", movie),
+      ])
+    );
     dispatch(
       A_update_favorite(await handle_update_favorite(favorites, movie, token))
     );

@@ -1,3 +1,4 @@
+import { get_current_time } from "./helper_method";
 const login = async (email, password) => {
   const obj = {
     method: "POST",
@@ -137,6 +138,23 @@ const handle_update_password = async (password, token) => {
   return data;
 };
 
+const handle_notification = (lists, list_type, movie) => {
+  let image = movie.poster_path;
+  let target = movie.title;
+  let type, message, time;
+
+  time = get_current_time();
+
+  if (lists.has(movie.id)) {
+    type = "danger";
+    message = "has been successully remove from your" + list_type + ".";
+  } else {
+    type = "success";
+    message = "has been successully add to your" + list_type + ".";
+  }
+  return { image, target, type, message, time };
+};
+
 export {
   login,
   register,
@@ -145,4 +163,5 @@ export {
   handle_update_widhlist,
   handle_update_favorite,
   handle_update_password,
+  handle_notification,
 };

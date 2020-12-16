@@ -12,6 +12,7 @@ import { A_set_display_videos } from "../../reducer/Actions/movie_info_action";
 import {
   handle_update_widhlist,
   handle_update_favorite,
+  handle_notification,
 } from "../../user_helper_method";
 
 import { A_set_notification } from "../../reducer/Actions/notification_action";
@@ -53,29 +54,15 @@ export default function MovieHeader() {
     ? movie.reviews_total_score / movie_reviews.length
     : 0;
 
-  let image = movie.poster_path;
-  let target = movie.title;
-  let type, message, time;
-
   const handle_widhlist = async () => {
     if (!user) {
       document.getElementById("login_nav_button").click();
       return;
     }
-
-    time = "12h";
-
-    if (widhlists.has(movie.id)) {
-      type = "danger";
-      message = "has been successully remove from your Widhlist.";
-    } else {
-      type = "success";
-      message = "has been successully add to your Widhlist.";
-    }
     dispatch(
       A_set_notification([
         ...notifications,
-        { type, image, target, message, time },
+        handle_notification(widhlists, "Widhlist", movie),
       ])
     );
     dispatch(
@@ -89,19 +76,10 @@ export default function MovieHeader() {
       return;
     }
 
-    time = "12h";
-
-    if (favorites.has(movie.id)) {
-      type = "danger";
-      message = "has been successully remove from your Favorites.";
-    } else {
-      type = "success";
-      message = "has been successully add to your Favorites.";
-    }
     dispatch(
       A_set_notification([
         ...notifications,
-        { type, image, target, message, time },
+        handle_notification(favorites, "Favorites", movie),
       ])
     );
 
