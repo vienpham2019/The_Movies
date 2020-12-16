@@ -11,6 +11,7 @@ function NavBar(props) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
   const { movies } = useSelector((state) => state.moviesReducer);
+  const { notifications } = useSelector((state) => state.notificationReducer);
   return (
     <nav
       className="py-3 navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light border-bottom w-100 overflow-hidden"
@@ -95,7 +96,7 @@ function NavBar(props) {
               )}
             </li>
 
-            <li className="nav-item mx-2">
+            <li className="nav-item ml-2">
               <span
                 className="btn btn-link"
                 type="button"
@@ -111,8 +112,18 @@ function NavBar(props) {
                   props.history.push("/user_profile");
                 }}
               >
-                <i className="far fa-user mr-2"></i>
+                <i className="far fa-user"></i>
               </span>
+              {!!notifications.length && user && (
+                <span
+                  className="px-2 py-1 bg-danger text-white rounded-circle m-0"
+                  role="button"
+                  data-toggle="modal"
+                  data-target="#notificationModal"
+                >
+                  {notifications.length}
+                </span>
+              )}
             </li>
           </ul>
         </div>

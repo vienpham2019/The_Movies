@@ -14,6 +14,8 @@ import {
   handle_update_favorite,
 } from "../../user_helper_method";
 
+import { A_set_notification } from "../../reducer/Actions/notification_action";
+
 const styles = createUseStyles({
   backgroundImage: (props) => ({
     "&::after": {
@@ -34,6 +36,7 @@ const styles = createUseStyles({
 });
 export default function MovieHeader() {
   const dispatch = useDispatch();
+  const { notifications } = useSelector((state) => state.notificationReducer);
   const { movie, movie_reviews } = useSelector(
     (state) => state.movieInfoReducer
   );
@@ -50,11 +53,31 @@ export default function MovieHeader() {
     ? movie.reviews_total_score / movie_reviews.length
     : 0;
 
+  let image = movie.poster_path;
+  let target = movie.title;
+  let type, message, time;
+
   const handle_widhlist = async () => {
     if (!user) {
       document.getElementById("login_nav_button").click();
       return;
     }
+
+    time = "12h";
+
+    if (widhlists.has(movie.id)) {
+      type = "danger";
+      message = "has been successully remove from your Widhlist.";
+    } else {
+      type = "success";
+      message = "has been successully add to your Widhlist.";
+    }
+    dispatch(
+      A_set_notification([
+        ...notifications,
+        { type, image, target, message, time },
+      ])
+    );
     dispatch(
       A_update_widhlist(await handle_update_widhlist(widhlists, movie, token))
     );
@@ -65,6 +88,23 @@ export default function MovieHeader() {
       document.getElementById("login_nav_button").click();
       return;
     }
+
+    time = "12h";
+
+    if (favorites.has(movie.id)) {
+      type = "danger";
+      message = "has been successully remove from your Favorites.";
+    } else {
+      type = "success";
+      message = "has been successully add to your Favorites.";
+    }
+    dispatch(
+      A_set_notification([
+        ...notifications,
+        { type, image, target, message, time },
+      ])
+    );
+
     dispatch(
       A_update_favorite(await handle_update_favorite(favorites, movie, token))
     );

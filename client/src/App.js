@@ -12,6 +12,7 @@ import MovieTrailerModal from "./Components/MovieTrailerModal";
 import UserProfile from "./Components/User_profile/UserProfile";
 import PageNotFound from "./Components/PageNotFound";
 import LoadingPage from "./Components/LoadingPage";
+import NotificationModal from "./Components/NotificationModal";
 
 import { A_set_top_movies } from "./reducer/Actions/top_movies_action";
 import { A_set_movies } from "./reducer/Actions/movies_action";
@@ -82,6 +83,7 @@ export default function App() {
           <MovieTrailerModal />
           <Footer />
           <LoginModal />
+          <NotificationModal />
         </div>
       ) : (
         <LoadingPage />

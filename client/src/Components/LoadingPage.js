@@ -10,7 +10,7 @@ export default function LoadingPage() {
             <div class="sk-chase-dot"></div>
           ))}
         </div>
-        <h4 className="text-muted mt-4">Loading...</h4>
+        <h4 className="text-muted mt-4">Loading... Please Wait</h4>
       </div>
     </div>
   );
