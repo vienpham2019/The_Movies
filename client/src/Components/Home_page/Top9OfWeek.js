@@ -141,11 +141,6 @@ export default function Top9OfWeek(props) {
                               >
                                 More Info
                               </span>
-                              <div className="movie-actions--link_add-to-playlist">
-                                <span className="movie-actions--link_watch">
-                                  + Playlist
-                                </span>
-                              </div>
                             </div>
                           </div>
                         </div>

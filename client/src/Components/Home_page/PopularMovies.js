@@ -16,7 +16,7 @@ export default function PopularMovies(props) {
         <div className="home-movie-section-aside-header__inner">
           <div className="masvideos masvideos-movies">
             <div className="movies columns-7">
-              <div className="movies__inner">
+              <div className="movies__inner justify-content-center">
                 <header className="home-section_header">
                   <h1 className="home-section__title">
                     Popular Movies <br />
