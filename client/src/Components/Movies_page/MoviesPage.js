@@ -45,7 +45,7 @@ export default function MoviesPage(props) {
       <div className="mx-auto widget-area" style={{ width: "93%" }}>
         <div className="section-movies-list__inner">
           {/*  */}
-          <div className={`sidebar ${displaySideBar ? "active" : ""}`}>
+          <div className={`sidebar ${displaySideBar && "active"}`}>
             <div
               className="dismiss"
               role="button"
@@ -53,7 +53,13 @@ export default function MoviesPage(props) {
             >
               <i className="fas fa-times"></i>
             </div>
-            <MoviesFilter />
+            <div
+              className="top-movies-list mb-4"
+              style={{ minWidth: "350px", maxWidth: "400px" }}
+            >
+              <MoviesFilter />
+            </div>
+
             <TopMovies history={props.history} />
           </div>
 

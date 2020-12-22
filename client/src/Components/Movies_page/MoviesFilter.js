@@ -78,10 +78,7 @@ export default function MoviesFilter() {
   };
 
   return (
-    <div
-      className="top-movies-list mb-4"
-      style={{ minWidth: "350px", maxWidth: "400px" }}
-    >
+    <div>
       <div className="px-3 pb-2">
         <header className="top-movies-list__header m-0">
           <h2 className="section-movies-list__title">Genres</h2>

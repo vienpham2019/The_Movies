@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 function Favorites_Widhlist(props) {
   let { title } = props;
   let { widhlists, favorites } = useSelector((state) => state.userReducer);
+  const { filter_movies } = useSelector((state) => state.moviesReducer);
   let movies =
     title === "Widhlist"
       ? Array.from(widhlists.values())
       : Array.from(favorites.values());
   const displayAmount = 10;
-  const pages = Math.ceil(movies.length / displayAmount);
+  const pages = Math.ceil(filter_movies.length / displayAmount);
 
   return (
     <div className="bg-dark p-4 h-100 border">

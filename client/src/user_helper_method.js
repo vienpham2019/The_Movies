@@ -86,6 +86,43 @@ const remove_widhlist = async (movie_id, token) => {
   return data;
 };
 
+const add_favorite = async (movie_id, token) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      movie_id,
+      token,
+    }),
+  };
+
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/add_favorite`, obj);
+  const data = res.json();
+  return data;
+};
+
+const remove_favorite = async (movie_id, token) => {
+  const obj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      movie_id,
+      token,
+    }),
+  };
+
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/remove_favorite`,
+    obj
+  );
+  const data = res.json();
+  return data;
+};
+
 const set_widhlists_and_favorites = (_widhlists, _favorites) => {
   let widhlists = new Map();
   let favorites = new Map();
@@ -110,10 +147,12 @@ const handle_update_widhlist = async (widhlists, movie, token) => {
 };
 
 const handle_update_favorite = async (favorites, movie, token) => {
+  let data;
   if (favorites.has(movie.id)) {
-    favorites.delete(movie.id);
+    data = await remove_favorite(movie.id, token);
+    if (data) favorites.delete(movie.id);
   } else {
-    favorites.set(movie.id, movie);
+    if (await add_favorite(movie.id, token)) favorites.set(movie.id, movie);
   }
   return favorites;
 };
@@ -147,15 +186,28 @@ const handle_notification = (lists, list_type, movie) => {
 
   if (lists.has(movie.id)) {
     type = "danger";
-    message = "has been successully remove from your" + list_type + ".";
+    message = "has been successully remove from your " + list_type + ".";
   } else {
     type = "success";
-    message = "has been successully add to your" + list_type + ".";
+    message = "has been successully add to your " + list_type + ".";
   }
   return { image, target, type, message, time };
 };
 
+const getGenres = (lists) => {
+  let genres = { All: lists.length };
+  for (let movie of lists) {
+    for (let genre of movie.genre.split(", ")) {
+      if (genre === "N/A") continue;
+      if (!genres[genre]) genres[genre] = 0;
+      genres[genre] += 1;
+    }
+  }
+  return genres;
+};
+
 export {
+  getGenres,
   login,
   register,
   set_widhlists_and_favorites,
