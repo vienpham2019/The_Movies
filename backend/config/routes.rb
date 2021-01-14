@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post "/add_widhlist", to: "widhlist#add_widhlist"
   post "/remove_widhlist" , to: "widhlist#remove_widhlist"
 
+  # favorite 
+  post "/add_favorite", to: "favorite#add_favorite"
+  post "/remove_favorite" , to: "favorite#remove_favorite"
+
   # movie 
   resources :movie, only: [:index]
 
