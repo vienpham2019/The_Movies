@@ -1,128 +1,100 @@
 import { get_current_time } from "./helper_method";
-const login = async (email, password) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  };
+import { toast } from "react-toastify";
 
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, obj);
+// helper
+const fetch_obj = (method, body_value) => ({
+  method,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(body_value),
+});
+
+const toast_obj = {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+// fetch
+const login = async (email, password) => {
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/login`,
+    fetch_obj("POST", { email, password })
+  );
   const data = await res.json();
   return data;
 };
 
 const register = async (value) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...value,
-    }),
-  };
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, obj);
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/register`,
+    fetch_obj("POST", { ...value })
+  );
   const data = await res.json();
   return data;
 };
 
 const update_user_info = async (value) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...value,
-    }),
-  };
   const res = await fetch(
     `${process.env.REACT_APP_API_URL}/update_user_info`,
-    obj
+    fetch_obj("POST", { ...value })
   );
   const data = res.json();
   return data;
 };
 
 const add_widhlist = async (movie_id, token) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      movie_id,
-      token,
-    }),
-  };
-
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/add_widhlist`, obj);
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/add_widhlist`,
+    fetch_obj("POST", { movie_id, token })
+  );
   const data = res.json();
   return data;
 };
 
 const remove_widhlist = async (movie_id, token) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      movie_id,
-      token,
-    }),
-  };
-
   const res = await fetch(
     `${process.env.REACT_APP_API_URL}/remove_widhlist`,
-    obj
+    fetch_obj("POST", { movie_id, token })
   );
   const data = res.json();
   return data;
 };
 
 const add_favorite = async (movie_id, token) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      movie_id,
-      token,
-    }),
-  };
-
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/add_favorite`, obj);
-  const data = res.json();
-  return data;
-};
-
-const remove_favorite = async (movie_id, token) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      movie_id,
-      token,
-    }),
-  };
-
   const res = await fetch(
-    `${process.env.REACT_APP_API_URL}/remove_favorite`,
-    obj
+    `${process.env.REACT_APP_API_URL}/add_favorite`,
+    fetch_obj("POST", { movie_id, token })
   );
   const data = res.json();
   return data;
 };
 
+const remove_favorite = async (movie_id, token) => {
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/remove_favorite`,
+    fetch_obj("POST", { movie_id, token })
+  );
+  const data = res.json();
+  return data;
+};
+
+const handle_update_password = async (password, token) => {
+  const res = await fetch(
+    `${process.env.REACT_APP_API_URL}/update_user_password`,
+    fetch_obj("POST", { password, token })
+  );
+  const data = res.json();
+  return data;
+};
+// end fetch
+
+// actions
 const set_widhlists_and_favorites = (_widhlists, _favorites) => {
   let widhlists = new Map();
   let favorites = new Map();
@@ -157,39 +129,20 @@ const handle_update_favorite = async (favorites, movie, token) => {
   return favorites;
 };
 
-const handle_update_password = async (password, token) => {
-  const obj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      password,
-      token,
-    }),
-  };
-
-  const res = await fetch(
-    `${process.env.REACT_APP_API_URL}/update_user_password`,
-    obj
-  );
-  const data = res.json();
-  return data;
-};
-
 const handle_notification = (lists, list_type, movie) => {
   let image = movie.poster_path;
   let target = movie.title;
   let type, message, time;
 
   time = get_current_time();
-
   if (lists.has(movie.id)) {
     type = "danger";
     message = "has been successully remove from your " + list_type + ".";
+    toast.error(target + " " + message, toast_obj);
   } else {
     type = "success";
     message = "has been successully add to your " + list_type + ".";
+    toast.success(target + " " + message, toast_obj);
   }
   return { image, target, type, message, time };
 };

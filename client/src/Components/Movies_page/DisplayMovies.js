@@ -133,7 +133,6 @@ export default function DisplayMovies(props) {
                       onClick={async () => {
                         window.scrollTo(0, 0);
                         let _data = await getMovieAndReviews(movie);
-                        window.scrollTo(0, 0);
                         dispatch(A_set_movie_info(_data));
                         props.history.push("/movie_info");
                       }}

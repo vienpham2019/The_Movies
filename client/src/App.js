@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+
 // Pages
 import HomePage from "./Components/Home_page/HomePage";
 import MoviesPage from "./Components/Movies_page/MoviesPage";
@@ -13,7 +15,6 @@ import LoadingPage from "./Components/LoadingPage";
 // Other
 import Footer from "./Components/Footer";
 import NavBar from "./Components/NavBar";
-import Notification from "./Components/Notification/Notification";
 
 // Modal
 import LoginModal from "./Components/Modal/LoginModal";
@@ -91,7 +92,7 @@ export default function App() {
           <Footer />
           <LoginModal />
           <NotificationModal />
-          <Notification />
+          <ToastContainer />
         </div>
       ) : (
         <LoadingPage />
