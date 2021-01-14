@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { A_set_user } from "../reducer/Actions/user_action";
-import { validateLength, validateEmail } from "../validation";
+import { A_set_user } from "../../reducer/Actions/user_action";
+import { validateLength, validateEmail } from "../../validation";
 import {
   login,
   register,
   set_widhlists_and_favorites,
-} from "../user_helper_method";
+} from "../../user_helper_method";
 
 export default function LoginModal() {
   const dispatch = useDispatch();

@@ -130,9 +130,11 @@ export default function DisplayMovies(props) {
                       className="btn_ btn-block_ btn-outline-dark_ text-white border mr-2"
                       role="button"
                       style={{ width: "150px" }}
-                      onClick={() => {
+                      onClick={async () => {
                         window.scrollTo(0, 0);
-                        dispatch(A_set_movie_info(movie));
+                        let _data = await getMovieAndReviews(movie);
+                        window.scrollTo(0, 0);
+                        dispatch(A_set_movie_info(_data));
                         props.history.push("/movie_info");
                       }}
                     >

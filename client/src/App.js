@@ -2,18 +2,25 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+// Pages
 import HomePage from "./Components/Home_page/HomePage";
 import MoviesPage from "./Components/Movies_page/MoviesPage";
 import MovieInfoPage from "./Components/MovieDetail_page/MovieInfoPage";
-import Footer from "./Components/Footer";
-import NavBar from "./Components/NavBar";
-import LoginModal from "./Components/LoginModal";
-import MovieTrailerModal from "./Components/MovieTrailerModal";
 import UserProfile from "./Components/User_profile/UserProfile";
 import PageNotFound from "./Components/PageNotFound";
 import LoadingPage from "./Components/LoadingPage";
-import NotificationModal from "./Components/NotificationModal";
 
+// Other
+import Footer from "./Components/Footer";
+import NavBar from "./Components/NavBar";
+import Notification from "./Components/Notification/Notification";
+
+// Modal
+import LoginModal from "./Components/Modal/LoginModal";
+import MovieTrailerModal from "./Components/Modal/MovieTrailerModal";
+import NotificationModal from "./Components/Notification/NotificationModal";
+
+// Action
 import { A_set_top_movies } from "./reducer/Actions/top_movies_action";
 import { A_set_movies } from "./reducer/Actions/movies_action";
 
@@ -84,6 +91,7 @@ export default function App() {
           <Footer />
           <LoginModal />
           <NotificationModal />
+          <Notification />
         </div>
       ) : (
         <LoadingPage />

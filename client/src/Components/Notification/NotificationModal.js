@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { A_set_notification } from "../reducer/Actions/notification_action";
+import { A_set_notification } from "../../reducer/Actions/notification_action";
 export default function NotificationModal() {
   const dispatch = useDispatch();
   const { notifications } = useSelector((state) => state.notificationReducer);
