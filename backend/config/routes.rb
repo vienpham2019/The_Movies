@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   post "/remove_favorite" , to: "favorite#remove_favorite"
 
   # movie 
-  resources :movie, only: [:index]
-
+  resources :movie
+  
   # review 
   get "/get_reviews/:movie_id", to: "review#get_reviews"
   post "/add_review", to: "review#add_review"
