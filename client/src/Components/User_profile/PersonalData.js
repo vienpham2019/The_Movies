@@ -154,7 +154,7 @@ export default function PersonalData(props) {
             </label>
           </div>
         </div>
-        <button className="review-button w-100" type="submit">
+        <button className="review-button w-100 py-3" type="submit">
           SAVE CHANGE
         </button>
       </form>

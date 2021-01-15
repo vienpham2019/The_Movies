@@ -101,7 +101,7 @@ export default function ChangePassword(props) {
             )}
           </div>
         </div>
-        <button className="review-button w-100" type="submit">
+        <button className="review-button w-100 py-3" type="submit">
           UPDATE PASSWORD
         </button>
       </form>

@@ -69,7 +69,7 @@ export default function MoviesPage(props) {
                 <h2 className="section-movies-list__title">Movies</h2>
                 <input
                   type="text"
-                  className="mx-auto w-50 text-white rounded-pill border-white movies-search"
+                  className="mx-auto w-50 form-control border-0"
                   style={{ maxHeight: "30px" }}
                   placeholder="Search..."
                   onChange={(e) => handelSearchMovie(e.target.value.trim())}
@@ -80,7 +80,7 @@ export default function MoviesPage(props) {
             <ul className="d-flex justify-content-end">
               {vodi.map((value, index) => (
                 <li
-                  className={`mx-1 vodi-button ${
+                  className={`p-1 vodi-button ${
                     vodi_value === value.type ? "nav-item bg-info" : "nav-item"
                   }`}
                   role="button"

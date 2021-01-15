@@ -69,7 +69,9 @@ export default function UserProfile(props) {
                   {profileNav.map((value, i) => (
                     <div key={i}>
                       <span
-                        className="list-group-item-action py-4 d-flex bd-highlight rotate_icon px-3"
+                        className={`list-group-item-action py-4 d-flex rotate_icon px-3 ${
+                          value.key === nav_content && "text-info"
+                        }`}
                         role="button"
                         onClick={() => {
                           if (

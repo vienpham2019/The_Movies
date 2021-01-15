@@ -190,7 +190,7 @@ export default function MovieReviews() {
                     </div>
                   </div>
                   <div className="col-12 text-center p-0">
-                    <button className="review-button w-100" type="submit">
+                    <button className="review-button w-100 py-3" type="submit">
                       Post Review
                     </button>
                   </div>
