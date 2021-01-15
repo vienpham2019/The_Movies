@@ -36,12 +36,13 @@ export default function MovieDescription() {
   return (
     <div className="container">
       <ul className="flex-column flex-sm-row nav nav--row">
-        {des_keys.map((value) => (
+        {des_keys.map((value, index) => (
           <li
             className={`nav--item ${
               activeDescription === value ? " active" : ""
             }`}
             role="button"
+            key={index}
             onClick={() => setActiveDescription(value)}
           >
             {value}
@@ -62,7 +63,10 @@ export default function MovieDescription() {
             <div className="col-md-5 border-left">
               <ul>
                 {Object.entries(storyline).map(([key, value]) => (
-                  <li className="pl-3 py-2 my-2 text-white bg--light--gray">
+                  <li
+                    className="pl-3 py-2 my-2 text-white bg--light--gray"
+                    key={key}
+                  >
                     <strong className="text-secondary">{key}: </strong>
                     <span className="text-dark ">{value}</span>
                   </li>
@@ -79,7 +83,7 @@ export default function MovieDescription() {
           }`}
         >
           <div class="d-flex flex-wrap">
-            <div className="card mx-2 p-3 rounded-0 shadow">
+            <div className="card mx-2 p-3 rounded-0 shadow border-0">
               <h5 className="card-title border-bottom ">
                 Production Companies
               </h5>
@@ -94,6 +98,7 @@ export default function MovieDescription() {
                   <div
                     className="text-center p-2 my-2 card border-0"
                     style={{ maxWidth: "20em" }}
+                    key={company}
                   >
                     <div className="border-bottom border-right shadow-sm">
                       {company.logo_path.match(/null$/) ? (
@@ -117,8 +122,9 @@ export default function MovieDescription() {
             </div>
             {Object.entries(addition_infomation).map(([key, value]) => (
               <div
-                className="card p-3 mx-2 rounded-0 shadow"
+                className="card p-3 mx-2 my-3 rounded-0 shadow border-0"
                 style={{ minWidth: "300px", minHeight: "150px" }}
+                key={key + value}
               >
                 <h5
                   className="card-title border-bottom"
@@ -139,7 +145,9 @@ export default function MovieDescription() {
                     {value === "N/A" ? (
                       <li>N/A</li>
                     ) : (
-                      value.split(", ").map((val) => <li> &#10731; {val}</li>)
+                      value
+                        .split(", ")
+                        .map((val) => <li key={"+" + val}> &#10731; {val}</li>)
                     )}
                   </ul>
                 )}

@@ -122,7 +122,7 @@ export default function LoginModal() {
                   resetRegister();
                 }}
               >
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </span>
               <div className="row d-flex no-gutters border-bottom mb-3">
                 <ul className="nav list-inline" role="tablist">
@@ -248,9 +248,9 @@ export default function LoginModal() {
                 aria-labelledby="nav-register-modal-modal-tab"
               >
                 {registerSuccess && (
-                  <div class="w-100 bg--success py-3 text-white text-center animate__animated animate__fadeIn">
-                    <i class="fas fa-check mr-1"></i> Registered successfully.
-                    please login...!
+                  <div className="w-100 bg--success py-3 text-white text-center animate__animated animate__fadeIn">
+                    <i className="fas fa-check mr-1"></i> Registered
+                    successfully. please login...!
                   </div>
                 )}
 

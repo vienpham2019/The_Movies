@@ -4,7 +4,7 @@ export default function MovieTrailerModal() {
   const { displayVideos } = useSelector((state) => state.movieInfoReducer);
 
   const stopVideo = () => {
-    let iframes = [...document.getElementsByClassName("movie_trailer_iframe")];
+    let iframes = [...document.getElementsByclassName("movie_trailer_iframe")];
     for (let iframe of iframes) {
       let { src } = iframe;
       iframe.src = src;
@@ -42,15 +42,18 @@ export default function MovieTrailerModal() {
             {!!displayVideos.length ? (
               <div
                 id="MovieTrailerModal"
-                class="carousel slide"
+                className="carousel slide"
                 data-ride="carousel"
               >
-                <div class="carousel-inner">
+                <div className="carousel-inner">
                   {displayVideos.map((v, i) => (
-                    <div class={`carousel-item p-5 ${i === 0 && "active"}`}>
-                      <div class="embed-responsive embed-responsive-21by9">
+                    <div
+                      className={`carousel-item p-5 ${i === 0 && "active"}`}
+                      key={i}
+                    >
+                      <div className="embed-responsive embed-responsive-21by9">
                         <iframe
-                          class="embed-responsive-item movie_trailer_iframe"
+                          className="embed-responsive-item movie_trailer_iframe"
                           src={v.videoUrl}
                           allowFullScreen
                           title={v.title}
@@ -60,12 +63,13 @@ export default function MovieTrailerModal() {
                     </div>
                   ))}
                 </div>
-                <ol class="carousel-indicators">
+                <ol className="carousel-indicators">
                   {displayVideos.map((_, i) => (
                     <li
                       data-target="#MovieTrailerModal"
                       data-slide-to={i}
-                      class={`${i === 0 && "active"}`}
+                      key={i}
+                      className={`${i === 0 && "active"}`}
                       onClick={() => stopVideo()}
                     ></li>
                   ))}
@@ -74,7 +78,7 @@ export default function MovieTrailerModal() {
             ) : (
               <div className="h-100 d-flex align-items-center">
                 <div className="text-center mx-auto">
-                  <i class="fas fa-film fa-5x text-white"></i>
+                  <i className="fas fa-film fa-5x text-white"></i>
                   <h3 className="text-white">Movie Trailer</h3>
                   <h3 className="text-white">No Longer Avaliable</h3>
                 </div>

@@ -51,14 +51,11 @@ export default function MidSection(props) {
                         <div className="watch-now-txt">Watch Now</div>
                       </span>
                     </div>
-                    <a
-                      href="-"
-                      className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link"
-                    >
+                    <span className="masvideos-LoopMovie-link masvideos-loop-movie__link movie__link">
                       <h3 className="masvideos-loop-movie__title  movie__title">
                         {movie.title}
                       </h3>
-                    </a>
+                    </span>
                     <div className="slider-movie__meta">
                       <ul className="movie-details">
                         <li className="movie-duration">{movie.runtime}</li>

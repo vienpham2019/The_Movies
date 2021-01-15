@@ -65,10 +65,11 @@ export default function Pagination(props) {
           }}
         >
           {Array.from(Array(Math.abs(beforeCurrent - 2)), (_, i) => i + 2).map(
-            (page) => (
+            (page, index) => (
               <p
                 className="m-0 border-bottom dropdown--item pl-3"
                 role="button"
+                key={index}
                 onClick={() => handelCurrentPage(page)}
               >
                 {page}
@@ -86,13 +87,14 @@ export default function Pagination(props) {
             : currentPage > pages - 3
             ? pages - 3 + i
             : i + currentPage - 1
-      ).map((page) => (
+      ).map((page, index) => (
         <div
           className={`pagination-item active ${
             currentPage === page ? "pagination-active" : ""
           }`}
           role="button"
           onClick={() => handelCurrentPage(page)}
+          key={index}
         >
           <span className="mx-auto">{page}</span>
         </div>
@@ -127,10 +129,11 @@ export default function Pagination(props) {
           {Array.from(
             Array(Math.abs(pages - afterCurrent - 1)),
             (_, i) => afterCurrent + i + 1
-          ).map((page) => (
+          ).map((page, index) => (
             <p
               className="m-0 border-bottom dropdown--item pl-3"
               role="button"
+              key={index}
               onClick={() => handelCurrentPage(page)}
             >
               {page}

@@ -34,6 +34,7 @@ export default function RecommendMovies() {
                 <div
                   className="movie"
                   role="button"
+                  key={movie.title}
                   onClick={async () => {
                     let _data = await getMovieAndReviews(movie);
                     window.scrollTo(0, 0);

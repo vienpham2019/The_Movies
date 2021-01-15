@@ -44,8 +44,8 @@ export default function PersonalData(props) {
         <span className="py-3 bg-light">Personal data</span>
       </h4>
       {updateUserSuccess && (
-        <div class="w-100 bg--success mb-3 py-3 text-white text-center animate__animated animate__fadeIn">
-          <i class="fas fa-check mr-1"></i>Update Successful!
+        <div className="w-100 bg--success mb-3 py-3 text-white text-center animate__animated animate__fadeIn">
+          <i className="fas fa-check mr-1"></i>Update Successful!
         </div>
       )}
       <form className="w-100 p-0" onSubmit={handleSubmit}>

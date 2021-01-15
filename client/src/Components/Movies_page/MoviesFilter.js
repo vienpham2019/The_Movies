@@ -167,6 +167,7 @@ export default function MoviesFilter() {
               className="p-1 text-info w-100 row m-0 justify-content-between left-underline border-white"
               role="button"
               onClick={() => filterByRating(_rating)}
+              key={_rating}
             >
               <div>
                 {Array.from(Array(10), (_, i) => {

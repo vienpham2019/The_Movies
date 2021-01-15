@@ -78,12 +78,13 @@ export default function MoviesPage(props) {
             </header>
             {/*  */}
             <ul className="d-flex justify-content-end">
-              {vodi.map((value) => (
+              {vodi.map((value, index) => (
                 <li
                   className={`mx-1 vodi-button ${
                     vodi_value === value.type ? "nav-item bg-info" : "nav-item"
                   }`}
                   role="button"
+                  key={index}
                   onClick={() => setVodiValue(value.type)}
                 >
                   <span className="mx-2">

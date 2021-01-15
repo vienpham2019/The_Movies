@@ -19,7 +19,7 @@ import NavBar from "./Components/NavBar";
 // Modal
 import LoginModal from "./Components/Modal/LoginModal";
 import MovieTrailerModal from "./Components/Modal/MovieTrailerModal";
-import NotificationModal from "./Components/Notification/NotificationModal";
+import NotificationModal from "./Components/Modal/NotificationModal";
 
 // Action
 import { A_set_top_movies } from "./reducer/Actions/top_movies_action";

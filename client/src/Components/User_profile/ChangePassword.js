@@ -42,8 +42,8 @@ export default function ChangePassword(props) {
         <span className="py-3 bg-light">Change password</span>
       </h4>
       {updatePasswordSuccess && (
-        <div class="w-100 bg--success mb-3 py-3 text-white text-center animate__animated animate__fadeIn">
-          <i class="fas fa-check mr-1"></i>Update Successful!
+        <div className="w-100 bg--success mb-3 py-3 text-white text-center animate__animated animate__fadeIn">
+          <i className="fas fa-check mr-1"></i>Update Successful!
         </div>
       )}
       <form className="w-100 m-0" onSubmit={async (e) => handleSubmit(e)}>

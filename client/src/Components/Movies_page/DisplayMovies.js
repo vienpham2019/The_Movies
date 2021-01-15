@@ -137,7 +137,7 @@ export default function DisplayMovies(props) {
                         props.history.push("/movie_info");
                       }}
                     >
-                      <i class="fas fa-info"></i> More Info
+                      <i className="fas fa-info"></i> More Info
                     </span>
                     <div className="mx-1">
                       <span
@@ -149,7 +149,7 @@ export default function DisplayMovies(props) {
                         role="button"
                         onClick={() => handle_widhlist(movie)}
                       >
-                        <i class="fas fa-plus"></i> Widhlist
+                        <i className="fas fa-plus"></i> Widhlist
                       </span>
                     </div>
                     <div className="mx-1">
@@ -162,7 +162,7 @@ export default function DisplayMovies(props) {
                         role="button"
                         onClick={() => handle_favorite(movie)}
                       >
-                        <i class="fas fa-heart"></i> Favorite
+                        <i className="fas fa-heart"></i> Favorite
                       </span>
                     </div>
                   </div>
