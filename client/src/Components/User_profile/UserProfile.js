@@ -67,7 +67,11 @@ export default function UserProfile(props) {
               <nav className="mb-10 mb-md-0">
                 <div className="list-group list-group-sm list-group-strong list-group-flush-x">
                   {profileNav.map((value, i) => (
-                    <div key={i}>
+                    <div
+                      key={
+                        "user profile page user profile nav " + value.key + i
+                      }
+                    >
                       <span
                         className={`list-group-item-action py-4 d-flex rotate_icon px-3 ${
                           value.key === nav_content && "text-info"

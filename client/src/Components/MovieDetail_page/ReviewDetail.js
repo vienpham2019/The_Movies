@@ -21,7 +21,7 @@ export default function ReviewDetail(props) {
                   {Array.from(Array(10)).map((_, i) => (
                     <i
                       className={`${i + 1 <= score ? "fas" : "far"} fa-star `}
-                      key={i}
+                      key={"movie detail page movie review detail star " + i}
                     ></i>
                   ))}
                 </div>

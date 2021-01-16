@@ -86,7 +86,10 @@ export default function MoviesFilter() {
 
         <div className="mt-2" style={{ columnCount: 2 }}>
           {Object.entries(genres).map(([_genre, count]) => (
-            <div className="checkbox-wrapper" key={_genre}>
+            <div
+              className="checkbox-wrapper"
+              key={"movies page movies filter genre " + _genre + count}
+            >
               <input
                 id={`checkbox-${_genre}`}
                 type="checkbox"
@@ -116,7 +119,10 @@ export default function MoviesFilter() {
         </header>
         <div className="mt-2">
           {sortBy.map((_sort, index) => (
-            <div className="checkbox-wrapper" key={`${_sort} ${index}`}>
+            <div
+              className="checkbox-wrapper"
+              key={"movies page movies filter sortBy " + _sort + index}
+            >
               <input
                 id={`checkbox-${_sort}`}
                 type="checkbox"
@@ -148,7 +154,7 @@ export default function MoviesFilter() {
               aria-disabled="true"
               style={{ borderRadius: "0" }}
               onClick={() => count !== 0 && filterByYear(_year)}
-              key={_year}
+              key={"movies page movie filter years " + _year + count}
             >
               {_year} <small className="d-inline text-white">({count})</small>
             </div>
@@ -167,7 +173,7 @@ export default function MoviesFilter() {
               className="p-1 text-info w-100 row m-0 justify-content-between left-underline border-white"
               role="button"
               onClick={() => filterByRating(_rating)}
-              key={_rating}
+              key={"movies page movie filter ratings " + _rating + count}
             >
               <div>
                 {Array.from(Array(10), (_, i) => {

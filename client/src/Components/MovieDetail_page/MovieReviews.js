@@ -85,7 +85,7 @@ export default function MovieReviews() {
                           ? "fas"
                           : "far"
                       } fa-star`}
-                      key={i}
+                      key={"movie detail page movie reviews star " + i}
                     ></i>
                   ))}
                   <span className="ml-2">
@@ -130,7 +130,9 @@ export default function MovieReviews() {
                             } fa-star`}
                             style={{ fontSize: "1.4em" }}
                             role="button"
-                            key={i}
+                            key={
+                              "movie detail page movie reviews form star " + i
+                            }
                             onClick={() => setReviewScore(i + 1)}
                           ></i>
                         ))}
@@ -200,8 +202,11 @@ export default function MovieReviews() {
 
             {/* review */}
             <div className="mt-5">
-              {displayReviews.map((review) => (
-                <ReviewDetail review={review} key={review} />
+              {displayReviews.map((review, i) => (
+                <ReviewDetail
+                  review={review}
+                  key={"movie detail page movie reviews review " + i}
+                />
               ))}
             </div>
 

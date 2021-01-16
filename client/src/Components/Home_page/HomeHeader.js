@@ -19,7 +19,7 @@ export default function HomeHeader(props) {
             <li
               data-target="#carouselExampleControls"
               data-slide-to={index}
-              key={`home header pagination ${index}`}
+              key={`home page home header display movie ${index}`}
               className="active bg-info"
               style={{ height: "10px", width: "50px" }}
             ></li>
@@ -31,7 +31,7 @@ export default function HomeHeader(props) {
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
               data-interval="15000"
-              key={`home header movie content ${index}`}
+              key={`home page home header movie content ${index}`}
             >
               <div className="swiper-slide swiper-slide-active">
                 <div className="swiper-slide-caption main-section text-center text-md-left">

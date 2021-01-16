@@ -84,7 +84,7 @@ export default function MoviesPage(props) {
                     vodi_value === value.type ? "nav-item bg-info" : "nav-item"
                   }`}
                   role="button"
-                  key={index}
+                  key={"movies page movies page vodi " + value.type + index}
                   onClick={() => setVodiValue(value.type)}
                 >
                   <span className="mx-2">

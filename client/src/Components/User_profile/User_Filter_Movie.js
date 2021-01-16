@@ -60,7 +60,10 @@ export default function User_Filter_Movie(props) {
       <hr className="my-1" />
       <div className="mt-2" style={{ columnCount: 2 }}>
         {Object.entries(genres).map(([_genre, count]) => (
-          <div className="checkbox-wrapper text-dark" key={_genre}>
+          <div
+            className="checkbox-wrapper text-dark"
+            key={"user profile page user filer movie genres " + _genre + count}
+          >
             <input
               id={`checkbox-${_genre}`}
               type="checkbox"
@@ -89,7 +92,10 @@ export default function User_Filter_Movie(props) {
       <hr className="my-1" />
       <div className="mt-2">
         {sortBy.map((_sort, index) => (
-          <div className="checkbox-wrapper" key={`${_sort} ${index}`}>
+          <div
+            className="checkbox-wrapper"
+            key={"user profile page user filter movie sort " + _sort + index}
+          >
             <input
               id={`checkbox-${_sort}`}
               type="checkbox"

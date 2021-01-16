@@ -7,7 +7,7 @@ export default function LoadingPage() {
       <div className="container text-center">
         <div className="sk-chase mx-auto">
           {Array.from(Array(6)).map((_, index) => (
-            <div className="sk-chase-dot" key={index}></div>
+            <div className="sk-chase-dot" key={"loading page " + index}></div>
           ))}
         </div>
         <h4 className="text-muted mt-4">Loading... Please Wait</h4>

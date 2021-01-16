@@ -160,7 +160,9 @@ export default function MovieHeader() {
                       className={`${
                         i + 1 <= revies_avg_score ? "fas" : "far"
                       } fa-star`}
-                      key={i}
+                      key={
+                        "movie detail page movie header review avg star " + i
+                      }
                     ></i>
                   ))}
                 </div>

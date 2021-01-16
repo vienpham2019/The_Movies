@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { A_set_movie_info } from "../../reducer/Actions/movie_info_action";
 import { getMovieAndReviews } from "../../helper_method";
-function MovieContent(props) {
+export default function MovieContent(props) {
   let { title, release_date, genre, poster_path } = props.movie;
   const dispatch = useDispatch();
   return (
@@ -45,5 +45,3 @@ function MovieContent(props) {
     </div>
   );
 }
-
-export default MovieContent;

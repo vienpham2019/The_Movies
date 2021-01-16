@@ -44,11 +44,11 @@ export default function Top9OfWeek(props) {
             <div className="masvideos masvideos-movies">
               <div className="movies columns-1">
                 <div className="movies__inner">
-                  {top_10.map((movie, index) => (
+                  {top_10.map((movie) => (
                     <div
                       className="movie"
                       role="button"
-                      key={index}
+                      key={"home page home top 9 of week " + movie.title}
                       onClick={() => setNewestMovieInfo(movie)}
                     >
                       <div className="movie-list">
@@ -74,13 +74,13 @@ export default function Top9OfWeek(props) {
           <header className="featured-with-list-view-movies-list__header">
             <h2 className="section-movies-list__title">Newest Movies</h2>
             <ul className="nav nav-tabs border-0">
-              {genres.map((genre, index) => (
+              {genres.map((genre) => (
                 <li
                   className={`nav-item mx-3 ${
                     filter_genre === genre ? "text-info" : "text-muted"
                   }`}
                   role="button"
-                  key={index}
+                  key={"home page top 9 of week genre " + genre}
                   onClick={() => handleFilterMovies(genre)}
                 >
                   {genre}
@@ -154,11 +154,14 @@ export default function Top9OfWeek(props) {
               <div className="masvideos masvideos-movies">
                 <div className="movies columns-1">
                   <div className="movies__inner">
-                    {display_movies.slice(0, 8).map((movie, index) => (
+                    {display_movies.slice(0, 8).map((movie) => (
                       <div
                         className="movie"
                         onClick={() => setNewestMovieInfo(movie)}
-                        key={index}
+                        key={
+                          "home page top 9 of week display movies " +
+                          movie.title
+                        }
                       >
                         <div className="movie-list hvr-shrink">
                           <div

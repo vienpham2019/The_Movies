@@ -42,7 +42,7 @@ export default function MovieDescription() {
               activeDescription === value ? " active" : ""
             }`}
             role="button"
-            key={"movie description des keys" + index}
+            key={"movie detail page movie description des key " + index}
             onClick={() => setActiveDescription(value)}
           >
             {value}
@@ -65,7 +65,9 @@ export default function MovieDescription() {
                 {Object.entries(storyline).map(([key, value], index) => (
                   <li
                     className="pl-3 py-2 my-2 text-white bg--light--gray"
-                    key={"movie description story line" + index}
+                    key={
+                      "movie detail page movie description storyline " + index
+                    }
                   >
                     <strong className="text-secondary">{key}: </strong>
                     <span className="text-dark ">{value}</span>
@@ -99,7 +101,8 @@ export default function MovieDescription() {
                     className="text-center p-2 my-2 card border-0"
                     style={{ maxWidth: "20em" }}
                     key={
-                      "movie description production companies" + company.name
+                      "movie detail page movie description companies" +
+                      company.name
                     }
                   >
                     <div className="border-bottom border-right shadow-sm">
@@ -126,7 +129,9 @@ export default function MovieDescription() {
               <div
                 className="card p-3 mx-2 my-3 rounded-0 shadow border-0"
                 style={{ minWidth: "300px", minHeight: "150px" }}
-                key={"movie description addition infomation" + index}
+                key={
+                  "movie detail page movie description addition info " + index
+                }
               >
                 <h5
                   className="card-title border-bottom"
@@ -149,8 +154,13 @@ export default function MovieDescription() {
                     ) : (
                       value
                         .split(", ")
-                        .map((val) => (
-                          <li key={"movie description reviews star " + val}>
+                        .map((val, index) => (
+                          <li
+                            key={
+                              "movie detail page movie description star " +
+                              index
+                            }
+                          >
                             {" "}
                             &#10731; {val}
                           </li>

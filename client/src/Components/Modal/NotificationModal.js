@@ -29,7 +29,10 @@ export default function NotificationModal() {
           </div>
           <div className="modal-body h-100" style={{ overflowY: "auto" }}>
             {notifications.map((n, i) => (
-              <div className="card shadow border-0 px-2 rounded-0" key={i}>
+              <div
+                className="card shadow border-0 px-2 rounded-0"
+                key={"modal notification modal " + i}
+              >
                 <div className="row">
                   <div className="col-auto me-auto my-auto">
                     <img

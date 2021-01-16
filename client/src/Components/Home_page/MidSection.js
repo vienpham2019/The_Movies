@@ -18,7 +18,7 @@ export default function MidSection(props) {
             {newest_movies.slice(ran_num, ran_num + 3).map((movie) => (
               <div
                 className="movie has-bg py-5"
-                key={movie.title}
+                key={"home page mid section newest movie " + movie.title}
                 style={{
                   backgroundImage: `url(${movie.poster_path})`,
                   backgroundPosition: "center",

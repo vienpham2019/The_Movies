@@ -45,11 +45,11 @@ export default function PopularMovies(props) {
                 </header>
 
                 {/* Movie contain  */}
-                {popular_movies.slice(0, 15).map((movie, index) => {
+                {popular_movies.slice(0, 15).map((movie) => {
                   return (
                     <MovieContent
                       movie={movie}
-                      key={index}
+                      key={"home page popular movie " + movie.title}
                       history={props.history}
                     />
                   );

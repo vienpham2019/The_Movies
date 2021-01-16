@@ -20,7 +20,7 @@ export default function TopMovies(props) {
                 <div
                   className="movie"
                   role="button"
-                  key={index}
+                  key={"movies page top movies movie " + movie.title + index}
                   onClick={async () => {
                     let _data = await getMovieAndReviews(movie);
                     window.scrollTo(0, 0);

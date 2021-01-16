@@ -73,7 +73,10 @@ export default function DisplayMovies(props) {
       >
         <div className="movies__inner">
           {display_movies.map((movie, index) => (
-            <div className="movie p-2" key={index}>
+            <div
+              className="movie p-2"
+              key={"movies page display movies movie " + movie.title + index}
+            >
               <div
                 className="movie__poster h-100"
                 role="button"

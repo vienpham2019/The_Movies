@@ -38,8 +38,11 @@ export default function TopRankingMovies(props) {
             <span className="ml-2">Top Ranking Movies</span>
           </strong>
           <ul className="nav w-100 shadow-sm d-flex justify-content-center py-2 mb-3">
-            {genres.map((genre, index) => (
-              <li className="nav-item px-3 py-1" key={index}>
+            {genres.map((genre) => (
+              <li
+                className="nav-item px-3 py-1"
+                key={"home page top raking movies ganres " + genre}
+              >
                 <strong
                   className={`left-underline ${
                     filter_genre === genre ? "text-info" : "text-muted"
@@ -61,12 +64,14 @@ export default function TopRankingMovies(props) {
                 <div className="movies__inner slick-initialized slick-slider">
                   <div className="slick-list draggable">
                     <div className="slick-track d-flex justify-content-center flex-wrap mb-5">
-                      {display_movies.slice(0, 10).map((movie, index) => (
+                      {display_movies.slice(0, 10).map((movie) => (
                         <div
                           className="slick-slide shadow-hover-dark m-2 bd-highlight"
                           style={{ width: "265px" }}
                           role="button"
-                          key={index}
+                          key={
+                            "home page top raking movies movie " + movie.title
+                          }
                           onClick={async () => {
                             let _data = await getMovieAndReviews(movie);
                             dispatch(A_set_movie_info(_data));

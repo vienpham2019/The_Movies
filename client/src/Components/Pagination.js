@@ -69,7 +69,7 @@ export default function Pagination(props) {
               <p
                 className="m-0 border-bottom dropdown--item pl-3"
                 role="button"
-                key={index}
+                key={"pagination page 1 " + page + index}
                 onClick={() => handelCurrentPage(page)}
               >
                 {page}
@@ -94,7 +94,7 @@ export default function Pagination(props) {
           }`}
           role="button"
           onClick={() => handelCurrentPage(page)}
-          key={index}
+          key={"pagination page  2 " + page + index}
         >
           <span className="mx-auto">{page}</span>
         </div>
@@ -133,7 +133,7 @@ export default function Pagination(props) {
             <p
               className="m-0 border-bottom dropdown--item pl-3"
               role="button"
-              key={index}
+              key={"pagination page 3 " + page + index}
               onClick={() => handelCurrentPage(page)}
             >
               {page}

@@ -50,7 +50,7 @@ export default function MovieTrailerModal() {
                   {displayVideos.map((v, i) => (
                     <div
                       className={`carousel-item p-5 ${i === 0 && "active"}`}
-                      key={i}
+                      key={"modal  movie trailer modal detail " + i}
                     >
                       <div className="embed-responsive embed-responsive-21by9">
                         <iframe
@@ -68,7 +68,7 @@ export default function MovieTrailerModal() {
                     <li
                       data-target="#MovieTrailerModal"
                       data-slide-to={i}
-                      key={i}
+                      key={"modal movie trailer modal video " + i}
                       className={`${i === 0 && "active"}`}
                       onClick={() => stopVideo()}
                     ></li>
