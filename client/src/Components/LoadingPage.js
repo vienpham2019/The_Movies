@@ -5,7 +5,7 @@ export default function LoadingPage() {
       style={{ backgroundColor: "black", height: "100vh", width: "100vw" }}
     >
       <div className="container text-center">
-        <div class="sk-chase mx-auto">
+        <div className="sk-chase mx-auto">
           {Array.from(Array(6)).map((_, index) => (
             <div className="sk-chase-dot" key={index}></div>
           ))}

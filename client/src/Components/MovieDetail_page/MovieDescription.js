@@ -42,7 +42,7 @@ export default function MovieDescription() {
               activeDescription === value ? " active" : ""
             }`}
             role="button"
-            key={index}
+            key={"movie description des keys" + index}
             onClick={() => setActiveDescription(value)}
           >
             {value}
@@ -62,10 +62,10 @@ export default function MovieDescription() {
             </div>
             <div className="col-md-5 border-left">
               <ul>
-                {Object.entries(storyline).map(([key, value]) => (
+                {Object.entries(storyline).map(([key, value], index) => (
                   <li
                     className="pl-3 py-2 my-2 text-white bg--light--gray"
-                    key={key}
+                    key={"movie description story line" + index}
                   >
                     <strong className="text-secondary">{key}: </strong>
                     <span className="text-dark ">{value}</span>
@@ -98,13 +98,15 @@ export default function MovieDescription() {
                   <div
                     className="text-center p-2 my-2 card border-0"
                     style={{ maxWidth: "20em" }}
-                    key={company}
+                    key={
+                      "movie description production companies" + company.name
+                    }
                   >
                     <div className="border-bottom border-right shadow-sm">
                       {company.logo_path.match(/null$/) ? (
                         <div className="p-4">
                           <strong className="movie_logo_title ">
-                            <i class="fas fa-film fa-2x mr-2"></i>{" "}
+                            <i className="fas fa-film fa-2x mr-2"></i>{" "}
                             {company.name}
                           </strong>
                         </div>
@@ -120,11 +122,11 @@ export default function MovieDescription() {
                 ))}
               </div>
             </div>
-            {Object.entries(addition_infomation).map(([key, value]) => (
+            {Object.entries(addition_infomation).map(([key, value], index) => (
               <div
                 className="card p-3 mx-2 my-3 rounded-0 shadow border-0"
                 style={{ minWidth: "300px", minHeight: "150px" }}
-                key={key + value}
+                key={"movie description addition infomation" + index}
               >
                 <h5
                   className="card-title border-bottom"
@@ -147,7 +149,12 @@ export default function MovieDescription() {
                     ) : (
                       value
                         .split(", ")
-                        .map((val) => <li key={"+" + val}> &#10731; {val}</li>)
+                        .map((val) => (
+                          <li key={"movie description reviews star " + val}>
+                            {" "}
+                            &#10731; {val}
+                          </li>
+                        ))
                     )}
                   </ul>
                 )}

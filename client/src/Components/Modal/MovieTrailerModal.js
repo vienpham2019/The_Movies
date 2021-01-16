@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 export default function MovieTrailerModal() {
   const { displayVideos } = useSelector((state) => state.movieInfoReducer);
 
+  console.log(displayVideos);
   const stopVideo = () => {
-    let iframes = [...document.getElementsByclassName("movie_trailer_iframe")];
+    let iframes = [...document.getElementsByClassName("movie_trailer_iframe")];
     for (let iframe of iframes) {
       let { src } = iframe;
       iframe.src = src;
@@ -15,7 +16,7 @@ export default function MovieTrailerModal() {
     <div
       className="modal fade"
       id="movieTrailerModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="movieTrailerModal"
       aria-hidden="true"
     >
@@ -57,7 +58,6 @@ export default function MovieTrailerModal() {
                           src={v.videoUrl}
                           allowFullScreen
                           title={v.title}
-                          videoPause
                         ></iframe>
                       </div>
                     </div>

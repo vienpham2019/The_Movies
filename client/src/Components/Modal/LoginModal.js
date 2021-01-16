@@ -101,7 +101,7 @@ export default function LoginModal() {
   return (
     <div
       className="modal fade"
-      tabindex="-1"
+      tabIndex="-1"
       id="login-modal"
       data-backdrop="static"
       data-keyboard="false"

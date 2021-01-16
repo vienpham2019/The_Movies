@@ -11,7 +11,7 @@ export default function NotificationModal() {
       data-keyboard="false"
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
-      tabindex="-1"
+      tabIndex="-1"
     >
       <div className="modal-dialog modal-lg">
         <div className="modal-content">

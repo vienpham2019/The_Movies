@@ -24,8 +24,8 @@ export default function PopularMovies(props) {
                   </h1>
                   <p className="home-section__subtitle m-0">
                     Most watched movies by days
-                    <hr />
                   </p>
+                  <hr />
                   <div className="home-section__action">
                     <span
                       className="home-section__action-link left-underline"
